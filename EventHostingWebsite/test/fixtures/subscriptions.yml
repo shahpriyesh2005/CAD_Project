@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subscribed_user_id: MyString
+  subscription_date: 2019-10-16
+  user: one
+
+two:
+  subscribed_user_id: MyString
+  subscription_date: 2019-10-16
+  user: two

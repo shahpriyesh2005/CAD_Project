@@ -1,0 +1,47 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  no_of_tickets: 
+  ticket_price: 
+  fees_per_ticket: 
+  actual_ticket_price: 
+  organizer_payout_per_ticket: 
+  total_ticket_price: 
+  total_fees: 
+  total_actual_ticket_price: 
+  total_organizer_payout: 
+  currency: MyString
+  guest_first_name: MyString
+  guest_last_name: MyString
+  guest_email: MyString
+  guest_contact_no: MyString
+  payment_method: MyString
+  card_no: 
+  expiry_date: 2019-10-16
+  order_date: 2019-10-16
+  user: one
+  event: one
+  ticket: one
+
+two:
+  no_of_tickets: 
+  ticket_price: 
+  fees_per_ticket: 
+  actual_ticket_price: 
+  organizer_payout_per_ticket: 
+  total_ticket_price: 
+  total_fees: 
+  total_actual_ticket_price: 
+  total_organizer_payout: 
+  currency: MyString
+  guest_first_name: MyString
+  guest_last_name: MyString
+  guest_email: MyString
+  guest_contact_no: MyString
+  payment_method: MyString
+  card_no: 
+  expiry_date: 2019-10-16
+  order_date: 2019-10-16
+  user: two
+  event: two
+  ticket: two
