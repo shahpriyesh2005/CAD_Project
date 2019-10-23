@@ -25,9 +25,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "Min tickets", with: @ticket.min_tickets
     fill_in "Name", with: @ticket.name
     fill_in "Organizer payout per ticket", with: @ticket.organizer_payout_per_ticket
-    fill_in "Sale end date", with: @ticket.sale_end_date
     fill_in "Sale end time", with: @ticket.sale_end_time
-    fill_in "Sale start date", with: @ticket.sale_start_date
     fill_in "Sale start time", with: @ticket.sale_start_time
     fill_in "Ticket price", with: @ticket.ticket_price
     fill_in "Total quantity", with: @ticket.total_quantity
@@ -54,9 +52,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "Min tickets", with: @ticket.min_tickets
     fill_in "Name", with: @ticket.name
     fill_in "Organizer payout per ticket", with: @ticket.organizer_payout_per_ticket
-    fill_in "Sale end date", with: @ticket.sale_end_date
     fill_in "Sale end time", with: @ticket.sale_end_time
-    fill_in "Sale start date", with: @ticket.sale_start_date
     fill_in "Sale start time", with: @ticket.sale_start_time
     fill_in "Ticket price", with: @ticket.ticket_price
     fill_in "Total quantity", with: @ticket.total_quantity

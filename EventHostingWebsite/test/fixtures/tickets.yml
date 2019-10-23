@@ -11,9 +11,7 @@ one:
   fees_per_ticket: 
   actual_ticket_price: 
   organizer_payout_per_ticket: 
-  sale_start_date: 2019-10-16
   sale_start_time: 2019-10-16 16:37:32
-  sale_end_date: 2019-10-16
   sale_end_time: 2019-10-16 16:37:32
   min_tickets: 
   max_tickets: 
@@ -32,9 +30,7 @@ two:
   fees_per_ticket: 
   actual_ticket_price: 
   organizer_payout_per_ticket: 
-  sale_start_date: 2019-10-16
   sale_start_time: 2019-10-16 16:37:32
-  sale_end_date: 2019-10-16
   sale_end_time: 2019-10-16 16:37:32
   min_tickets: 
   max_tickets: 

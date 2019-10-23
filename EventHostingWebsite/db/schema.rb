@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_16_163856) do
+ActiveRecord::Schema.define(version: 2019_10_22_161012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -29,11 +29,8 @@ ActiveRecord::Schema.define(version: 2019_10_16_163856) do
     t.string "city"
     t.string "county"
     t.string "country"
-    t.date "start_date"
     t.datetime "start_time"
-    t.date "end_date"
     t.datetime "end_time"
-    t.date "publish_date"
     t.datetime "publish_time"
     t.string "reserved_seating"
     t.string "sponsored"
@@ -106,9 +103,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_163856) do
     t.decimal "fees_per_ticket"
     t.decimal "actual_ticket_price"
     t.decimal "organizer_payout_per_ticket"
-    t.date "sale_start_date"
     t.datetime "sale_start_time"
-    t.date "sale_end_date"
     t.datetime "sale_end_time"
     t.decimal "min_tickets"
     t.decimal "max_tickets"

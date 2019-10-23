@@ -13,11 +13,8 @@ one:
   city: MyString
   county: MyString
   country: MyString
-  start_date: 2019-10-16
   start_time: 2019-10-16 16:16:49
-  end_date: 2019-10-16
   end_time: 2019-10-16 16:16:49
-  publish_date: 2019-10-16
   publish_time: 2019-10-16 16:16:49
   reserved_seating: MyString
   sponsored: MyString
@@ -36,11 +33,8 @@ two:
   city: MyString
   county: MyString
   country: MyString
-  start_date: 2019-10-16
   start_time: 2019-10-16 16:16:49
-  end_date: 2019-10-16
   end_time: 2019-10-16 16:16:49
-  publish_date: 2019-10-16
   publish_time: 2019-10-16 16:16:49
   reserved_seating: MyString
   sponsored: MyString
