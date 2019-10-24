@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 2019_10_22_161012) do
   enable_extension "adminpack"
   enable_extension "plpgsql"
 
+  
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.string "category"
@@ -39,6 +41,8 @@ ActiveRecord::Schema.define(version: 2019_10_22_161012) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_events_on_user_id"
   end
+
+ 
 
   create_table "orders", force: :cascade do |t|
     t.decimal "no_of_tickets"
@@ -82,6 +86,8 @@ ActiveRecord::Schema.define(version: 2019_10_22_161012) do
     t.index ["ticket_id"], name: "index_ratings_on_ticket_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
+
+  
 
   create_table "subscriptions", force: :cascade do |t|
     t.string "subscribed_user_id"

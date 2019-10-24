@@ -1,7 +1,7 @@
-<%= link_to 'Users', controller: 'users' %>
-<%= link_to 'Events', controller: 'events' %>
-<%= link_to 'Tickets', controller: 'tickets' %>
-<%= link_to 'Orders', controller: 'orders' %>
-<%= link_to 'Ratings', controller: 'ratings' %>
-<%= link_to 'Subscriptions', controller: 'subscriptions' %>
-<%= link_to 'Wishlists', controller: 'wishlists' %>
+<%= link_to 'Users', users_path %>
+<%= link_to 'Events', user_events_path(@user) %>
+<%= link_to 'Tickets', tickets_path %>
+<%= link_to 'Orders', orders_path %>
+<%= link_to 'Ratings', ratings_path %>
+<%= link_to 'Subscriptions', user_subscriptions_path(@user) %>
+<%= link_to 'Wishlists', wishlists_path %>

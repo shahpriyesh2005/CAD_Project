@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  root 'home#index'
-  resources :subscriptions
+  root 'users#index'
+  resources :users do
+    resources :subscriptions
+    resources :events
+  end
   resources :wishlists
-  resources :ratings
+  resources :tickets  
   resources :orders
-  resources :tickets
-  resources :events
-  resources :users
+  resources :ratings
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
+
