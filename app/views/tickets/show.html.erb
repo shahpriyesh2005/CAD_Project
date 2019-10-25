@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @ticket.type %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ticket.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @ticket.category %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ticket.description %>
+</p>
+
+<p>
+  <strong>Total quantity:</strong>
+  <%= @ticket.total_quantity %>
+</p>
+
+<p>
+  <strong>Ticket price:</strong>
+  <%= @ticket.ticket_price %>
+</p>
+
+<p>
+  <strong>Include fees in ticket price:</strong>
+  <%= @ticket.include_fees_in_ticket_price %>
+</p>
+
+<p>
+  <strong>Fees per ticket:</strong>
+  <%= @ticket.fees_per_ticket %>
+</p>
+
+<p>
+  <strong>Actual ticket price:</strong>
+  <%= @ticket.actual_ticket_price %>
+</p>
+
+<p>
+  <strong>Organizer payout per ticket:</strong>
+  <%= @ticket.organizer_payout_per_ticket %>
+</p>
+
+<p>
+  <strong>Sale start time:</strong>
+  <%= @ticket.sale_start_time %>
+</p>
+
+<p>
+  <strong>Sale end time:</strong>
+  <%= @ticket.sale_end_time %>
+</p>
+
+<p>
+  <strong>Min tickets:</strong>
+  <%= @ticket.min_tickets %>
+</p>
+
+<p>
+  <strong>Max tickets:</strong>
+  <%= @ticket.max_tickets %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @ticket.currency %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @ticket.user_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @ticket.event_id %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

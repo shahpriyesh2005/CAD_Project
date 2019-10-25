@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Wishlists</h1>
+<% if @wishlists == nil %>
+  <h3> This User has no Wishlists yet. </h3>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Wishlist date</th>
+          <th>User</th>
+          <th>Event</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @wishlists.each do |wishlist| %>
+          <tr>
+            <td><%= wishlist.wishlist_date %></td>
+            <td><%= wishlist.user_id %></td>
+            <td><%= wishlist.event_id %></td>
+            <td><%= link_to 'Show', user_wishlist_path(@user,wishlist) %></td>
+            <td><%= link_to 'Edit', edit_user_wishlist_path(@user,wishlist) %></td>
+            <td><%= link_to 'Destroy', user_wishlist_path(@user,wishlist) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>        
+<br>
+
+<%= link_to 'New Wishlist', new_user_wishlist_path(@user) %>
+
+<%= link_to 'Back to User', @user %>

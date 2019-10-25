@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @event.category %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Organizer name:</strong>
+  <%= @event.organizer_name %>
+</p>
+
+<p>
+  <strong>Organizer email:</strong>
+  <%= @event.organizer_email %>
+</p>
+
+<p>
+  <strong>Organizer contact no:</strong>
+  <%= @event.organizer_contact_no %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @event.venue %>
+</p>
+
+<p>
+  <strong>Address1:</strong>
+  <%= @event.address1 %>
+</p>
+
+<p>
+  <strong>Address2:</strong>
+  <%= @event.address2 %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @event.city %>
+</p>
+
+<p>
+  <strong>County:</strong>
+  <%= @event.county %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @event.country %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @event.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @event.end_time %>
+</p>
+
+<p>
+  <strong>Publish time:</strong>
+  <%= @event.publish_time %>
+</p>
+
+<p>
+  <strong>Reserved seating:</strong>
+  <%= @event.reserved_seating %>
+</p>
+
+<p>
+  <strong>Sponsored:</strong>
+  <%= @event.sponsored %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @event.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_user_event_path(@user,@event) %> |
+<%= link_to 'Back', user_events_path %>
