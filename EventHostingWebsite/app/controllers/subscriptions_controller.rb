@@ -51,8 +51,8 @@ class SubscriptionsController < ApplicationController
     @subscription = @user.subscriptions.find(params[:id])
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to user_subscription_url(@user, @event), notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @director }
+        format.html { redirect_to user_subscription_url(@user, @subscription), notice: 'Subscription was successfully updated.' }
+        format.json { render :show, status: :ok, location: @subscription }
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
