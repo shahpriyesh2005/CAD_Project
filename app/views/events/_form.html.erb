@@ -18,12 +18,12 @@
 
   <div class="field">
     <%= form.label :category %>
-    <%= form.text_field :category %>
+    <%= form.select(:category, Event::EVENT_CATEGORY) %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_area :description %>
   </div>
 
   <div class="field">
@@ -58,17 +58,17 @@
 
   <div class="field">
     <%= form.label :city %>
-    <%= form.text_field :city %>
+    <%= form.select(:city, Event::EVENT_CITY) %>
   </div>
 
   <div class="field">
     <%= form.label :county %>
-    <%= form.text_field :county %>
+    <%= form.select(:county, Event::EVENT_COUNTY) %>
   </div>
 
   <div class="field">
     <%= form.label :country %>
-    <%= form.text_field :country %>
+    <%= form.select(:country, Event::EVENT_COUNTRY) %>
   </div>
 
   <div class="field">
@@ -88,17 +88,18 @@
 
   <div class="field">
     <%= form.label :reserved_seating %>
-    <%= form.text_field :reserved_seating %>
+    <%= form.radio_button :reserved_seating, "Yes" %> Yes
+    <%= form.radio_button :reserved_seating, "No", :checked => true %> No
   </div>
 
   <div class="field">
     <%= form.label :sponsored %>
-    <%= form.text_field :sponsored %>
+    <%= form.radio_button :sponsored, "Yes" %> Yes
+    <%= form.radio_button :sponsored, "No", :checked => true %> No
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.hidden_field :user_id %>
   </div>
 
   <div class="actions">
