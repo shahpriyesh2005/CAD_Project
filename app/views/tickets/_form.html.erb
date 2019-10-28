@@ -13,17 +13,22 @@
 
   <div class="field">
     <%= form.label :type %>
-    <%= form.text_field :type %>
+    <%= form.radio_button :type, "Free" %> Free
+    <%= form.radio_button :type, "Paid" %> Paid
   </div>
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.name :type, "General" %> General
+    <%= form.name :type, "Premium" %> Premium
+    <%= form.name :type, "VIP" %> VIP
   </div>
 
   <div class="field">
     <%= form.label :category %>
-    <%= form.text_field :category %>
+    <%= form.name :category, "Refundable" %> Refundable
+    <%= form.name :category, "Non-Refundable" %> Non-Refundable
+    <%= form.name :category, "Early Bird" %> Early Bird
   </div>
 
   <div class="field">
@@ -83,17 +88,15 @@
 
   <div class="field">
     <%= form.label :currency %>
-    <%= form.text_field :currency %>
+    <%= form.select(:currency, Ticket::TICKET_CURRENCY) %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.hidden_field :user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :event_id %>
-    <%= form.text_field :event_id %>
+    <%= form.hidden_field :event_id %>
   </div>
 
   <div class="actions">
