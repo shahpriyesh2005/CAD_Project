@@ -19,21 +19,21 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.name :type, "General" %> General
-    <%= form.name :type, "Premium" %> Premium
-    <%= form.name :type, "VIP" %> VIP
+    <%= form.radio_button :type, "General" %> General
+    <%= form.radio_button :type, "Premium" %> Premium
+    <%= form.radio_button :type, "VIP" %> VIP
   </div>
 
   <div class="field">
     <%= form.label :category %>
-    <%= form.name :category, "Refundable" %> Refundable
-    <%= form.name :category, "Non-Refundable" %> Non-Refundable
-    <%= form.name :category, "Early Bird" %> Early Bird
+    <%= form.radio_button :category, "Refundable" %> Refundable
+    <%= form.radio_button :category, "Non-Refundable" %> Non-Refundable
+    <%= form.radio_button :category, "Early Bird" %> Early Bird
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_area :description %>
   </div>
 
   <div class="field">
