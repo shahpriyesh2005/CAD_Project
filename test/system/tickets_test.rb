@@ -55,7 +55,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "Sale End Time", with: @ticket.sale_end_time
     fill_in "Sale Start Time", with: @ticket.sale_start_time
     fill_in "Ticket Price", with: @ticket.ticket_price
-    fill_in "Total Wuantity", with: @ticket.total_quantity
+    fill_in "Total Quantity", with: @ticket.total_quantity
     fill_in "Entry Type", with: @ticket.entry_type
     fill_in "User", with: @ticket.user_id
     click_on "Update Ticket"
