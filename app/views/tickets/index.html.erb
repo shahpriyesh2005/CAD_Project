@@ -7,22 +7,20 @@
     <table>
       <thead>
         <tr>
-          <th>Type</th>
-          <th>Name</th>
+          <th>Entry Type</th>
+          <th>Ticket Type</th>
           <th>Category</th>
           <th>Description</th>
-          <th>Total quantity</th>
-          <th>Ticket price</th>
-          <th>Include fees in ticket price</th>
-          <th>Fees per ticket</th>
-          <th>Actual ticket price</th>
-          <th>Organizer payout per ticket</th>
-          <th>Sale start date</th>
-          <th>Sale start time</th>
-          <th>Sale end date</th>
-          <th>Sale end time</th>
-          <th>Min tickets</th>
-          <th>Max tickets</th>
+          <th>Total Quantity</th>
+          <th>Ticket Price</th>
+          <th>Include Fees in Ticket Price</th>
+          <th>Fees per Ticket</th>
+          <th>Actual Ticket Price</th>
+          <th>Organizer Payout per Ticket</th>
+          <th>Sale Start Time</th>
+          <th>Sale End Time</th>
+          <th>Min Tickets</th>
+          <th>Max Tickets</th>
           <th>Currency</th>
           <th>User</th>
           <th>Event</th>
@@ -33,8 +31,8 @@
       <tbody>
         <% @tickets.each do |ticket| %>
           <tr>
-            <td><%= ticket.type %></td>
-            <td><%= ticket.name %></td>
+            <td><%= ticket.entry_type %></td>
+            <td><%= ticket.ticket_type %></td>
             <td><%= ticket.category %></td>
             <td><%= ticket.description %></td>
             <td><%= ticket.total_quantity %></td>
@@ -60,6 +58,6 @@
   <% end %>
 <br>
 
-<%= link_to 'New Order', new_user_ticket_path(@user) %>
+<%= link_to 'New Ticket', new_user_ticket_path(@user) %>
 
 <%= link_to 'Back to User', @user %>
