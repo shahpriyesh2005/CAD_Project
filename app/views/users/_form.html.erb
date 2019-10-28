@@ -23,8 +23,7 @@
 
   <div class="field">
     <%= form.label :gender %>
-    <%= form.radio_button :gender, "Male" %> Male
-    <%= form.radio_button :gender, "Female" %> Female
+    <%= form.text_field :gender %>
   </div>
 
   <div class="field">
@@ -49,42 +48,42 @@
 
   <div class="field">
     <%= form.label :city %>
-    <%= form.select(:city, User::USER_CITY) %>
+    <%= form.text_field :city %>
   </div>
 
   <div class="field">
     <%= form.label :county %>
-    <%= form.select(:county, User::USER_COUNTY) %>
+    <%= form.text_field :county %>
   </div>
 
   <div class="field">
     <%= form.label :country %>
-    <%= form.select(:country, User::USER_COUNTRY) %>
+    <%= form.text_field :country %>
   </div>
 
   <div class="field">
     <%= form.label :interest1 %>
-    <%= form.select(:interest1, User::USER_INTEREST) %>
+    <%= form.text_field :interest1 %>
   </div>
 
   <div class="field">
     <%= form.label :interest2 %>
-    <%= form.select(:interest2, User::USER_INTEREST) %>
+    <%= form.text_field :interest2 %>
   </div>
 
   <div class="field">
     <%= form.label :interest3 %>
-    <%= form.select(:interest3, User::USER_INTEREST) %>
+    <%= form.text_field :interest3 %>
   </div>
 
   <div class="field">
     <%= form.label :interest4 %>
-    <%= form.select(:interest4, User::USER_INTEREST) %>
+    <%= form.text_field :interest4 %>
   </div>
 
   <div class="field">
     <%= form.label :interest5 %>
-    <%= form.select(:interest5, User::USER_INTEREST) %>
+    <%= form.text_field :interest5 %>
   </div>
 
   <div class="actions">

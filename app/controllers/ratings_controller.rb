@@ -4,31 +4,38 @@ class RatingsController < ApplicationController
   # GET /ratings
   # GET /ratings.json
   def index
-    @ratings = Rating.all
+    @user = User.find(params[:user_id])
+    
+    @ratings = @user.ratings
   end
 
   # GET /ratings/1
   # GET /ratings/1.json
   def show
+    @user = User.find(params[:user_id])
+    @rating = @user.ratings.find(params[:id])
   end
 
   # GET /ratings/new
   def new
-    @rating = Rating.new
+    @user = User.find(params[:user_id])
+    @rating = @user.ratings.build()
   end
 
   # GET /ratings/1/edit
   def edit
+    @user = User.find(params[:user_id])
+    @rating = @user.ratings.find(params[:id])
   end
 
   # POST /ratings
   # POST /ratings.json
   def create
-    @rating = Rating.new(rating_params)
-
+    @user = User.find(params[:user_id])
+    @rating = @user.ratings.build(rating_params)
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.html { redirect_to user_rating_url(@user, @rating), notice: 'Event was successfully added.' }
         format.json { render :show, status: :created, location: @rating }
       else
         format.html { render :new }
@@ -40,9 +47,11 @@ class RatingsController < ApplicationController
   # PATCH/PUT /ratings/1
   # PATCH/PUT /ratings/1.json
   def update
+    @user = User.find(params[:user_id])
+    @rating = @user.ratings.find(params[:id])
     respond_to do |format|
       if @rating.update(rating_params)
-        format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
+        format.html { redirect_to user_rating_url(@user, @rating), notice: 'Rating was successfully updated.' }
         format.json { render :show, status: :ok, location: @rating }
       else
         format.html { render :edit }
@@ -54,11 +63,9 @@ class RatingsController < ApplicationController
   # DELETE /ratings/1
   # DELETE /ratings/1.json
   def destroy
+    @user = User.find(params[:user_id])
+    @rating = @user.ratings.find(params[:id])
     @rating.destroy
-    respond_to do |format|
-      format.html { redirect_to ratings_url, notice: 'Rating was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private

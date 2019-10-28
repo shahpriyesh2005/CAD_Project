@@ -2,5 +2,6 @@
 
 <%= render 'form', ticket: @ticket %>
 
-<%= link_to 'Show', @ticket %> |
-<%= link_to 'Back', tickets_path %>
+<%= link_to 'Show', user_ticket_path(@user, @ticket) %> |
+<%= link_to 'Back', user_tickets_path(@user) %>
+

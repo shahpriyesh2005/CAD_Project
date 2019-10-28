@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root 'users#index'
-  resources :users do # Only if there is an user logged in he/she can work
+  resources :users do # Only if there is an user logged in he/she can subscribe, wishlist or add event
     resources :subscriptions
     resources :wishlists
-    resources :events 
+    resources :events # Only if there is an event you can  book tickets
     resources :tickets
     resources :orders
     resources :ratings
