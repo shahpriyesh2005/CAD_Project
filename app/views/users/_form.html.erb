@@ -87,6 +87,10 @@
     <%= form.select(:interest5, User::USER_INTEREST) %>
   </div>
 
+  <div class="field">
+    <%= form.hidden_field :password, value: "" %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

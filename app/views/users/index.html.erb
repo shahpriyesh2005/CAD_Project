@@ -1,7 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Users</h1>
-
 <table>
   <thead>
     <tr>
@@ -25,31 +21,23 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
       <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.gender %></td>
-        <td><%= user.email %></td>
-        <td><%= user.contact_no %></td>
-        <td><%= user.address1 %></td>
-        <td><%= user.address2 %></td>
-        <td><%= user.city %></td>
-        <td><%= user.county %></td>
-        <td><%= user.country %></td>
-        <td><%= user.interest1 %></td>
-        <td><%= user.interest2 %></td>
-        <td><%= user.interest3 %></td>
-        <td><%= user.interest4 %></td>
-        <td><%= user.interest5 %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= @users.first_name %></td>
+        <td><%= @users.last_name %></td>
+        <td><%= @users.gender %></td>
+        <td><%= @users.email %></td>
+        <td><%= @users.contact_no %></td>
+        <td><%= @users.address1 %></td>
+        <td><%= @users.address2 %></td>
+        <td><%= @users.city %></td>
+        <td><%= @users.county %></td>
+        <td><%= @users.country %></td>
+        <td><%= @users.interest1 %></td>
+        <td><%= @users.interest2 %></td>
+        <td><%= @users.interest3 %></td>
+        <td><%= @users.interest4 %></td>
+        <td><%= @users.interest5 %></td>
+        <td><%= link_to 'Edit', edit_user_path(@users) %></td>
       </tr>
-    <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>

@@ -72,18 +72,3 @@
   <strong>Interest5:</strong>
   <%= @user.interest5 %>
 </p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-<h3> User Subscription details</h3>
-<%= link_to "Show Subscription Details", user_subscriptions_path(@user) %>
-<h3> User Event details</h3>
-<%= link_to "Show Event Details", user_events_path(@user) %>
-<h3> User Wishlist details</h3>
-<%= link_to "Show Wishlist Details", user_wishlists_path(@user) %>
-<h3> User Order details</h3>
-<%= link_to "Show Order Details", user_orders_path(@user) %>
-<h3> User Rating details</h3>
-<%= link_to "Show Rating Details", user_ratings_path(@user) %>
-<h3> User Ticket details</h3>
-<%= link_to "Show Ticket Details", user_tickets_path(@user) %>
