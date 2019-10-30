@@ -1,5 +1,5 @@
 <% if @events == nil %>
-  <h3> This User has no events yet. </h3>
+  <h3> No events to display. </h3>
   <% else %>
     <table>
       <thead>
@@ -21,7 +21,6 @@
           <th>Publish time</th>
           <th>Reserved seating</th>
           <th>Sponsored</th>
-          <th>User</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -46,17 +45,11 @@
             <td><%= event.publish_time %></td>
             <td><%= event.reserved_seating %></td>
             <td><%= event.sponsored %></td>
-            <td><%= event.user_id %></td>
-            <td><%= link_to 'Show', user_event_path(@user,event) %></td>
-            <td><%= link_to 'Edit', edit_user_event_path(@user,event) %></td>
-            <td><%= link_to 'Destroy', user_event_path(@user,event) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_event_path(event) %></td>
+            <td><%= link_to 'Destroy', event , method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <% end %>
 <br>
-
-<%= link_to 'New event', new_user_event_path(@user) %>
-
-<%= link_to 'Back to User', @user %>

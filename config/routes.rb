@@ -3,14 +3,15 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  resources :users
-  resources :orders
-  resources :ratings
-  resources :wishlists
-  resources :subscriptions
+  resources :users do
+    resources :orders
+    resources :wishlists
+    resources :subscriptions
+  end
 
   resources :events do
     resources :tickets
+    resources :ratings
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
