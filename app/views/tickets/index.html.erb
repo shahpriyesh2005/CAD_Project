@@ -1,55 +1,55 @@
 <% if @tickets == nil %>
   <h3> No tickets to display. </h3>
-  <% else %>
-    <table>
-      <thead>
-        <tr>
-          <th>Entry Type</th>
-          <th>Ticket Type</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Total Quantity</th>
-          <th>Ticket Price</th>
-          <th>Include Fees in Ticket Price</th>
-          <th>Fees per Ticket</th>
-          <th>Actual Ticket Price</th>
-          <th>Organizer Payout per Ticket</th>
-          <th>Sale Start Time</th>
-          <th>Sale End Time</th>
-          <th>Min Tickets</th>
-          <th>Max Tickets</th>
-          <th>Currency</th>
-          <th>Event</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Entry Type</th>
+        <th>Ticket Type</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Total Quantity</th>
+        <th>Ticket Price</th>
+        <th>Include Fees in Ticket Price</th>
+        <th>Fees per Ticket</th>
+        <th>Actual Ticket Price</th>
+        <th>Organizer Payout per Ticket</th>
+        <th>Sale Start Time</th>
+        <th>Sale End Time</th>
+        <th>Min Tickets</th>
+        <th>Max Tickets</th>
+        <th>Currency</th>
+        <th>Event</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-      <tbody>
-        <% @tickets.each do |ticket| %>
-          <tr>
-            <td><%= ticket.entry_type %></td>
-            <td><%= ticket.ticket_type %></td>
-            <td><%= ticket.category %></td>
-            <td><%= ticket.description %></td>
-            <td><%= ticket.total_quantity %></td>
-            <td><%= ticket.ticket_price %></td>
-            <td><%= ticket.include_fees_in_ticket_price %></td>
-            <td><%= ticket.fees_per_ticket %></td>
-            <td><%= ticket.actual_ticket_price %></td>
-            <td><%= ticket.organizer_payout_per_ticket %></td>
-            <td><%= ticket.sale_start_time %></td>
-            <td><%= ticket.sale_end_time %></td>
-            <td><%= ticket.min_tickets %></td>
-            <td><%= ticket.max_tickets %></td>
-            <td><%= ticket.currency %></td>
-            <td><%= ticket.event_id %></td>
-            <td><%= link_to 'Edit', edit_event_ticket_path(@event,ticket) %></td>
-            <td><%= link_to 'Delete', event_ticket_path(@event,ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
+    <tbody>
+      <% @tickets.each do |ticket| %>
+        <tr>
+          <td><%= ticket.entry_type %></td>
+          <td><%= ticket.ticket_type %></td>
+          <td><%= ticket.category %></td>
+          <td><%= ticket.description %></td>
+          <td><%= ticket.total_quantity %></td>
+          <td><%= ticket.ticket_price %></td>
+          <td><%= ticket.include_fees_in_ticket_price %></td>
+          <td><%= ticket.fees_per_ticket %></td>
+          <td><%= ticket.actual_ticket_price %></td>
+          <td><%= ticket.organizer_payout_per_ticket %></td>
+          <td><%= ticket.sale_start_time %></td>
+          <td><%= ticket.sale_end_time %></td>
+          <td><%= ticket.min_tickets %></td>
+          <td><%= ticket.max_tickets %></td>
+          <td><%= ticket.currency %></td>
+          <td><%= ticket.event_id %></td>
+          <td><%= link_to 'Edit', edit_event_ticket_path(@event,ticket) %></td>
+          <td><%= link_to 'Delete', event_ticket_path(@event,ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 
 <%= link_to 'New Ticket', new_event_ticket_path(@event) %>

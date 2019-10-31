@@ -4,38 +4,37 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @user = User.find(params[:user_id])
-    
-    @orders = @user.orders
+    @event = Event.find(params[:event_id])
+    @orders = @event.orders
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @user = User.find(params[:user_id])
-    @order = @user.orders.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @order = @event.orders.find(params[:id])
   end
 
   # GET /orders/new
   def new
-    @user = User.find(params[:user_id])
-    @order = @user.orders.build()
+    @event = Event.find(params[:event_id])
+    @order = @event.orders.build()
   end
 
   # GET /orders/1/edit
   def edit
-    @user = User.find(params[:user_id])
-    @order = @user.orders.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @order = @event.orders.find(params[:id])
   end
 
   # POST /orders
   # POST /orders.json
   def create
-    @user = User.find(params[:user_id])
-    @order = @user.orders.build(order_params)
+    @event = Event.find(params[:event_id])
+    @order = @event.orders.build(order_params)
     respond_to do |format|
       if @order.save
-        format.html { redirect_to user_order_url(@user, @order), notice: 'Order was successfully added.' }
+        format.html { redirect_to event_order_url(@event, @order), notice: 'Order was successfully added.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -47,11 +46,11 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    @user = User.find(params[:user_id])
-    @order = @user.orders.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @order = @event.orders.find(params[:id])
     respond_to do |format|
       if @event.update(order_params)
-        format.html { redirect_to user_order_url(@user, @order), notice: 'Event was successfully updated.' }
+        format.html { redirect_to event_order_url(@event, @order), notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -63,8 +62,8 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
-    @user = User.find(params[:user_id])
-    @order = @user.orders.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @order = @event.orders.find(params[:id])
     @order.destroy
   end
 

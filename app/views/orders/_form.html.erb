@@ -1,4 +1,4 @@
-<%= form_with(model: [@user,@order], local: true) do |form| %>
+<%= form_with(model: [@event, @order], local: true) do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -99,10 +99,6 @@
   <div class="field">
     <%= form.label :order_date %>
     <%= form.date_select :order_date %>
-  </div>
-
-  <div class="field">
-    <%= form.hidden_field :user_id %>
   </div>
 
   <div class="field">

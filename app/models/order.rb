@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  belongs_to :user
+  belongs_to :event
 
   validates_format_of :currency, :guest_first_name, :guest_last_name, :payment_method, :with => /[a-z]+/i, :presence => true
   validates_format_of :no_of_tickets, :ticket_price, :fees_per_ticket, :actual_ticket_price, :organizer_payout_per_ticket, :total_ticket_price, :total_fees, :total_actual_ticket_price, :total_organizer_payout, :card_no, :with => /[0-9]+/i, :presence => true

@@ -1,5 +1,6 @@
+require 'log'
+
 class User < ApplicationRecord
-  has_many :orders
   has_many :wishlists
   has_many :subscriptions
 
@@ -17,7 +18,11 @@ class User < ApplicationRecord
   validate :profile_details, :on => :update
 
   def profile_details
+    Log.info("Inside profile_details")
+
     if password.nil?
+      Log.info("Inside password.nil if condition")
+
       validates_format_of :first_name, :last_name, :gender, :address1, :city, :county, :country, :with => /[a-z]+/i, :presence => true, :on => :update
       validates_format_of :contact_no, :with => /[0-9]+/i, :presence => true, :on => :update
       validates_presence_of :interest1, :interest2, :interest3, :interest4, :interest5, :on => :update
@@ -62,9 +67,11 @@ class User < ApplicationRecord
         errors.add :interest5, " cannot be same as Interest4."
       end
     else
+      Log.info("Inside password.nil else condition")
+
       required_complexity = 3
 
-      unless CheckPasswordComplexityService.new(password, required_complexity).valid?
+      unless PasswordComplexity.new(password, required_complexity).valid?
         errors.add :password, " does not match the security requirements."
       end
     end
@@ -72,7 +79,8 @@ class User < ApplicationRecord
 
 end
 
-class CheckPasswordComplexityService
+class PasswordComplexity
+  Log.info("Inside PasswordComplexity")
 
   attr_reader :password, :required_complexity
 
