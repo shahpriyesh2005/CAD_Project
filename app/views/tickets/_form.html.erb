@@ -1,4 +1,4 @@
-<%= form_with(model: [@user,@ticket], local: true) do |form| %>
+<%= form_with(model: [@event,@ticket], local: true) do |form| %>
   <% if ticket.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
@@ -90,10 +90,6 @@
   <div class="field">
     <%= form.label :currency %>
     <%= form.select(:currency, Ticket::TICKET_CURRENCY) %>
-  </div>
-
-  <div class="field">
-    <%= form.hidden_field :user_id %>
   </div>
 
   <div class="field">

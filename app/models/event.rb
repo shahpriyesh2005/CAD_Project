@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  mount_uploader :picture, PictureUploader
+
   has_many :tickets
   has_many :ratings
 

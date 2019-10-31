@@ -1,4 +1,9 @@
 <p>
+  <strong>Picture:</strong>
+  <%= image_tag(@event.picture_url.to_s, width: 600) if @event.picture.present? %>
+</p>
+
+<p>
   <strong>Title:</strong>
   <%= @event.title %>
 </p>
@@ -82,3 +87,5 @@
   <strong>Sponsored:</strong>
   <%= @event.sponsored %>
 </p>
+
+<%= link_to 'Back', events_path %>

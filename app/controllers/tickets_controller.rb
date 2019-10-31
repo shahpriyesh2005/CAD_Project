@@ -4,37 +4,39 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @user = User.find(params[:user_id])
-    @tickets = @user.tickets
+    @event = Event.find(params[:event_id])
+    @tickets = @event.tickets
   end
 
   # GET /tickets/1
   # GET /tickets/1.json
   def show
-    @user = User.find(params[:user_id])
-    @ticket = @user.tickets.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @ticket = @event.tickets.find(params[:id])
   end
 
   # GET /tickets/new
   def new
-    @user = User.find(params[:user_id])
-    @ticket = @user.tickets.build()
+    @event = Event.find(params[:event_id])
+    @ticket = @event.tickets.build()
   end
 
   # GET /tickets/1/edit
   def edit
-    @user = User.find(params[:user_id])
-    @ticket = @user.tickets.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @ticket = @event.tickets.find(params[:id])
   end
 
   # POST /tickets
   # POST /tickets.json
   def create
-    @user = User.find(params[:user_id])
-    @ticket = @user.tickets.build(ticket_params)
+    @event = Event.find(params[:event_id])
+    @ticket = @event.tickets.build(ticket_params)
+    @ticket.user_id = current_user.id
+
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to user_ticket_url(@user, @ticket), notice: 'Ticket was successfully added.' }
+        format.html { redirect_to event_ticket_url(@event, @ticket), notice: 'Ticket was successfully added.' }
         format.json { render :show, status: :created, location: @ticket }
       else
         format.html { render :new }
@@ -46,11 +48,13 @@ class TicketsController < ApplicationController
   # PATCH/PUT /tickets/1
   # PATCH/PUT /tickets/1.json
   def update
-    @user = User.find(params[:user_id])
-    @ticket = @user.tickets.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @ticket = @event.tickets.find(params[:id])
+    @ticket.user_id = current_user.id
+
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to user_ticket_url(@user, @ticket), notice: 'Ticket was successfully updated.' }
+        format.html { redirect_to event_ticket_url(@event, @ticket), notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
         format.html { render :edit }
@@ -62,15 +66,21 @@ class TicketsController < ApplicationController
   # DELETE /tickets/1
   # DELETE /tickets/1.json
   def destroy
-    @user = User.find(params[:user_id])
-    @ticket = @user.tickets.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @ticket = @event.tickets.find(params[:id])
     @ticket.destroy
+
+    respond_to do |format|
+      format.html { redirect_to event_tickets_url, notice: 'Ticket was successfully deleted.' }
+      format.json { head :no_content }
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
-      @ticket = Ticket.find(params[:id])
+      @event = Event.find(params[:event_id])
+      @ticket = @event.tickets.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

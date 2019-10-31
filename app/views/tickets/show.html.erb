@@ -74,14 +74,8 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @ticket.user_id %>
-</p>
-
-<p>
   <strong>Event:</strong>
   <%= @ticket.event_id %>
 </p>
 
-<%= link_to 'Edit', edit_user_ticket_path(@user,@ticket) %> |
-<%= link_to 'Back', user_tickets_path %>
+<%= link_to 'Back', event_tickets_path %>
