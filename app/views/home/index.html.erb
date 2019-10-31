@@ -11,6 +11,7 @@
   <table>
     <thead>
     <tr>
+      <th>Picture</th>
       <th>Title</th>
       <th>Category</th>
       <th>Description</th>
@@ -35,7 +36,7 @@
     <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.picture %></td>
+        <td><%= image_tag(event.picture_url, width: 75) if event.picture.present? %></td>
         <td><%= event.title %></td>
         <td><%= event.category %></td>
         <td><%= event.description %></td>

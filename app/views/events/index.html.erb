@@ -29,7 +29,7 @@
     <tbody>
       <% @events.each do |event| %>
         <tr>
-          <%= image_tag event.picture_url, (:thumb) if event.picture.present? %>
+          <td><%= image_tag(event.picture_url, width: 75) if event.picture.present? %></td>
           <td><%= event.title %></td>
           <td><%= event.category %></td>
           <td><%= event.description %></td>
