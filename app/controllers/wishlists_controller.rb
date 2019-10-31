@@ -4,7 +4,7 @@ class WishlistsController < ApplicationController
   # GET /wishlists
   # GET /wishlists.json
   def index
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     
     @wishlists = @user.wishlists
   end
@@ -12,26 +12,26 @@ class WishlistsController < ApplicationController
   # GET /wishlists/1
   # GET /wishlists/1.json
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @wishlist = @user.wishlists.find(params[:id])
   end
 
   # GET /wishlists/new
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @wishlist = @user.wishlists.build()
   end
 
   # GET /wishlists/1/edit
   def edit
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @wishlist = @user.wishlists.find(params[:id])
   end
 
   # POST /wishlists
   # POST /wishlists.json
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @wishlist = @user.wishlists.build(wishlist_params)
     respond_to do |format|
       if @wishlist.save
@@ -47,7 +47,7 @@ class WishlistsController < ApplicationController
   # PATCH/PUT /wishlists/1
   # PATCH/PUT /wishlists/1.json
   def update
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @wishlist = @user.wishlists.find(params[:id])
     respond_to do |format|
       if @wishlist.update(wishlist_params)
@@ -63,7 +63,7 @@ class WishlistsController < ApplicationController
   # DELETE /wishlists/1
   # DELETE /wishlists/1.json
   def destroy
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @wishlist = @user.wishlists.find(params[:id])
     @wishlist.destroy
   end
@@ -76,6 +76,6 @@ class WishlistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wishlist_params
-      params.require(:wishlist).permit(:wishlist_date, :user_id, :event_id)
+      params.require(:wishlist).permit(:wishlist_date, :event_id)
     end
 end

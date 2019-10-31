@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     
     @subscriptions = @user.subscriptions
   end
@@ -12,26 +12,26 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @subscription = @user.subscriptions.find(params[:id])
   end
 
   # GET /subscriptions/new
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @subscription = @user.subscriptions.build()
   end
 
   # GET /subscriptions/1/edit
   def edit
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @subscription = @user.subscriptions.find(params[:id])
   end
 
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @subscription = @user.subscriptions.build(subscription_params)
     respond_to do |format|
       if @subscription.save
@@ -47,7 +47,7 @@ class SubscriptionsController < ApplicationController
   # PATCH/PUT /subscriptions/1
   # PATCH/PUT /subscriptions/1.json
   def update
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @subscription = @user.subscriptions.find(params[:id])
     respond_to do |format|
       if @subscription.update(subscription_params)
@@ -63,7 +63,7 @@ class SubscriptionsController < ApplicationController
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   def destroy
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @subscription = @user.subscriptions.find(params[:id])
     @subscription.destroy
   end
@@ -76,6 +76,6 @@ class SubscriptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subscription_params
-      params.require(:subscription).permit(:subscribed_user_id, :subscription_date, :user_id)
+      params.require(:subscription).permit(:subscribed_user_id, :subscription_date)
     end
 end

@@ -1,16 +1,26 @@
 Rails.application.routes.draw do
+
+  get 'search/index' => 'search#index'
+  post '/show' => 'search#show'
+  get 'search/show' => 'search#show' 
+  
   devise_for :users
-  root to: 'home#index'
-
+  
+  root 'home#index'
+  
   resources :users do
-    resources :wishlists
-    resources :subscriptions
+    resources :orders
   end
 
+  resources :wishlists
+  resources :subscriptions
+  
   resources :events do
-    resources :tickets
-    resources :orders
     resources :ratings
+    resources :tickets
   end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
+
