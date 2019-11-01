@@ -1,91 +1,95 @@
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag(@event.picture_url.to_s, width: 600) if @event.picture.present? %>
-</p>
+<div class="row">
+  <div class="col-md-9">
+    <%= image_tag @event.picture_url, width: '30%' if @event.picture.present? %>
+  </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+  <div class="col-md-18">
+    <p>
+      <strong>Title:</strong>
+      <%= @event.title %>
+    </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @event.category %>
-</p>
+    <p>
+      <strong>Category:</strong>
+      <%= @event.category %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @event.description %>
+    </p>
 
-<p>
-  <strong>Organizer name:</strong>
-  <%= @event.organizer_name %>
-</p>
+    <p>
+      <strong>Organizer name:</strong>
+      <%= @event.organizer_name %>
+    </p>
 
-<p>
-  <strong>Organizer email:</strong>
-  <%= @event.organizer_email %>
-</p>
+    <p>
+      <strong>Organizer email:</strong>
+      <%= @event.organizer_email %>
+    </p>
 
-<p>
-  <strong>Organizer contact no:</strong>
-  <%= @event.organizer_contact_no %>
-</p>
+    <p>
+      <strong>Organizer contact no:</strong>
+      <%= @event.organizer_contact_no %>
+    </p>
 
-<p>
-  <strong>Venue:</strong>
-  <%= @event.venue %>
-</p>
+    <p>
+      <strong>Venue:</strong>
+      <%= @event.venue %>
+    </p>
 
-<p>
-  <strong>Address1:</strong>
-  <%= @event.address1 %>
-</p>
+    <p>
+      <strong>Address1:</strong>
+      <%= @event.address1 %>
+    </p>
 
-<p>
-  <strong>Address2:</strong>
-  <%= @event.address2 %>
-</p>
+    <p>
+      <strong>Address2:</strong>
+      <%= @event.address2 %>
+    </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @event.city %>
-</p>
+    <p>
+      <strong>City:</strong>
+      <%= @event.city %>
+    </p>
 
-<p>
-  <strong>County:</strong>
-  <%= @event.county %>
-</p>
+    <p>
+      <strong>County:</strong>
+      <%= @event.county %>
+    </p>
 
-<p>
-  <strong>Country:</strong>
-  <%= @event.country %>
-</p>
+    <p>
+      <strong>Country:</strong>
+      <%= @event.country %>
+    </p>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @event.start_time %>
-</p>
+    <p>
+      <strong>Start time:</strong>
+      <%= @event.start_time.strftime("%d/%m/%Y %I:%M%p") %>
+    </p>
 
-<p>
-  <strong>End time:</strong>
-  <%= @event.end_time %>
-</p>
+    <p>
+      <strong>End time:</strong>
+      <%= @event.end_time.strftime("%d/%m/%Y %I:%M%p") %>
+    </p>
 
-<p>
-  <strong>Publish time:</strong>
-  <%= @event.publish_time %>
-</p>
+    <p>
+      <strong>Publish time:</strong>
+      <%= @event.publish_time.strftime("%d/%m/%Y %I:%M%p") %>
+    </p>
 
-<p>
-  <strong>Reserved seating:</strong>
-  <%= @event.reserved_seating %>
-</p>
+    <p>
+      <strong>Reserved seating:</strong>
+      <%= @event.reserved_seating %>
+    </p>
 
-<p>
-  <strong>Sponsored:</strong>
-  <%= @event.sponsored %>
-</p>
+    <p>
+      <strong>Sponsored:</strong>
+      <%= @event.sponsored %>
+    </p>
 
-<%= link_to 'Back', events_path %>
+    <%= link_to 'Tickets', event_tickets_path(@event) %>
+    <%= link_to 'Back', events_path %>
+  </div>
+</div>

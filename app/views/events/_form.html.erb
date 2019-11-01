@@ -78,17 +78,17 @@
 
   <div class="field">
     <%= form.label :start_time %>
-    <%= form.datetime_select :start_time %>
+    <%= form.datetime_select :start_time.strftime("%d/%m/%Y %I:%M%p") %>
   </div>
 
   <div class="field">
     <%= form.label :end_time %>
-    <%= form.datetime_select :end_time %>
+    <%= form.datetime_select :end_time.strftime("%d/%m/%Y %I:%M%p") %>
   </div>
 
   <div class="field">
     <%= form.label :publish_time %>
-    <%= form.datetime_select :publish_time %>
+    <%= form.datetime_select :publish_time.strftime("%d/%m/%Y %I:%M%p") %>
   </div>
 
   <div class="field">

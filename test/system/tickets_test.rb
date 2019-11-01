@@ -21,8 +21,6 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "Event", with: @ticket.event_id
     fill_in "Fees per Ticket", with: @ticket.fees_per_ticket
     fill_in "Include Fees in Ticket Price", with: @ticket.include_fees_in_ticket_price
-    fill_in "Max Tickets", with: @ticket.max_tickets
-    fill_in "Min Tickets", with: @ticket.min_tickets
     fill_in "Ticket Type", with: @ticket.ticket_type
     fill_in "Organizer Payout per Ticket", with: @ticket.organizer_payout_per_ticket
     fill_in "Sale End Time", with: @ticket.sale_end_time
@@ -31,6 +29,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "Total Quantity", with: @ticket.total_quantity
     fill_in "Entry Type", with: @ticket.entry_type
     fill_in "User", with: @ticket.user_id
+    fill_in "Available Quantity", with: @ticket.available_quantity
     click_on "Create Ticket"
 
     assert_text "Ticket was successfully created"
@@ -48,8 +47,6 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "Event", with: @ticket.event_id
     fill_in "Fees per Ticket", with: @ticket.fees_per_ticket
     fill_in "Include Fees in Ticket Price", with: @ticket.include_fees_in_ticket_price
-    fill_in "Max Tickets", with: @ticket.max_tickets
-    fill_in "Min Tickets", with: @ticket.min_tickets
     fill_in "Ticket Type", with: @ticket.ticket_type
     fill_in "Organizer Payout per Ticket", with: @ticket.organizer_payout_per_ticket
     fill_in "Sale End Time", with: @ticket.sale_end_time
@@ -58,6 +55,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "Total Quantity", with: @ticket.total_quantity
     fill_in "Entry Type", with: @ticket.entry_type
     fill_in "User", with: @ticket.user_id
+    fill_in "Available Quantity", with: @ticket.available_quantity
     click_on "Update Ticket"
 
     assert_text "Ticket was successfully updated"

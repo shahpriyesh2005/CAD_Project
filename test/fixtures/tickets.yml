@@ -13,11 +13,10 @@ one:
   organizer_payout_per_ticket: 
   sale_start_time: 2019-10-16 16:37:32
   sale_end_time: 2019-10-16 16:37:32
-  min_tickets: 
-  max_tickets: 
   currency: MyString
   user: one
   event: one
+  available_quantity:
 
 two:
   entry_type: 
@@ -32,8 +31,7 @@ two:
   organizer_payout_per_ticket: 
   sale_start_time: 2019-10-16 16:37:32
   sale_end_time: 2019-10-16 16:37:32
-  min_tickets: 
-  max_tickets: 
   currency: MyString
   user: two
   event: two
+  available_quantity:

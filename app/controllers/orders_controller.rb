@@ -4,37 +4,36 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @event = Event.find(params[:event_id])
-    @orders = @event.orders
+    @orders = Order.where(guest_email: current_user.email)
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @event = Event.find(params[:event_id])
-    @order = @event.orders.find(params[:id])
   end
 
   # GET /orders/new
   def new
     @event = Event.find(params[:event_id])
-    @order = @event.orders.build()
+    @ticket = Ticket.find(params[:ticket_id])
+    @order = Order.new
+    @order.event_id = @event.id
+    @order.ticket_id = @ticket.id
   end
 
   # GET /orders/1/edit
   def edit
-    @event = Event.find(params[:event_id])
-    @order = @event.orders.find(params[:id])
   end
 
   # POST /orders
   # POST /orders.json
   def create
-    @event = Event.find(params[:event_id])
-    @order = @event.orders.build(order_params)
+    @order = Order.new(order_params)
+    @order.user_id = current_user.id
+
     respond_to do |format|
       if @order.save
-        format.html { redirect_to event_order_url(@event, @order), notice: 'Order was successfully added.' }
+        format.html { redirect_to @order, notice: 'Order was successfully added.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -46,11 +45,12 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    @event = Event.find(params[:event_id])
-    @order = @event.orders.find(params[:id])
+    @order = Order.find(params[:id])
+    @order.user_id = current_user.id
+
     respond_to do |format|
-      if @event.update(order_params)
-        format.html { redirect_to event_order_url(@event, @order), notice: 'Event was successfully updated.' }
+      if @order.update(order_params)
+        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -62,9 +62,12 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
-    @event = Event.find(params[:event_id])
-    @order = @event.orders.find(params[:id])
     @order.destroy
+
+    respond_to do |format|
+      format.html { redirect_to orders_url, notice: 'Order was successfully deleted.' }
+      format.json { head :no_content }
+    end
   end
 
   private

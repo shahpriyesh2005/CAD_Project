@@ -1,5 +1,4 @@
 class Subscription < ApplicationRecord
-  belongs_to :user
 
   ORGANIZER_NAME = []
   @organizers = Event.distinct.pluck(:organizer_name)

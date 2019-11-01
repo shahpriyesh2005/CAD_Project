@@ -1,59 +1,31 @@
 <% if @events == nil %>
   <h3> No events to display. </h3>
 <% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>Picture</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Organizer name</th>
-        <th>Organizer email</th>
-        <th>Organizer contact no</th>
-        <th>Venue</th>
-        <th>Address1</th>
-        <th>Address2</th>
-        <th>City</th>
-        <th>County</th>
-        <th>Country</th>
-        <th>Start time</th>
-        <th>End time</th>
-        <th>Publish time</th>
-        <th>Reserved seating</th>
-        <th>Sponsored</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @events.each do |event| %>
-        <tr>
-          <td><%= image_tag(event.picture_url, width: 75) if event.picture.present? %></td>
-          <td><%= event.title %></td>
-          <td><%= event.category %></td>
-          <td><%= event.description %></td>
-          <td><%= event.organizer_name %></td>
-          <td><%= event.organizer_email %></td>
-          <td><%= event.organizer_contact_no %></td>
-          <td><%= event.venue %></td>
-          <td><%= event.address1 %></td>
-          <td><%= event.address2 %></td>
-          <td><%= event.city %></td>
-          <td><%= event.county %></td>
-          <td><%= event.country %></td>
-          <td><%= event.start_time %></td>
-          <td><%= event.end_time %></td>
-          <td><%= event.publish_time %></td>
-          <td><%= event.reserved_seating %></td>
-          <td><%= event.sponsored %></td>
-          <td><%= link_to 'Edit', edit_event_path(event) %></td>
-          <td><%= link_to 'Delete', event , method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <td><%= link_to 'Tickets', event_tickets_path(event) %></td>
-        </tr>
+  <% @events.in_groups_of(3) do |group| %>
+    <div class="row">
+      <% group.compact.each do |event| %>
+        <div class="col-xs-6">
+          <table class="table">
+            <tr>
+              <td>
+                <%= image_tag event.picture_url, width: '30%' if event.picture.present? %>
+                <h4><%= link_to event.title, event %></h4>
+              </td>
+              <td>
+                Category: <%= event.category %>
+                <br/>
+                Description: <%= event.description %>
+                <br/>
+                Start Time: <%= event.start_time.strftime("%d/%m/%Y %I:%M%p") %>
+                <br/>
+                End Time: <%= event.end_time.strftime("%d/%m/%Y %I:%M%p") %>
+              </td>
+            </tr>
+          </table>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+  <% end %>
 <% end %>
 <br>
 

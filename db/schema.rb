@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_211804) do
+ActiveRecord::Schema.define(version: 2019_10_31_203417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -106,13 +106,12 @@ ActiveRecord::Schema.define(version: 2019_10_30_211804) do
     t.decimal "organizer_payout_per_ticket"
     t.datetime "sale_start_time"
     t.datetime "sale_end_time"
-    t.decimal "min_tickets"
-    t.decimal "max_tickets"
     t.string "currency"
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "available_quantity"
     t.index ["event_id"], name: "index_tickets_on_event_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end

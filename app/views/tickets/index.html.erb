@@ -16,8 +16,6 @@
         <th>Organizer Payout per Ticket</th>
         <th>Sale Start Time</th>
         <th>Sale End Time</th>
-        <th>Min Tickets</th>
-        <th>Max Tickets</th>
         <th>Currency</th>
         <th>Event</th>
         <th colspan="3"></th>
@@ -39,12 +37,11 @@
           <td><%= ticket.organizer_payout_per_ticket %></td>
           <td><%= ticket.sale_start_time %></td>
           <td><%= ticket.sale_end_time %></td>
-          <td><%= ticket.min_tickets %></td>
-          <td><%= ticket.max_tickets %></td>
           <td><%= ticket.currency %></td>
           <td><%= ticket.event_id %></td>
-          <td><%= link_to 'Edit', edit_event_ticket_path(@event,ticket) %></td>
-          <td><%= link_to 'Delete', event_ticket_path(@event,ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
+          <td><%= link_to 'Delete', event_ticket_path(@event, ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Buy', {:controller => "orders", :action => "new", :event_id => ticket.event_id, :ticket_id => ticket.id } %></td>
         </tr>
       <% end %>
     </tbody>

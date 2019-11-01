@@ -1,4 +1,4 @@
-<%= form_with(model: [@event, @order], local: true) do |form| %>
+<%= form_with(model: @order, local: true) do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :no_of_tickets %>
-    <%= form.text_field :no_of_tickets %>
+    <%= form.select :no_of_tickets, Order::NO_OF_TICKETS, {}, {:onchange => "" } %>
   </div>
 
   <div class="field">
@@ -58,7 +58,7 @@
 
   <div class="field">
     <%= form.label :currency %>
-    <%= form.text_field :currency %>
+    <%= form.select(:currency, Order::ORDER_CURRENCY) %>
   </div>
 
   <div class="field">
@@ -83,7 +83,8 @@
 
   <div class="field">
     <%= form.label :payment_method %>
-    <%= form.text_field :payment_method %>
+    <%= form.radio_button :payment_method, "Debit Card" %> Debit Card
+    <%= form.radio_button :payment_method, "Credit Card" %> Credit Card
   </div>
 
   <div class="field">
@@ -102,11 +103,13 @@
   </div>
 
   <div class="field">
-    <%= form.hidden_field :event_id %>
+    <%= form.label :event_id %>
+    <%= form.text_field :event_id, value: @order.event_id if @order %>
   </div>
 
   <div class="field">
-    <%= form.hidden_field :ticket_id %>
+    <%= form.label :ticket_id %>
+    <%= form.text_field :ticket_id, value: @order.ticket_id if @order %>
   </div>
 
   <div class="actions">

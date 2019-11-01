@@ -1,5 +1,9 @@
+require 'log'
+
 class Order < ApplicationRecord
-  belongs_to :event
+
+  NO_OF_TICKETS = ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  ORDER_CURRENCY  = ["Euro"]
 
   validates_format_of :currency, :guest_first_name, :guest_last_name, :payment_method, :with => /[a-z]+/i, :presence => true
   validates_format_of :no_of_tickets, :ticket_price, :fees_per_ticket, :actual_ticket_price, :organizer_payout_per_ticket, :total_ticket_price, :total_fees, :total_actual_ticket_price, :total_organizer_payout, :card_no, :with => /[0-9]+/i, :presence => true
@@ -11,6 +15,8 @@ class Order < ApplicationRecord
   private
 
   def validate_date
+    Log.info("Inside validate_date")
+
     return if expiry_date.blank? || order_date.blank?
 
     if expiry_date < order_date
