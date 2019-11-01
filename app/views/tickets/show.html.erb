@@ -50,12 +50,12 @@
 
 <p>
   <strong>Sale Start Time:</strong>
-  <%= @ticket.sale_start_time %>
+  <%= @ticket.sale_start_time.strftime("%d/%m/%Y %I:%M%p") %>
 </p>
 
 <p>
   <strong>Sale End Time:</strong>
-  <%= @ticket.sale_end_time %>
+  <%= @ticket.sale_end_time.strftime("%d/%m/%Y %I:%M%p") %>
 </p>
 
 <p>

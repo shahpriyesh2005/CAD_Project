@@ -80,12 +80,12 @@
 
 <p>
   <strong>Expiry date:</strong>
-  <%= @order.expiry_date %>
+  <%= @order.expiry_date.strftime("%d/%m/%Y %I:%M%p") %>
 </p>
 
 <p>
   <strong>Order date:</strong>
-  <%= @order.order_date %>
+  <%= @order.order_date.strftime("%d/%m/%Y %I:%M%p") %>
 </p>
 
 <p>

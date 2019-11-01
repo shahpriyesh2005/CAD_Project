@@ -35,8 +35,8 @@
           <td><%= ticket.fees_per_ticket %></td>
           <td><%= ticket.actual_ticket_price %></td>
           <td><%= ticket.organizer_payout_per_ticket %></td>
-          <td><%= ticket.sale_start_time %></td>
-          <td><%= ticket.sale_end_time %></td>
+          <td><%= ticket.sale_start_time.strftime("%d/%m/%Y %I:%M%p") %></td>
+          <td><%= ticket.sale_end_time.strftime("%d/%m/%Y %I:%M%p") %></td>
           <td><%= ticket.currency %></td>
           <td><%= ticket.event_id %></td>
           <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
