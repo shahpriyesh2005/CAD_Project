@@ -1,4 +1,4 @@
-<%= form_with(model: [@user,@wishlist], local: true) do |form| %>
+<%= form_with(model: [@wishlist], local: true) do |form| %>
   <% if wishlist.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(wishlist.errors.count, "error") %> prohibited this wishlist from being saved:</h2>
@@ -17,14 +17,9 @@
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :event_id %>
-    <%= form.text_field :event_id %>
-  </div>
+  <%= form.label :event_id %>
+  <%= form.select(:event_id, Wishlist::EVENT_NAME) %>
+</div>
 
   <div class="actions">
     <%= form.submit %>

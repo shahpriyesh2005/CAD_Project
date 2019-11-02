@@ -4,38 +4,51 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @user = current_user.id
+    @user = User.find(current_user.id)
     
     @subscriptions = @user.subscriptions
+
+    @subscriptions.each do |subscribe|
+      @name = User.find(subscribe[:subscribed_user_id])
+      subscribe.subscribed_user_id = (@name.first_name + " " + @name.last_name)
+    end
+    
+
   end
 
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    @user = current_user.id
+    @user = User.find(current_user.id)
     @subscription = @user.subscriptions.find(params[:id])
+    @name = User.find(@subscription[:subscribed_user_id])
+    @subscription.subscribed_user_id = (@name.first_name + " " + @name.last_name)
+
   end
 
   # GET /subscriptions/new
   def new
-    @user = current_user.id
+    @user = User.find(current_user.id)
     @subscription = @user.subscriptions.build()
   end
 
   # GET /subscriptions/1/edit
   def edit
-    @user = current_user.id
+    @user = User.find(current_user.id)
     @subscription = @user.subscriptions.find(params[:id])
   end
 
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    @user = current_user.id
+    @user = User.find(current_user.id)
     @subscription = @user.subscriptions.build(subscription_params)
+    @usernames = params[:subscription][:subscribed_user_id].split(' ')
+    @userid = User.where("first_name=? AND last_name=?",@usernames[0],@usernames[1]).first
+    @subscription.subscribed_user_id = @userid[:id]
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to user_subscription_url(@user, @subscription), notice: 'Subscription was successfully added.' }
+        format.html { redirect_to subscription_url( @subscription), notice: 'Subscription was successfully added.' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
@@ -47,11 +60,13 @@ class SubscriptionsController < ApplicationController
   # PATCH/PUT /subscriptions/1
   # PATCH/PUT /subscriptions/1.json
   def update
-    @user = current_user.id
-    @subscription = @user.subscriptions.find(params[:id])
+    @user = User.find(current_user.id)
+    @usernames = params[:subscription][:subscribed_user_id].split(' ')
+    @userid = User.where("first_name=? AND last_name=?",@usernames[0],@usernames[1]).first
+    params[:subscription][:subscribed_user_id] = @userid.id
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to user_subscription_url(@user, @subscription), notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to subscription_url(@subscription), notice: 'Subscription was successfully updated.' }
         format.json { render :show, status: :ok, location: @subscription }
       else
         format.html { render :edit }
@@ -63,7 +78,7 @@ class SubscriptionsController < ApplicationController
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   def destroy
-    @user = current_user.id
+    @user = User.find(current_user.id)
     @subscription = @user.subscriptions.find(params[:id])
     @subscription.destroy
   end

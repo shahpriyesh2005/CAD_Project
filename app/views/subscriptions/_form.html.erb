@@ -1,4 +1,4 @@
-<%= form_with(model: [@user,@subscription], local: true) do |form| %>
+<%= form_with(model: [@subscription], local: true) do |form| %>
   <% if subscription.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="field">
   <%= form.label :subscribed_user_id %>
-  <%= form.select(:subscribed_user_id, Subscription::ORGANIZER_NAME) %>
+  <%= form.select(:subscribed_user_id, Subscription::USER_NAMES) %>
 </div>
 
   <div class="field">

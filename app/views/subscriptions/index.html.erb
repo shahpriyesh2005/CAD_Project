@@ -18,7 +18,6 @@
           <tr>
             <td><%= subscription.subscribed_user_id %></td>
             <td><%= subscription.subscription_date %></td>
-            <td><%= subscription.user_id %></td>
             <td><%= link_to 'Show', subscription_path(subscription) %></td>
             <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
             <td><%= link_to 'Destroy', subscription_path(subscription) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
