@@ -14,7 +14,7 @@
       <tbody>
         <% @wishlists.each do |wishlist| %>
           <tr>
-            <td><%= wishlist.event_id %></td>
+            <td><%= wishlist.event_name %></td>
             <td><%= wishlist.wishlist_date %></td>
             <td><%= link_to 'Show', wishlist_path(wishlist) %></td>
             <td><%= link_to 'Edit', edit_wishlist_path(wishlist) %></td>

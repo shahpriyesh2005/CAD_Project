@@ -33,24 +33,24 @@
       <tbody>
         <% @events.each do |event| %>
           <tr>
-            <td><%= event.title %></td>
-            <td><%= event.category %></td>
-            <td><%= event.description %></td>
-            <td><%= event.organizer_name %></td>
-            <td><%= event.organizer_email %></td>
-            <td><%= event.organizer_contact_no %></td>
-            <td><%= event.venue %></td>
-            <td><%= event.address1 %></td>
-            <td><%= event.address2 %></td>
-            <td><%= event.city %></td>
-            <td><%= event.county %></td>
-            <td><%= event.country %></td>
-            <td><%= event.start_time %></td>
-            <td><%= event.end_time %></td>
-            <td><%= event.publish_time %></td>
-            <td><%= event.reserved_seating %></td>
-            <td><%= event.sponsored %></td>
-            <td><%= event.user_id %></td>
+            <td><%= image_tag event["picture"]["url"] , width: '125%' if event["picture"].present? %></td>
+            <td><%= event["title"] %></td>
+            <td><%= event["category"] %></td>
+            <td><%= event["description"] %></td>
+            <td><%= event["organizer_name"] %></td>
+            <td><%= event["organizer_email"] %></td>
+            <td><%= event["organizer_contact_no"] %></td>
+            <td><%= event["venue"] %></td>
+            <td><%= event["address1"] %></td>
+            <td><%= event["address2"] %></td>
+            <td><%= event["city"] %></td>
+            <td><%= event["county"] %></td>
+            <td><%= event["country"] %></td>
+            <td><%= event["start_time"] %></td>
+            <td><%= event["end_time"] %></td>
+            <td><%= event["publish_time"] %></td>
+            <td><%= event["reserved_seating"] %></td>
+            <td><%= event["sponsored"] %></td>
             </tr>
         <% end %>
       </tbody>

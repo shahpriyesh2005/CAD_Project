@@ -8,11 +8,6 @@ class WishlistsController < ApplicationController
     
     @wishlists = @user.wishlists
 
-    @wishlists.each do |wishlist|
-      @event = Event.find(wishlist.event_id)
-      wishlist.event_id = @event.title
-    end
-
   end
 
   # GET /wishlists/1
@@ -20,9 +15,6 @@ class WishlistsController < ApplicationController
   def show
     @user = User.find(current_user.id)
     @wishlist = @user.wishlists.find(params[:id])
-
-    @event = Event.find(@wishlist.event_id)
-    @wishlist.event_id = @event.title
 
   end
 
@@ -43,7 +35,7 @@ class WishlistsController < ApplicationController
   def create
     @user = User.find(current_user.id)
     @wishlist = @user.wishlists.build(wishlist_params)
-    @event = params[:wishlist][:event_id]
+    @event = params[:wishlist][:event_name]
     @eventid = Event.where("title=?",@event).first
     @wishlist.event_id = @eventid[:id]
     respond_to do |format|
@@ -61,7 +53,7 @@ class WishlistsController < ApplicationController
   # PATCH/PUT /wishlists/1.json
   def update
     @user = User.find(current_user.id)
-    @event = params[:wishlist][:event_id]
+    @event = params[:wishlist][:event_name]
     @eventid = Event.where("title=?",@event).first
     params[:wishlist][:event_id] = @eventid.id
     respond_to do |format|
@@ -91,6 +83,6 @@ class WishlistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wishlist_params
-      params.require(:wishlist).permit(:wishlist_date, :event_id)
+      params.require(:wishlist).permit(:wishlist_date, :event_name, :event_id )
     end
 end

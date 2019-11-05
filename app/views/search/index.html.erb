@@ -6,9 +6,11 @@
   <% else %>
     <%= form_with(model: @events, url: "/show") do |f|%>
       Search Your Event here:
-      <%= f.text_field :search %>
-      <%= f.date_select :startdate %>
-      <%= f.date_select :enddate %> <br>
+      <%= f.text_field :search %> <br>
+      Start Date:
+      <%= f.date_select(:startdate, include_blank: true)  %> <br>
+      End Date:
+      <%= f.date_select(:enddate, include_blank: true) %> <br>
       Enter your Preferred Organizer for their Events:
       <%= f.text_field :organizer %> <br>
       <%= f.submit "Search" %> <br>
@@ -40,6 +42,7 @@
         <tbody>
           <% @events.each do |event| %>
             <tr>
+              <td><%= image_tag event.picture_url, width: '125%' if event.picture.present? %></td>
               <td><%= event.title %></td>
               <td><%= event.category %></td>
               <td><%= event.description %></td>
@@ -57,7 +60,6 @@
               <td><%= event.publish_time %></td>
               <td><%= event.reserved_seating %></td>
               <td><%= event.sponsored %></td>
-              <td><%= event.user_id %></td>
               </tr>
           <% end %>
         </tbody>
