@@ -13,6 +13,10 @@ class Event < ApplicationRecord
   validates_format_of :organizer_email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :presence => true
   validates_format_of :organizer_contact_no, :with => /[0-9]+/i, :presence => true
   validates :start_time, :end_time, :publish_time, :presence => true
+
+  validates_length_of :title, :venue, :address1, minimum: 5, allow_blank: false
+  validates_length_of :description, minimum: 20, allow_blank: false
+
   validate :validate_date
 
   private

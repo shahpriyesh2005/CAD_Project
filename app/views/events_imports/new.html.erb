@@ -1,0 +1,17 @@
+<h1>Import Events From Excel</h1>
+
+<h5>Select File</h5>
+<%= form_for @events_import do |f| %>
+  <% if @events_import.errors.any? %>
+    <%= pluralize(@events_import.errors.count, "error") %> prevented us from
+    importing your spreadsheet. Please update your spreadsheet and try again.
+    <ul>
+      <% @events_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.file_field :file %>
+  <%= f.submit "Import File" %>
+<% end %>

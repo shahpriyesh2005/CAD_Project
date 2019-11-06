@@ -29,4 +29,8 @@
 <% end %>
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<% if user_signed_in? %>
+<%= link_to 'New Event', new_event_path %> |
+<%= link_to 'Upload Events', events_imports_new_path %> |
+<%= link_to 'Download Event List', events_path(format: :xlsx) %>
+<% end %>

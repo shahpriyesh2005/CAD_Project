@@ -15,6 +15,11 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.user_id = current_user.id
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @user }
+    end
   end
 
   # GET /users/1/edit
@@ -58,6 +63,15 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def signedinuserprofile
+    if current_user.first_name.nil?
+      redirect_to "/users"
+    else
+      @user = User.find(current_user.id)
+      redirect_to "/users/#{@user.id}"
     end
   end
 

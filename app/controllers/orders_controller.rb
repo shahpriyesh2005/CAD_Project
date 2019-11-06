@@ -4,7 +4,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.where(guest_email: current_user.email)
+    if current_user.admin
+      @orders = Order.all
+    else
+      @orders = Order.where(guest_email: current_user.email)
+    end
   end
 
   # GET /orders/1
@@ -29,6 +33,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.order_date = Time.now.strftime("%b %-d, %Y")
     @order.user_id = current_user.id
 
     respond_to do |format|
@@ -46,6 +51,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
     @order = Order.find(params[:id])
+    @order.order_date = Time.now.strftime("%b %-d, %Y")
     @order.user_id = current_user.id
 
     respond_to do |format|

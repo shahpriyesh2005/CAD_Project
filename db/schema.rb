@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_05_202055) do
+ActiveRecord::Schema.define(version: 2019_11_06_122748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_11_05_202055) do
     t.string "guest_email"
     t.string "guest_contact_no"
     t.string "payment_method"
-    t.decimal "card_no"
+    t.string "card_no"
     t.date "expiry_date"
     t.date "order_date"
     t.bigint "user_id", null: false

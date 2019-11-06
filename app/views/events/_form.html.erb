@@ -13,6 +13,7 @@
 
   <div class="field">
     <%= form.label :picture %>
+    <%= image_tag @event.picture_url, width: '30%' if @event.picture.present? %>
     <%= form.file_field :picture %>
   </div>
 
@@ -33,17 +34,17 @@
 
   <div class="field">
     <%= form.label :organizer_name %>
-    <%= form.text_field :organizer_name %>
+    <%= form.text_field :organizer_name, readonly: true, value: current_user.first_name + " " + current_user.last_name if current_user.first_name.present? %>
   </div>
 
   <div class="field">
     <%= form.label :organizer_email %>
-    <%= form.text_field :organizer_email %>
+    <%= form.text_field :organizer_email, value: current_user.email, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :organizer_contact_no %>
-    <%= form.text_field :organizer_contact_no %>
+    <%= form.text_field :organizer_contact_no, readonly: true, value: current_user.contact_no if current_user.contact_no.present? %>
   </div>
 
   <div class="field">

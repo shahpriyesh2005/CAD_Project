@@ -18,7 +18,7 @@
         <th>Sale End Time</th>
         <th>Currency</th>
         <th>Event</th>
-        <th colspan="3"></th>
+        <th colspan="5"></th>
       </tr>
     </thead>
 
@@ -39,9 +39,15 @@
           <td><%= ticket.sale_end_time.strftime("%d/%m/%Y %I:%M%p") %></td>
           <td><%= ticket.currency %></td>
           <td><%= ticket.event_id %></td>
+          <% if user_signed_in? %>
+            <% if ticket.user_id == current_user.id %>
           <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
+          <td> | </td>
           <td><%= link_to 'Delete', event_ticket_path(@event, ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td> | </td>
+            <% end %>
           <td><%= link_to 'Buy', {:controller => "orders", :action => "new", :event_id => ticket.event_id, :ticket_id => ticket.id } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
@@ -49,4 +55,6 @@
 <% end %>
 <br>
 
+<% if user_signed_in? && ticket.user_id == current_user.id %>
 <%= link_to 'New Ticket', new_event_ticket_path(@event) %>
+<% end %>

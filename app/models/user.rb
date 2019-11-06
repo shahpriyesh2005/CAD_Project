@@ -8,7 +8,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable
 
   USER_INTEREST = ["", "Charity and Causes", "Competition", "Concert", "Conference", "Convention", "Education", "Fair", "Fashion and Beauty", "Film and Entertainment", "Food and Drink", "Health and Wellness", "Home and Lifestyle", "Performing and Visual Arts", "Religion and Spirituality", "Science and Technology", "Seminar", "Singing", "Sports and Fitness", "Travel and Outdoor", "Workshop"]
   USER_CITY = ["", "Antrim", "Armagh", "Carlow", "Cavan", "Clare", "Cork", "Derry", "Donegal", "Down", "Dublin", "Fermanagh", "Galway", "Kerry", "Kildare", "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan", "Offaly", "Roscommon", "Sligo", "Tipperary", "Tyrone", "Waterford", "Westmeath", "Wexford", "Wicklow"]
@@ -26,6 +26,11 @@ class User < ApplicationRecord
 
       validates_format_of :first_name, :last_name, :gender, :address1, :city, :county, :country, :with => /[a-z]+/i, :presence => true, :on => :update
       validates_format_of :contact_no, :with => /[0-9]+/i, :presence => true, :on => :update
+
+      validates_length_of :first_name, :last_name, minimum: 3, allow_blank: false, :on => :update
+      validates_length_of :address1, minimum: 5, allow_blank: false, :on => :update
+      validates_length_of :contact_no, minimum: 10, allow_blank: false, :on => :update
+
       validates_presence_of :interest1, :interest2, :interest3, :interest4, :interest5, :on => :update
 
       if interest1 == interest2

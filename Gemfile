@@ -49,6 +49,17 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# For login
 gem 'devise'
+
+# For image upload
 gem 'carrierwave'
 gem 'net-ssh'
+
+# For excel download
+gem "rubyzip"
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx_rails'
+
+# For excel upload
+gem "roo"
