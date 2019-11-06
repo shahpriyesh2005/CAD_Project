@@ -23,6 +23,10 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.event_id = @event.id
     @order.ticket_id = @ticket.id
+    @order.guest_first_name = current_user.first_name
+    @order.guest_last_name = current_user.last_name
+    @order.guest_email = current_user.email
+    @order.guest_contact_no = current_user.contact_no
   end
 
   # GET /orders/1/edit

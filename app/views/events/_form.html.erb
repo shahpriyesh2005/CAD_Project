@@ -34,7 +34,7 @@
 
   <div class="field">
     <%= form.label :organizer_name %>
-    <%= form.text_field :organizer_name, readonly: true, value: current_user.first_name + " " + current_user.last_name if current_user.first_name.present? %>
+    <%= form.text_field :organizer_name, readonly: true %>
   </div>
 
   <div class="field">
@@ -44,7 +44,7 @@
 
   <div class="field">
     <%= form.label :organizer_contact_no %>
-    <%= form.text_field :organizer_contact_no, readonly: true, value: current_user.contact_no if current_user.contact_no.present? %>
+    <%= form.text_field :organizer_contact_no, readonly: true %>
   </div>
 
   <div class="field">

@@ -63,22 +63,22 @@
 
   <div class="field">
     <%= form.label :guest_first_name %>
-    <%= form.text_field :guest_first_name, readonly: true, value: current_user.first_name if current_user.first_name.present? %>
+    <%= form.text_field :guest_first_name, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :guest_last_name %>
-    <%= form.text_field :guest_last_name, readonly: true, value: current_user.last_name if current_user.last_name.present? %>
+    <%= form.text_field :guest_last_name, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :guest_email %>
-    <%= form.text_field :guest_email, readonly: true, value: current_user.email if current_user.email.present? %>
+    <%= form.text_field :guest_email, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :guest_contact_no %>
-    <%= form.text_field :guest_contact_no, readonly: true, value: current_user.contact_no if current_user.contact_no.present? %>
+    <%= form.text_field :guest_contact_no, readonly: true %>
   </div>
 
   <div class="field">

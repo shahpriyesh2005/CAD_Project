@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.all.order("id ASC")
 
     respond_to do |format|
       format.xlsx {
@@ -24,6 +24,8 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @event.organizer_name = "#{current_user.first_name} #{current_user.last_name}"
+    @event.organizer_contact_no = "#{current_user.contact_no}"
   end
 
   # GET /events/1/edit

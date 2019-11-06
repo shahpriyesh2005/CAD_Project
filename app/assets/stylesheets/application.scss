@@ -10,11 +10,12 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
-footer { margin-top: 100px; }
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+/* footer { margin-top: 100px; }
 table, td, th { vertical-align: middle; border: none; }
 th { border-bottom: 1px solid #DDD; }
 
@@ -34,3 +35,4 @@ footer {
     background-color: #ebebeb;
     padding: 30px 0;
 }
+*/

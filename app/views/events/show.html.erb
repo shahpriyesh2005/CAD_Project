@@ -1,99 +1,137 @@
-<div class="row">
-  <div class="col-md-9">
-    <%= image_tag @event.picture_url, width: '30%' if @event.picture.present? %>
-  </div>
-
-  <div class="col-md-18">
-    <p>
-      <strong>Title:</strong>
-      <%= @event.title %>
-    </p>
-
-    <p>
-      <strong>Category:</strong>
-      <%= @event.category %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @event.description %>
-    </p>
-
-    <p>
-      <strong>Organizer name:</strong>
-      <%= @event.organizer_name %>
-    </p>
-
-    <p>
-      <strong>Organizer email:</strong>
-      <%= @event.organizer_email %>
-    </p>
-
-    <p>
-      <strong>Organizer contact no:</strong>
-      <%= @event.organizer_contact_no %>
-    </p>
-
-    <p>
-      <strong>Venue:</strong>
-      <%= @event.venue %>
-    </p>
-
-    <p>
-      <strong>Address1:</strong>
-      <%= @event.address1 %>
-    </p>
-
-    <p>
-      <strong>Address2:</strong>
-      <%= @event.address2 %>
-    </p>
-
-    <p>
-      <strong>City:</strong>
-      <%= @event.city %>
-    </p>
-
-    <p>
-      <strong>County:</strong>
-      <%= @event.county %>
-    </p>
-
-    <p>
-      <strong>Country:</strong>
-      <%= @event.country %>
-    </p>
-
-    <p>
-      <strong>Start time:</strong>
-      <%= @event.start_time.strftime("%d/%m/%Y %I:%M%p") %>
-    </p>
-
-    <p>
-      <strong>End time:</strong>
-      <%= @event.end_time.strftime("%d/%m/%Y %I:%M%p") %>
-    </p>
-
-    <p>
-      <strong>Publish time:</strong>
-      <%= @event.publish_time.strftime("%d/%m/%Y %I:%M%p") %>
-    </p>
-
-    <p>
-      <strong>Reserved seating:</strong>
-      <%= @event.reserved_seating %>
-    </p>
-
-    <p>
-      <strong>Sponsored:</strong>
-      <%= @event.sponsored %>
-    </p>
-
-    <%= link_to 'Tickets', event_tickets_path(@event) %> |
-    <% if user_signed_in? && @event.user_id == current_user.id %>
-    <%= link_to 'Edit', edit_event_path %> |
-    <%= link_to 'Delete', event_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
-    <% end %>
-    <%= link_to 'Back', events_path %>
-  </div>
-</div>
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <%= image_tag @event.picture_url, width: '30%', class: "img-thumbnail" if @event.picture.present? %>
+    </tr>
+    <tr>
+      <td>
+      <p>
+        <strong>Title:</strong>
+        <%= @event.title %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Category:</strong>
+        <%= @event.category %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Description:</strong>
+        <%= @event.description %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Organizer name:</strong>
+        <%= @event.organizer_name %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Organizer email:</strong>
+        <%= @event.organizer_email %>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p>
+        <strong>Organizer contact no:</strong>
+        <%= @event.organizer_contact_no %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Venue:</strong>
+        <%= @event.venue %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Address1:</strong>
+        <%= @event.address1 %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Address2:</strong>
+        <%= @event.address2 %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>City:</strong>
+        <%= @event.city %>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p>
+        <strong>County:</strong>
+        <%= @event.county %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Country:</strong>
+        <%= @event.country %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Start time:</strong>
+        <%= @event.start_time.strftime("%d/%m/%Y %I:%M%p") %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>End time:</strong>
+        <%= @event.end_time.strftime("%d/%m/%Y %I:%M%p") %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Publish time:</strong>
+        <%= @event.publish_time.strftime("%d/%m/%Y %I:%M%p") %>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p>
+        <strong>Reserved seating:</strong>
+        <%= @event.reserved_seating %>
+      </p>
+      </td>
+      <td>
+      <p>
+        <strong>Sponsored:</strong>
+        <%= @event.sponsored %>
+      </p>
+      </td>
+      <td/>
+      <td/>
+      <td/>
+    </tr>
+    <tr>
+      <td>
+      <div class="btn btn-primary">
+        <%= link_to 'Tickets', event_tickets_path(@event), :class => "btn" %>
+      </div>
+      <% if user_signed_in? && @event.user_id == current_user.id %>
+        <div class="btn btn-primary">
+          <%= link_to 'Edit', edit_event_path, :class => "btn" %>
+        </div>
+        <div class="btn btn-primary">
+          <%= link_to 'Delete', event_path, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn" %>
+        </div>
+      <% end %>
+      <div class="btn btn-primary">
+        <%= link_to 'Back', events_path, :class => "btn" %>
+      </div>
+      </td>
+  </tbody>
+</table>

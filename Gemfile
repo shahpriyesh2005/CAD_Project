@@ -63,3 +63,8 @@ gem 'axlsx_rails'
 
 # For excel upload
 gem "roo"
+
+# For GUI
+gem "bootstrap"
+gem "sprockets-rails"
+gem 'jquery-rails'

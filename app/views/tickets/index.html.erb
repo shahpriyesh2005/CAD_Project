@@ -41,12 +41,12 @@
           <td><%= ticket.event_id %></td>
           <% if user_signed_in? %>
             <% if ticket.user_id == current_user.id %>
-          <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
-          <td> | </td>
-          <td><%= link_to 'Delete', event_ticket_path(@event, ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <td> | </td>
+              <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
+              <td> | </td>
+              <td><%= link_to 'Delete', event_ticket_path(@event, ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td> | </td>
             <% end %>
-          <td><%= link_to 'Buy', {:controller => "orders", :action => "new", :event_id => ticket.event_id, :ticket_id => ticket.id } %></td>
+            <td><%= link_to 'Buy', {:controller => "orders", :action => "new", :event_id => ticket.event_id, :ticket_id => ticket.id } %></td>
           <% end %>
         </tr>
       <% end %>
@@ -55,6 +55,8 @@
 <% end %>
 <br>
 
-<% if user_signed_in? && ticket.user_id == current_user.id %>
-<%= link_to 'New Ticket', new_event_ticket_path(@event) %>
+<% if user_signed_in? %>
+  <% @tickets.each do |ticket| %>
+    <%= link_to 'New Ticket', new_event_ticket_path(@event) %>
+  <% break end %>
 <% end %>
