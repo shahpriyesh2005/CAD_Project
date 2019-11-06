@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_091954) do
+ActiveRecord::Schema.define(version: 2019_11_05_202055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -38,16 +38,12 @@ ActiveRecord::Schema.define(version: 2019_11_04_091954) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "picture"
+    t.index ["title", "category"], name: "events_unique_index", unique: true
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "homes", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "orders", force: :cascade do |t|
-    t.decimal "no_of_tickets"
+    t.integer "no_of_tickets"
     t.decimal "ticket_price"
     t.decimal "fees_per_ticket"
     t.decimal "actual_ticket_price"
@@ -75,15 +71,19 @@ ActiveRecord::Schema.define(version: 2019_11_04_091954) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "ratings", id: :serial, force: :cascade do |t|
-    t.decimal "user_rating", precision: 2
+  create_table "ratings", force: :cascade do |t|
+    t.decimal "user_rating"
     t.string "user_review"
     t.date "rating_date"
-    t.bigint "user_id"
-    t.bigint "event_id"
-    t.bigint "ticket_id"
-    t.date "created_at"
-    t.date "updated_at"
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "ticket_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_ratings_on_event_id"
+    t.index ["ticket_id"], name: "index_ratings_on_ticket_id"
+    t.index ["user_id", "event_id"], name: "ratings_unique_index", unique: true
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_091954) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "subscribed_user_id"], name: "subscriptions_unique_index", unique: true
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
@@ -100,7 +101,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_091954) do
     t.string "ticket_type"
     t.string "category"
     t.string "description"
-    t.decimal "total_quantity"
+    t.integer "total_quantity"
     t.decimal "ticket_price"
     t.string "include_fees_in_ticket_price"
     t.decimal "fees_per_ticket"
@@ -114,11 +115,12 @@ ActiveRecord::Schema.define(version: 2019_11_04_091954) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "available_quantity"
+    t.index ["event_id", "entry_type", "ticket_type", "category"], name: "tickets_unique_index", unique: true
     t.index ["event_id"], name: "index_tickets_on_event_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "gender"
@@ -134,12 +136,19 @@ ActiveRecord::Schema.define(version: 2019_11_04_091954) do
     t.string "interest3"
     t.string "interest4"
     t.string "interest5"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.boolean "admin", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -151,14 +160,20 @@ ActiveRecord::Schema.define(version: 2019_11_04_091954) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "event_name"
     t.index ["event_id"], name: "index_wishlists_on_event_id"
+    t.index ["user_id", "event_id"], name: "wishlists_unique_index", unique: true
     t.index ["user_id"], name: "index_wishlists_on_user_id"
   end
 
+  add_foreign_key "events", "users"
   add_foreign_key "orders", "events"
   add_foreign_key "orders", "tickets"
-  add_foreign_key "ratings", "events", name: "ratings_event_id_fkey"
-  add_foreign_key "ratings", "tickets", name: "ratings_ticket_id_fkey"
-  add_foreign_key "ratings", "users", name: "ratings_user_id_fkey"
+  add_foreign_key "orders", "users"
+  add_foreign_key "ratings", "events"
+  add_foreign_key "ratings", "tickets"
+  add_foreign_key "ratings", "users"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "tickets", "events"
+  add_foreign_key "tickets", "users"
   add_foreign_key "wishlists", "events"
+  add_foreign_key "wishlists", "users"
 end
