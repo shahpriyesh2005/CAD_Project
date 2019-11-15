@@ -16,6 +16,14 @@ class Ticket < ApplicationRecord
   def end_time_after_start_time
     return if sale_end_time.blank? || sale_start_time.blank?
 
+    if sale_start_time.strftime("%Y-%m-%d %H:%M:%S") < Time.now.strftime("%Y-%m-%d %H:%M:%S")
+      errors.add(:sale_start_time, "should be greater than current time")
+    end
+
+    if sale_end_time.strftime("%Y-%m-%d %H:%M:%S") < Time.now.strftime("%Y-%m-%d %H:%M:%S")
+      errors.add(:sale_end_time, "should be greater than current time")
+    end
+
     if sale_end_time < sale_start_time
       errors.add(:sale_end_time, "cannot be less than sale start time")
     end

@@ -1,4 +1,5 @@
 require 'log'
+require 'luhnAlgorithmCheck'
 
 class Order < ApplicationRecord
 
@@ -14,6 +15,7 @@ class Order < ApplicationRecord
 
   validates :expiry_date, :order_date, :presence => true
   validate :validate_date
+  validate :validate_card
 
   private
 
@@ -25,5 +27,15 @@ class Order < ApplicationRecord
     if expiry_date < order_date
       errors.add(:expiry_date, "cannot be less than order date")
     end
- end
+  end
+
+  def validate_card
+    Log.info("Inside validate_card")
+
+    return if card_no.blank?
+
+    unless LuhnAlgorithm.new(card_no).valid?
+      errors.add :card_no, " is not a valid."
+    end
+  end
 end

@@ -68,3 +68,15 @@ gem "roo"
 gem "bootstrap"
 gem "sprockets-rails"
 gem 'jquery-rails'
+
+# For password complexity validation
+gem "passwordValidator", '~> 0.0.3'
+
+# For Credit/Debit Card validation
+gem "luhnAlgorithmCheck", '~> 0.0.3'
+
+# For pagination
+gem 'pagy'
+
+# For sending customized email
+gem 'sendCustomMail'

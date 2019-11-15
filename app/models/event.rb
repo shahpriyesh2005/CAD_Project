@@ -24,6 +24,18 @@ class Event < ApplicationRecord
   def validate_date
     return if end_time.blank? || start_time.blank? || publish_time.blank?
 
+    if start_time.strftime("%Y-%m-%d %H:%M:%S") < Time.now.strftime("%Y-%m-%d %H:%M:%S")
+      errors.add(:start_time, "should be greater than current time")
+    end
+
+    if end_time.strftime("%Y-%m-%d %H:%M:%S") < Time.now.strftime("%Y-%m-%d %H:%M:%S")
+      errors.add(:end_time, "should be greater than current time")
+    end
+
+    if publish_time.strftime("%Y-%m-%d %H:%M:%S") < Time.now.strftime("%Y-%m-%d %H:%M:%S")
+      errors.add(:publish_time, "should be greater than current time")
+    end
+
     if end_time < start_time
       errors.add(:end_time, "cannot be less than start time")
     end

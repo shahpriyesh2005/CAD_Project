@@ -5,7 +5,9 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @event = Event.find(params[:event_id])
-    @tickets = @event.tickets
+    @tickets = @event.tickets.where("sale_start_time <= ? and sale_end_time > ?",
+                                    Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+                                    Time.now.strftime("%Y-%m-%d %H:%M:%S")).order("ticket_type ASC")
   end
 
   # GET /tickets/1

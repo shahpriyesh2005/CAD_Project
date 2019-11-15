@@ -5,9 +5,9 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     if current_user.admin
-      @orders = Order.all
+      @orders = Order.all.order("id ASC")
     else
-      @orders = Order.where(guest_email: current_user.email)
+      @orders = Order.where(guest_email: current_user.email).order("id ASC")
     end
   end
 
@@ -42,6 +42,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+        SendCustomMail.new(current_user.email, "ORDER").process.deliver
+
         format.html { redirect_to @order, notice: 'Order was successfully added.' }
         format.json { render :show, status: :created, location: @order }
       else

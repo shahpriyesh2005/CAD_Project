@@ -1,4 +1,5 @@
 require 'log'
+require 'passwordValidator'
 
 class User < ApplicationRecord
 
@@ -85,6 +86,7 @@ class User < ApplicationRecord
 
 end
 
+=begin
 class PasswordComplexity
   Log.info("Inside PasswordComplexity")
 
@@ -118,3 +120,4 @@ class PasswordComplexity
     password.match(/[a-z]{1}/) ? 1 : 0
   end
 end
+=end

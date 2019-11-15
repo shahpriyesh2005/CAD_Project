@@ -47,6 +47,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        SendCustomMail.new(current_user.email, "PROFILE").process.deliver
+
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -71,7 +73,7 @@ class UsersController < ApplicationController
       redirect_to "/users"
     else
       @user = User.find(current_user.id)
-      redirect_to "/users/#{@user.id}"
+      redirect_to '/home/index'
     end
   end
 

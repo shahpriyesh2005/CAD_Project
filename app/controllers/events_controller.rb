@@ -4,7 +4,10 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all.order("id ASC")
+    @events = Event.where("start_time > ? and end_time > ? and publish_time <= ?",
+                          Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+                          Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+                          Time.now.strftime("%Y-%m-%d %H:%M:%S")).order("start_time ASC")
 
     respond_to do |format|
       format.xlsx {
