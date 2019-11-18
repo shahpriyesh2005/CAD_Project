@@ -20,10 +20,10 @@ class User < ApplicationRecord
   validate :profile_details, :on => :update
 
   def profile_details
-    Log.info("Inside profile_details")
+    Log.debug("Inside profile_details")
 
     if password.nil?
-      Log.info("Inside password.nil if condition")
+      Log.debug("Inside password.nil if condition")
 
       validates_format_of :first_name, :last_name, :gender, :address1, :city, :county, :country, :with => /[a-z]+/i, :presence => true, :on => :update
       validates_format_of :contact_no, :with => /[0-9]+/i, :presence => true, :on => :update
@@ -74,7 +74,7 @@ class User < ApplicationRecord
         errors.add :interest5, " cannot be same as Interest4."
       end
     else
-      Log.info("Inside password.nil else condition")
+      Log.debug("Inside password.nil else condition")
 
       required_complexity = 3
 
@@ -88,7 +88,7 @@ end
 
 =begin
 class PasswordComplexity
-  Log.info("Inside PasswordComplexity")
+  Log.debug("Inside PasswordComplexity")
 
   attr_reader :password, :required_complexity
 

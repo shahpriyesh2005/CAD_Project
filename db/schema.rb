@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_114359) do
+ActiveRecord::Schema.define(version: 2019_11_17_235719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -152,6 +152,15 @@ ActiveRecord::Schema.define(version: 2019_11_07_114359) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "viewed_events", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "view_time"
+    t.index ["event_id"], name: "index_viewed_events_on_event_id"
+    t.index ["user_id", "event_id"], name: "viewed_events_unique_index", unique: true
+    t.index ["user_id"], name: "index_viewed_events_on_user_id"
+  end
+
   create_table "wishlists", force: :cascade do |t|
     t.date "wishlist_date"
     t.bigint "user_id", null: false
@@ -174,6 +183,8 @@ ActiveRecord::Schema.define(version: 2019_11_07_114359) do
   add_foreign_key "subscriptions", "users"
   add_foreign_key "tickets", "events"
   add_foreign_key "tickets", "users"
+  add_foreign_key "viewed_events", "events"
+  add_foreign_key "viewed_events", "users"
   add_foreign_key "wishlists", "events"
   add_foreign_key "wishlists", "users"
 end

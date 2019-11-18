@@ -1,13 +1,65 @@
+require 'log'
+
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   # GET /tickets
   # GET /tickets.json
   def index
+    event_orders = Order.select(:no_of_tickets).where(event_id: params[:event_id])
+    total_tickets_sold = event_orders.sum(:no_of_tickets)
+    Log.debug("total_tickets_sold => " + total_tickets_sold.to_s)
+
     @event = Event.find(params[:event_id])
-    @tickets = @event.tickets.where("sale_start_time <= ? and sale_end_time > ?",
+    tickets_unsorted = @event.tickets.where("sale_start_time <= ? and sale_end_time > ?",
                                     Time.now.strftime("%Y-%m-%d %H:%M:%S"),
                                     Time.now.strftime("%Y-%m-%d %H:%M:%S")).order("ticket_type ASC")
+
+    ticket_sold_weight = Hash.new(0)
+    tickets_sorted = Hash.new(0)
+    tickets_sorted_array = Array.new
+    tickets_sorted_weight = Array.new
+
+    if total_tickets_sold > 0
+      ticket_sold = 0
+      weight = 0
+
+      tickets_unsorted.each do |ticket|
+        Log.debug("ticket.id => " + ticket.id.to_s)
+        temp_no_of_tickets = Order.select(:no_of_tickets).where(event_id: params[:event_id], ticket_id: ticket.id)
+        ticket_sold = temp_no_of_tickets.sum(:no_of_tickets)
+        Log.debug("ticket_sold => " + ticket_sold.to_s)
+
+        if ticket_sold > 0
+          weight = ticket_sold.to_f / total_tickets_sold
+        else
+          weight = 0
+        end
+        Log.debug("weight => " + weight.to_s)
+
+        ticket_sold_weight[ticket] += weight
+        Log.debug("ticket_sold_weight => " + ticket_sold_weight.to_s)
+      end
+
+      tickets_sorted = ticket_sold_weight.sort_by { |key, value| value }.reverse
+      Log.debug("tickets_sorted => " + tickets_sorted.to_s)
+
+      tickets_sorted.each do |ticket|
+        tickets_sorted_array << ticket[0]
+        tickets_sorted_weight << ticket[1]
+      end
+
+      @tickets = tickets_sorted_array
+      @tickets_weight = tickets_sorted_weight
+    else
+      @tickets = tickets_unsorted
+
+      tickets_unsorted.each do |ticket|
+        tickets_sorted_weight << 0
+      end
+    end
+
+    Log.debug("@tickets => " + @tickets.to_s)
   end
 
   # GET /tickets/1

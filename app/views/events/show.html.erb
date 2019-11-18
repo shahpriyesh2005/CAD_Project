@@ -135,3 +135,116 @@
     </tr>
   </tbody>
 </table>
+
+<br>
+<br>
+
+<% if user_signed_in? %>
+  <% if @other_users_events == nil %>
+    <h3> No events to display based on your orders history. </h3>
+  <% else %>
+    <h3> Customers who bought this also bought: </h3>
+    <table class="table table-bordered">
+      <% @other_users_events.each do |other_users_event| %>
+        <table class="table table-bordered">
+          <tr>
+            <td width="30%">
+              <%= image_tag other_users_event.picture_url, width: "75%", class: "rounded float-left" if other_users_event.picture.present? %>
+            </td>
+            <td>
+              <table class="table table-hover">
+                <tr>
+                  <h4><%= link_to other_users_event.title, other_users_event, class: "badge badge-light" %></h4>
+                </tr>
+                <thead>
+                <tr>
+                  <th scope="col">Category</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Venue</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>
+                    <%= other_users_event.category %>
+                  </td>
+                  <td>
+                    <%= other_users_event.description %>
+                  </td>
+                  <td>
+                    <%= other_users_event.venue %>
+                  </td>
+                  <td>
+                    <%= other_users_event.start_time.strftime("%d/%m/%Y %I:%M%p") %>
+                  </td>
+                  <td>
+                    <%= other_users_event.end_time.strftime("%d/%m/%Y %I:%M%p") %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </table>
+  <% end %>
+
+  <br>
+  <br>
+
+  <% if @other_users_previously_viewed_events == nil %>
+    <h3> No events to display based on other customer views. </h3>
+  <% else %>
+    <h3> Customers who viewed this also viewed: </h3>
+    <table class="table table-bordered">
+      <% @other_users_previously_viewed_events.each do |other_users_viewed_events| %>
+        <table class="table table-bordered">
+          <tr>
+            <td width="30%">
+              <%= image_tag other_users_viewed_events.picture_url, width: "75%", class: "rounded float-left" if other_users_viewed_events.picture.present? %>
+            </td>
+            <td>
+              <table class="table table-hover">
+                <tr>
+                  <h4><%= link_to other_users_viewed_events.title, other_users_viewed_events, class: "badge badge-light" %></h4>
+                </tr>
+                <thead>
+                <tr>
+                  <th scope="col">Category</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Venue</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>
+                    <%= other_users_viewed_events.category %>
+                  </td>
+                  <td>
+                    <%= other_users_viewed_events.description %>
+                  </td>
+                  <td>
+                    <%= other_users_viewed_events.venue %>
+                  </td>
+                  <td>
+                    <%= other_users_viewed_events.start_time.strftime("%d/%m/%Y %I:%M%p") %>
+                  </td>
+                  <td>
+                    <%= other_users_viewed_events.end_time.strftime("%d/%m/%Y %I:%M%p") %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </table>
+  <% end %>
+<% end %>
+<br>

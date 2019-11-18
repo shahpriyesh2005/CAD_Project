@@ -1,13 +1,14 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  include Pagy::Backend
 
   # GET /orders
   # GET /orders.json
   def index
     if current_user.admin
-      @orders = Order.all.order("id ASC")
+      @pagy, @orders = pagy(Order.all.order("id ASC"), page: params[:page], items: 10)
     else
-      @orders = Order.where(guest_email: current_user.email).order("id ASC")
+      @pagy, @orders = pagy(Order.where(guest_email: current_user.email).order("id ASC"), page: params[:page], items: 10)
     end
   end
 

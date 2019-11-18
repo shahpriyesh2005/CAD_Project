@@ -4,6 +4,7 @@
   <table>
     <thead>
       <tr>
+        <th>Preference</th>
         <th>Entry Type</th>
         <th>Ticket Type</th>
         <th>Category</th>
@@ -23,8 +24,13 @@
     </thead>
 
     <tbody>
+      <% i = 0 %>
       <% @tickets.each do |ticket| %>
         <tr>
+          <td>
+            <% if @tickets_weight[i] > 0 && i == 0 %> High <% end %>
+            <% if @tickets_weight[i] > 0 && i == 1 %> Medium <% end %>
+          </td>
           <td><%= ticket.entry_type %></td>
           <td><%= ticket.ticket_type %></td>
           <td><%= ticket.category %></td>
@@ -48,6 +54,7 @@
             <% end %>
             <td><%= link_to 'Buy', {:controller => "orders", :action => "new", :event_id => ticket.event_id, :ticket_id => ticket.id } %></td>
           <% end %>
+          <% i += 1 %>
         </tr>
       <% end %>
     </tbody>

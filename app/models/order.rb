@@ -20,7 +20,7 @@ class Order < ApplicationRecord
   private
 
   def validate_date
-    Log.info("Inside validate_date")
+    Log.debug("Inside validate_date")
 
     return if expiry_date.blank? || order_date.blank?
 
@@ -30,7 +30,7 @@ class Order < ApplicationRecord
   end
 
   def validate_card
-    Log.info("Inside validate_card")
+    Log.debug("Inside validate_card")
 
     return if card_no.blank?
 

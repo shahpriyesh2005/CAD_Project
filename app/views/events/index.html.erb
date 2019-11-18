@@ -61,4 +61,117 @@
     <% end %>
   </table>
 <% end %>
+<%= pagy_bootstrap_nav(@pagy).html_safe %>
+
+<br>
+<br>
+
+<% if user_signed_in? %>
+  <% if @user_interests_events == nil %>
+    <h3> No events to display based on your interests. </h3>
+  <% else %>
+    <h3> Based on your interests: </h3>
+    <table class="table table-bordered">
+      <% @user_interests_events.each do |user_interests_event| %>
+        <table class="table table-bordered">
+          <tr>
+            <td width="30%">
+              <%= image_tag user_interests_event.picture_url, width: "75%", class: "rounded float-left" if user_interests_event.picture.present? %>
+            </td>
+            <td>
+              <table class="table table-hover">
+                <tr>
+                  <h4><%= link_to user_interests_event.title, user_interests_event, class: "badge badge-light" %></h4>
+                </tr>
+                <thead>
+                <tr>
+                  <th scope="col">Category</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Venue</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>
+                    <%= user_interests_event.category %>
+                  </td>
+                  <td>
+                    <%= user_interests_event.description %>
+                  </td>
+                  <td>
+                    <%= user_interests_event.venue %>
+                  </td>
+                  <td>
+                    <%= user_interests_event.start_time.strftime("%d/%m/%Y %I:%M%p") %>
+                  </td>
+                  <td>
+                    <%= user_interests_event.end_time.strftime("%d/%m/%Y %I:%M%p") %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </table>
+  <% end %>
+
+  <br>
+  <br>
+
+  <% if @previously_viewed_user_events == nil %>
+    <h3> No events to display based on your previous views. </h3>
+  <% else %>
+    <h3> Previously viewed events: </h3>
+    <table class="table table-bordered">
+      <% @previously_viewed_user_events.each do |previously_viewed_event| %>
+        <table class="table table-bordered">
+          <tr>
+            <td width="30%">
+              <%= image_tag previously_viewed_event.picture_url, width: "75%", class: "rounded float-left" if previously_viewed_event.picture.present? %>
+            </td>
+            <td>
+              <table class="table table-hover">
+                <tr>
+                  <h4><%= link_to previously_viewed_event.title, previously_viewed_event, class: "badge badge-light" %></h4>
+                </tr>
+                <thead>
+                <tr>
+                  <th scope="col">Category</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Venue</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>
+                    <%= previously_viewed_event.category %>
+                  </td>
+                  <td>
+                    <%= previously_viewed_event.description %>
+                  </td>
+                  <td>
+                    <%= previously_viewed_event.venue %>
+                  </td>
+                  <td>
+                    <%= previously_viewed_event.start_time.strftime("%d/%m/%Y %I:%M%p") %>
+                  </td>
+                  <td>
+                    <%= previously_viewed_event.end_time.strftime("%d/%m/%Y %I:%M%p") %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </table>
+  <% end %>
+<% end %>
 <br>
