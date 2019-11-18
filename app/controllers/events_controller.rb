@@ -20,7 +20,7 @@ class EventsController < ApplicationController
           Log.debug("user_interests => " + user_interests.inspect)
 
           unless $user_orders_events.nil?
-          @user_interests_events = Event.where(id: $upcoming_events).where("category in (?, ?, ?, ?, ?)",
+            @user_interests_events = Event.where(id: $upcoming_events).where("category in (?, ?, ?, ?, ?)",
                                                                           user_interests.as_json[0]["interest1"],
                                                                           user_interests.as_json[0]["interest2"],
                                                                           user_interests.as_json[0]["interest3"],
