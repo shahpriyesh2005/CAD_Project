@@ -1,19 +1,16 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-
-  root 'home#index'
-
+  resources :notifications
   get '/signedinuserprofile' => 'users#signedinuserprofile'
 
   get 'events_imports/new'
   get 'events_imports/create'
+  devise_for :users
+  root 'home#index'
 
   get 'search/index' => 'search#index'
   post '/show' => 'search#show'
   get 'search/show' => 'search#show'
-
-  get '/home/index' => 'home#index'
   
   resources :users
   resources :orders
@@ -22,8 +19,11 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :tickets
-    resources :ratings
   end
 
+  resources :ratings
+  
   resources :events_imports, only: [:new, :create]
+  
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

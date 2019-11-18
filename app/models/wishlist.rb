@@ -1,6 +1,6 @@
 class Wishlist < ApplicationRecord
   belongs_to :user
-
+  
   EVENT_NAME = []
   @events = Event.distinct.pluck(:title)
 

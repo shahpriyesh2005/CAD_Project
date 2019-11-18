@@ -2,11 +2,10 @@ class Subscription < ApplicationRecord
   belongs_to :user
 
     USER_NAMES = []
-    @users = User.find_by_sql("select users.first_name,users.last_name from users join events on users.id=events.user_id")
-    @users.each do |name|
-      if name.id != @currentuser.to_i
-        USER_NAMES << name.first_name + ' ' + name.last_name
-      end
-    end     #end of each loop
+    #@users = User.find_by_sql("select users.first_name,users.last_name from users join events on users.id=events.user_id")
+    #@users.each do |name|
+        #USER_NAMES << name.first_name + ' ' + name.last_name
+
+    #end     #end of each loop
   
 end   #end of Model

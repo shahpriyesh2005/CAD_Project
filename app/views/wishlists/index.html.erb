@@ -16,8 +16,6 @@
           <tr>
             <td><%= wishlist.event_name %></td>
             <td><%= wishlist.wishlist_date %></td>
-            <td><%= link_to 'Show', wishlist_path(wishlist) %></td>
-            <td><%= link_to 'Edit', edit_wishlist_path(wishlist) %></td>
             <td><%= link_to 'Destroy', wishlist_path(wishlist) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
@@ -25,6 +23,3 @@
     </table>
   <% end %>        
 <br>
-
-<%= link_to 'New Wishlist', new_wishlist_path() %>
-

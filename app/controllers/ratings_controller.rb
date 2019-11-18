@@ -4,38 +4,44 @@ class RatingsController < ApplicationController
   # GET /ratings
   # GET /ratings.json
   def index
-    @user = User.find(params[:user_id])
-    
-    @ratings = @user.ratings
+    @user = User.find(current_user.id)
+    @events = Event.where(id: Order.where("user_id=?",@user.id).distinct.pluck("event_id"))
+    @ratings = Array.new
+    @events.each do |event|
+      puts event
+      puts event.start_time
+      puts Time.now
+      if event.start_time <= Time.now
+        puts "inside insertion"
+        @ratings << Rating.where("user_id=? AND event_id=?",@user.id,event.id).first
+      end #inner if ends
+    end
+    @ratings.as_json
+    puts @ratings  
   end
 
   # GET /ratings/1
   # GET /ratings/1.json
   def show
-    @user = User.find(params[:user_id])
-    @rating = @user.ratings.find(params[:id])
   end
 
   # GET /ratings/new
   def new
-    @user = User.find(params[:user_id])
-    @rating = @user.ratings.build()
+    @rating = Rating.new
   end
 
   # GET /ratings/1/edit
   def edit
-    @user = User.find(params[:user_id])
-    @rating = @user.ratings.find(params[:id])
   end
 
   # POST /ratings
   # POST /ratings.json
   def create
-    @user = User.find(params[:user_id])
-    @rating = @user.ratings.build(rating_params)
+    @user = User.find(current_user.id)
+    @rating = Rating.new(rating_params)
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to user_rating_url(@user, @rating), notice: 'Event was successfully added.' }
+        format.html { redirect_to rating_url(@rating), notice: 'Rating was successfully added.' }
         format.json { render :show, status: :created, location: @rating }
       else
         format.html { render :new }
@@ -47,11 +53,11 @@ class RatingsController < ApplicationController
   # PATCH/PUT /ratings/1
   # PATCH/PUT /ratings/1.json
   def update
-    @user = User.find(params[:user_id])
-    @rating = @user.ratings.find(params[:id])
+    @user = User.find(current_user.id)
+    @rating = ratings.find(params[:id])
     respond_to do |format|
       if @rating.update(rating_params)
-        format.html { redirect_to user_rating_url(@user, @rating), notice: 'Rating was successfully updated.' }
+        format.html { redirect_to rating_url(@rating), notice: 'Rating was successfully updated.' }
         format.json { render :show, status: :ok, location: @rating }
       else
         format.html { render :edit }
@@ -63,8 +69,6 @@ class RatingsController < ApplicationController
   # DELETE /ratings/1
   # DELETE /ratings/1.json
   def destroy
-    @user = User.find(params[:user_id])
-    @rating = @user.ratings.find(params[:id])
     @rating.destroy
   end
 
