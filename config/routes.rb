@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'search/index' => 'search#index'
   post '/show' => 'search#show'
   get 'search/show' => 'search#show'
-  
+  get '/home/index' => 'home#index'
+
   resources :users
   resources :orders
   resources :wishlists
