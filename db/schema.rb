@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 2019_11_17_235719) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "users_id", null: false
+    t.bigint "events_id", null: false
+    t.string "notify_category"
+    t.boolean "seen"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["events_id"], name: "index_notifications_on_events_id"
+    t.index ["users_id"], name: "index_notifications_on_users_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "no_of_tickets"
     t.decimal "ticket_price"
@@ -173,6 +184,8 @@ ActiveRecord::Schema.define(version: 2019_11_17_235719) do
     t.index ["user_id"], name: "index_wishlists_on_user_id"
   end
 
+  add_foreign_key "notifications", "events", column: "events_id"
+  add_foreign_key "notifications", "users", column: "users_id"
   add_foreign_key "events", "users"
   add_foreign_key "orders", "events"
   add_foreign_key "orders", "tickets"
