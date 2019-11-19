@@ -6,6 +6,13 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
+    event_user_id = Event.find_by_organizer_email(params[:event_id])
+    if event_user_id == current_user.email
+      @is_user_organizer = true
+    else
+      @is_user_organizer = false
+    end
+
     ticket_sold_weight = Hash.new(0)
     tickets_sorted = Hash.new(0)
     tickets_sorted_array = Array.new

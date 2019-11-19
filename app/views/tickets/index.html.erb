@@ -62,6 +62,6 @@
 <% end %>
 <br>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @is_user_organizer %>
   <%= link_to 'New Ticket', new_event_ticket_path(@event) %>
 <% end %>

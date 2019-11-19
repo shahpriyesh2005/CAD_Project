@@ -3,14 +3,14 @@ class OrderObserver < ActiveRecord::Observer
     def after_create(record)
         @order = Order.last
         @date = Date.parse(Time.now.to_s)
-        
-        #puts @order.event_id
-        #puts @order.user_id
-        #puts @date
-        
-        @rating_id = Rating.select(:id).last 
-        puts @rating_id
-        @rating_id = @rating_id + 1 
+        @rating_id = Rating.select(:id).last
+
+        unless @rating_id.nil?
+            @rating_id = @rating_id + 1
+        else
+            @rating_id = 1
+        end
+
         @timestamp = Time.now.strftime("%Y-%m-%d %H:%M:%S")
         #@rating = Rating.new(:user_rating => 0, :user_review => "", :rating_date => @date , :user_id => @order.user_id, :event_id => @order.event_id, :ticket_id => @order.ticket_id )
         
@@ -21,5 +21,4 @@ class OrderObserver < ActiveRecord::Observer
         #puts "ID is: #{@rating.user_id}"
         
     end
-
 end
