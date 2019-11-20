@@ -6,12 +6,18 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    event_user_id = Event.find_by_organizer_email(params[:event_id])
-    if event_user_id == current_user.email
+    event_organizer_email = Event.find(params[:event_id])
+    Log.debug("event_organizer_email => " + event_organizer_email["organizer_email"])
+
+    if event_organizer_email["organizer_email"] == current_user.email
+      Log.debug("Setting is_user_organizer to true")
       @is_user_organizer = true
     else
+      Log.debug("Setting is_user_organizer to false")
       @is_user_organizer = false
     end
+
+    Log.debug("is_user_organizer => " + @is_user_organizer.to_s)
 
     ticket_sold_weight = Hash.new(0)
     tickets_sorted = Hash.new(0)
@@ -125,6 +131,7 @@ class TicketsController < ApplicationController
     @event = Event.find(params[:event_id])
     @ticket = @event.tickets.build(ticket_params)
     @ticket.user_id = current_user.id
+    @ticket.available_quantity = params["ticket"]["total_quantity"]
 
     respond_to do |format|
       if @ticket.save

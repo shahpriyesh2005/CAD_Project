@@ -58,12 +58,10 @@ gem 'devise'
 gem 'carrierwave'
 gem 'net-ssh'
 
-# For excel download
+# For excel download/upload
 gem "rubyzip"
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
-
-# For excel upload
 gem "roo"
 
 # For GUI

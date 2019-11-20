@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_17_235719) do
+ActiveRecord::Schema.define(version: 2019_11_20_210816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -184,9 +184,9 @@ ActiveRecord::Schema.define(version: 2019_11_17_235719) do
     t.index ["user_id"], name: "index_wishlists_on_user_id"
   end
 
+  add_foreign_key "events", "users"
   add_foreign_key "notifications", "events", column: "events_id"
   add_foreign_key "notifications", "users", column: "users_id"
-  add_foreign_key "events", "users"
   add_foreign_key "orders", "events"
   add_foreign_key "orders", "tickets"
   add_foreign_key "orders", "users"

@@ -1,5 +1,8 @@
+require 'log'
+
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  after_action :update_availability, only: [:create]
   include Pagy::Backend
 
   # GET /orders
@@ -93,4 +96,43 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:no_of_tickets, :ticket_price, :fees_per_ticket, :actual_ticket_price, :organizer_payout_per_ticket, :total_ticket_price, :total_fees, :total_actual_ticket_price, :total_organizer_payout, :currency, :guest_first_name, :guest_last_name, :guest_email, :guest_contact_no, :payment_method, :card_no, :expiry_date, :order_date, :user_id, :event_id, :ticket_id)
     end
+
+    def check_availability
+      Log.debug("Inside check_availability")
+      order_ticket_id = params["order"]["ticket_id"]
+      Log.debug("order_ticket_id => " + order_ticket_id)
+      order_no_of_tickets = params["order"]["no_of_tickets"]
+      Log.debug("order_no_of_tickets => " + order_no_of_tickets)
+      available_quantity = Ticket.where(id: order_ticket_id)
+      available_quantity = available_quantity.as_json[0]["available_quantity"]
+      Log.debug("available_quantity => " + available_quantity.to_s)
+
+      if order_no_of_tickets.to_i > available_quantity.to_i
+        # @order = Order.new(order_params)
+        #
+        # respond_to do |format|
+        #   format.html { render :new }
+        #   format.json { render json: @order.errors, status: "No. of tickets is more than available tickets" }
+        # end
+
+        return false
+      end
+    end
+
+  def update_availability
+    Log.debug("Inside update_availability")
+    order_ticket_id = params["order"]["ticket_id"]
+    Log.debug("order_ticket_id => " + order_ticket_id)
+    order_no_of_tickets = params["order"]["no_of_tickets"]
+    Log.debug("order_no_of_tickets => " + order_no_of_tickets)
+    available_quantity = Ticket.where(id: order_ticket_id)
+    available_quantity = available_quantity.as_json[0]["available_quantity"]
+    Log.debug("available_quantity => " + available_quantity.to_s)
+    new_available_quantity = available_quantity.to_i - order_no_of_tickets.to_i
+    Log.debug("new_available_quantity => " + new_available_quantity.to_s)
+    # Ticket.where(id: order_ticket_id).update(available_quantity: new_available_quantity)
+    # Ticket.update(id: order_ticket_id, available_quantity: new_available_quantity)
+    update_query = "UPDATE TICKETS SET AVAILABLE_QUANTITY = #{new_available_quantity} WHERE ID = #{order_ticket_id}"
+    ActiveRecord::Base.connection.execute(update_query)
+  end
 end
