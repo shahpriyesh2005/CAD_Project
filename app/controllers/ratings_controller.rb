@@ -54,7 +54,7 @@ class RatingsController < ApplicationController
   # PATCH/PUT /ratings/1.json
   def update
     @user = User.find(current_user.id)
-    @rating = ratings.find(params[:id])
+    @rating = Rating.find(params[:id])
     respond_to do |format|
       if @rating.update(rating_params)
         format.html { redirect_to rating_url(@rating), notice: 'Rating was successfully updated.' }

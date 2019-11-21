@@ -1,7 +1,9 @@
 class SearchController < ApplicationController
+  include Pagy::Backend
+
   def index
     @events = Event.all
-    puts @events
+    @pagy, @events = pagy(@events, page: params[:page], items: 10)
   end
 
   def show
@@ -34,6 +36,6 @@ class SearchController < ApplicationController
       redirect_to search_show_path(:events => @events)
 
     end
-    
+    #@pagy, @events = pagy(@events, page: params[:page], items: 10)
   end
 end

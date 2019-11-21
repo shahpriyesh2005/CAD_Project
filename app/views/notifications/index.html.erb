@@ -3,26 +3,19 @@
 <h1>Notifications</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Users</th>
-      <th>Events</th>
-      <th>Notify category</th>
-      <th>Seen</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
   <tbody>
     <% @notifications.each do |notification| %>
       <tr>
-        <td><%= notification.users_id %></td>
-        <td><%= notification.events_id %></td>
-        <td><%= notification.notify_category %></td>
-        <td><%= notification.seen %></td>
+      <% if notification.notify_category == "Rating" %>
+        <td> Your Event <%= notification.events_id %> has been given a review.</td>
+      <% elsif notification.notify_category == "Event" %>
+        <td> Your Organizer added a new Event <%= notification.events_id %>.</td>
+      <% else %>
+      <td> You were subscribed recently by a user.</td>
+      <% end %>
         <td><%= link_to 'Show', notification %></td>
-        <td><%= link_to 'Edit', edit_notification_path(notification) %></td>
-        <td><%= link_to 'Destroy', notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mark as Read', {:controller => "notifications", :action => "markAsRead", :notify_id => notification.id}, method: :patch %></td>
       </tr>
     <% end %>
   </tbody>

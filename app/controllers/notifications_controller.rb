@@ -1,10 +1,12 @@
 class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
+  include Pagy::Backend
 
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
+    @notifications = Notification.where("users_id = ? AND seen = false",current_user.id)
+    @pagy, @notifications = pagy(@notifications, page: params[:page], items: 10)
   end
 
   # GET /notifications/1
@@ -59,6 +61,13 @@ class NotificationsController < ApplicationController
       format.html { redirect_to notifications_url, notice: 'Notification was successfully destroyed.' }
       format.json { head :no_content }
     end
+
+  end
+
+  def markAsRead
+    update_notification_query = "update notifications set seen = true where id = #{params[:notify_id]}"
+    ActiveRecord::Base.connection.execute(update_notification_query)
+    redirect_to notifications_path
   end
 
   private
@@ -69,6 +78,6 @@ class NotificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notification_params
-      params.require(:notification).permit(:users_id, :events_id, :notify_category, :seen)
+      params.require(:notification).permit(:users_id, :events_id, :notify_category, :seen, :notify_id)
     end
 end
