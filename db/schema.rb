@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2019_11_20_210816) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "users_id", null: false
-    t.bigint "events_id", null: false
+    t.integer "users_id", null: false
+    t.integer "events_id", null: false
     t.string "notify_category"
     t.boolean "seen"
     t.datetime "created_at", precision: 6, null: false
