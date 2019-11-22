@@ -8,13 +8,12 @@
     <% @notifications.each do |notification| %>
       <tr>
       <% if notification.notify_category == "Rating" %>
-        <td> Your Event <%= notification.events_id %> has been given a review.</td>
+        <td> Your Event <%=link_to Event.find(notification.events_id).title, event_path(notification.events_id) %> has been given a review.</td>
       <% elsif notification.notify_category == "Event" %>
-        <td> Your Organizer added a new Event <%=link_to notification.events_id, event_path(notification.events_id) %>.</td>
+        <td> Your Organizer added a new Event <%=link_to Event.find(notification.events_id).title, event_path(notification.events_id) %>.</td>
       <% else %>
       <td> You were subscribed recently by a user.</td>
       <% end %>
-        <td><%= link_to 'Show', notification %></td>
         <td><%= link_to 'Mark as Read', {:controller => "notifications", :action => "markAsRead", :notify_id => notification.id}, method: :patch %></td>
       </tr>
     <% end %>
@@ -23,4 +22,3 @@
 
 <br>
 
-<%= link_to 'New Notification', new_notification_path %>
