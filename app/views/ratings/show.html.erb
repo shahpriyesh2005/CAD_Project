@@ -7,26 +7,11 @@
   <strong>User review:</strong>
   <%= @rating.user_review %>
 </p>
-
-<p>
-  <strong>Rating date:</strong>
-  <%= @rating.rating_date %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @rating.user_id %>
-</p>
-
 <p>
   <strong>Event:</strong>
-  <%= @rating.event_id %>
+  <%= Event.find(@rating.event_id).title %>
 </p>
 
-<p>
-  <strong>Ticket:</strong>
-  <%= @rating.ticket_id %>
-</p>
 
 <%= link_to 'Edit', edit_rating_path(@rating) %> |
 <%= link_to 'Back', ratings_path %>

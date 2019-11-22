@@ -33,7 +33,7 @@
         <% @events.each do |event| %>
           <tr>
             <td><%= image_tag event["picture"]["url"] , width: '125%' if event["picture"]["url"].present? %></td>
-            <td><%= event["title"] %></td>
+            <td><%= link_to event["title"],event_path( Event.where("title=?",event["title"]).first.id ) %></td>
             <td><%= event["category"] %></td>
             <td><%= event["description"] %></td>
             <td><%= event["organizer_name"] %></td>

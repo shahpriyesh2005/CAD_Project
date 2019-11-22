@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   patch '/markAsRead' => 'notifications#markAsRead'
   get '/markAsRead' => 'notifications#index'
   get '/signedinuserprofile' => 'users#signedinuserprofile'
+  post '/showOrganizerEvents' => 'events#showOrganizerEvents'
+  get '/showOrganizerEvents' => 'events#showOrganizerEvents'
 
   get 'events_imports/new'
   get 'events_imports/create'

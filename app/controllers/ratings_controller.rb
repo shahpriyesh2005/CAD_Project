@@ -1,6 +1,5 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :destroy]
-
   # GET /ratings
   # GET /ratings.json
   def index
@@ -72,7 +71,13 @@ class RatingsController < ApplicationController
     @rating.destroy
   end
 
+  def findEventName
+    @event = Event.find(params[:event_id]) 
+    @event.title
+  end
+
   private
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_rating
       @rating = Rating.find(params[:id])

@@ -1,17 +1,12 @@
 <% if @ratings == nil %>
   <h3> This User has no ratings yet. </h3>
   <% else %>
-    <table>
+    <table class="table table-bordered">
       <thead>
-        <tr>
-          <th>User rating</th>
-          <th>User review</th>
-          <th>Rating date</th>
-          <th>User</th>
-          <th>Event</th>
-          <th>Ticket</th>
-          <th colspan="3"></th>
-        </tr>
+          <th scope="col">User rating</th>
+          <th scope="col">User review</th>
+          <th scope="col">Event</th>
+          <th colspan="2"></th>
       </thead>
 
       <tbody>
@@ -19,10 +14,7 @@
           <tr>
             <td><%= rating.user_rating %></td>
             <td><%= rating.user_review %></td>
-            <td><%= rating.rating_date %></td>
-            <td><%= rating.user_id %></td>
-            <td><%= rating.event_id %></td>
-            <td><%= rating.ticket_id %></td>
+            <td><%= Event.find(rating.event_id).title %></td>
             <td><%= link_to 'Show', rating_path(rating) %></td>
             <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
             
@@ -33,4 +25,5 @@
   <% end %>
 <br>
 
-<%= link_to 'Back to User', @user %>
+
+

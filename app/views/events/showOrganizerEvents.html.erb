@@ -1,0 +1,52 @@
+<% if @events == nil %>
+    <h3> No events to display. </h3>
+  <% else %>
+    <table class="table table-bordered">
+      <% @events.each do |event| %>
+        <table class="table table-bordered">
+          <tr>
+            <td width="30%">
+              <%= image_tag event.picture_url, width: "75%", class: "rounded float-left" if event.picture.present? %>
+            </td>
+            <td>
+              <table class="table table-hover">
+                <tr>
+                  <h4><%= link_to event.title, event, class: "badge badge-light" %></h4>
+                </tr>
+                <thead>
+                  <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Venue</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <%= event.category %>
+                    </td>
+                    <td>
+                      <%= event.description %>
+                    </td>
+                    <td>
+                      <%= event.venue %>
+                    </td>
+                    <td>
+                      <%= event.start_time.strftime("%d/%m/%Y %I:%M%p") %>
+                    </td>
+                    <td>
+                      <%= event.end_time.strftime("%d/%m/%Y %I:%M%p") %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </table>
+  <% end %>
+
+  

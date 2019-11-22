@@ -16,7 +16,7 @@
       <tbody>
         <% @subscriptions.each do |subscription| %>
           <tr>
-            <td><%= subscription.subscribed_user_id %></td>
+            <td><%= link_to subscription.subscribed_user_id, {:controller => "events", :action => "showOrganizerEvents", :user_id => subscription.subscribed_user_id } %></td>
             <td><%= subscription.subscription_date %></td>
             <td><%= link_to 'Destroy', subscription_path(subscription) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>

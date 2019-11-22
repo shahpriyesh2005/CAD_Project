@@ -10,7 +10,7 @@
       <% if notification.notify_category == "Rating" %>
         <td> Your Event <%= notification.events_id %> has been given a review.</td>
       <% elsif notification.notify_category == "Event" %>
-        <td> Your Organizer added a new Event <%= notification.events_id %>.</td>
+        <td> Your Organizer added a new Event <%=link_to notification.events_id, event_path(notification.events_id) %>.</td>
       <% else %>
       <td> You were subscribed recently by a user.</td>
       <% end %>

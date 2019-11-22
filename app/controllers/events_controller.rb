@@ -71,6 +71,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def showOrganizerEvents
+    @usernames = params[:user_id].split(' ')
+    @userid = User.where("first_name=? AND last_name=?",@usernames[0],@usernames[1]).first
+    
+    @events = Event.where("user_id=?",@userid)
+  end
+
   # GET /events/1
   # GET /events/1.json
   def show

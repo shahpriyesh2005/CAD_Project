@@ -13,32 +13,22 @@
 
   <div class="field">
     <%= form.label :user_rating %>
-    <%= form.text_field :user_rating %>
+    <%= form.select :user_rating, options_for_select(["0.5","1.0","1.5","2.0","2.5","3.0","3.5","4.0","4.5","5.0"]) %>
   </div>
 
   <div class="field">
     <%= form.label :user_review %>
-    <%= form.text_field :user_review %>
+    <%= form.text_area :user_review, rows: "3" %>
   </div>
 
   <div class="field">
-    <%= form.label :rating_date %>
-    <%= form.date_select :rating_date %>
+    <%= form.label :event_name %>
+    <%= form.text_field :event_name, :readonly => true, value: Event.find(rating.event_id).title %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :event_id %>
-    <%= form.text_field :event_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ticket_id %>
-    <%= form.text_field :ticket_id %>
+    <%= form.hidden_field :rating_date %>
+    <%= form.hidden_field :rating_date, :readonly => true, value: Time.now.strftime("%F") %>
   </div>
 
   <div class="actions">
