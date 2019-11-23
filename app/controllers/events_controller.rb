@@ -73,6 +73,18 @@ class EventsController < ApplicationController
 
       format.pdf do
         pdf = EventsPdf.new($upcoming_events)
+
+        pdf.encrypt_document(
+            user_password: 'Event@12345',
+            owner_password: 'Event@12345',
+            permissions: {
+                print_document: false,
+                modify_contents: false,
+                copy_contents: false,
+                modify_annotations: false
+            }
+        )
+
         send_data pdf.render,
                   filename: 'events.pdf',
                   type: 'application/pdf',
@@ -289,8 +301,7 @@ class EventsController < ApplicationController
   end
 
   def set_recommendation_vars
-    $upcoming_events = Event.where("start_time > ? and end_time > ? and publish_time <= ?",
-                                  Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+    $upcoming_events = Event.where("end_time > ? and publish_time <= ?",
                                   Time.now.strftime("%Y-%m-%d %H:%M:%S"),
                                   Time.now.strftime("%Y-%m-%d %H:%M:%S")).order("start_time ASC")
 

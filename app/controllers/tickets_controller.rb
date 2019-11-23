@@ -26,9 +26,7 @@ class TicketsController < ApplicationController
     event_orders = Order.new
 
     @event = Event.find(params[:event_id])
-    tickets_unsorted = @event.tickets.where("sale_start_time <= ? and sale_end_time > ?",
-                                            Time.now.strftime("%Y-%m-%d %H:%M:%S"),
-                                            Time.now.strftime("%Y-%m-%d %H:%M:%S")).order("ticket_type ASC")
+    tickets_unsorted = @event.tickets.where("sale_end_time > ?", Time.now.strftime("%Y-%m-%d %H:%M:%S")).order("ticket_type ASC")
 
     event_orders = Order.select(:no_of_tickets).where(event_id: params[:event_id])
 

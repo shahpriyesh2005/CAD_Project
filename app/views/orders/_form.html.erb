@@ -18,42 +18,40 @@
 
   <div class="field">
     <%= form.label :ticket_price %>
-    <%= form.text_field :ticket_price %>
+    <%= form.text_field :ticket_price, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :fees_per_ticket %>
-    <%= form.text_field :fees_per_ticket %>
+    <%= form.text_field :fees_per_ticket, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :actual_ticket_price %>
-    <%= form.text_field :actual_ticket_price %>
+    <%= form.text_field :actual_ticket_price, readonly: true %>
   </div>
 
   <div class="field">
-    <%= form.label :organizer_payout_per_ticket %>
-    <%= form.text_field :organizer_payout_per_ticket %>
+    <%= form.hidden_field :organizer_payout_per_ticket, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :total_ticket_price %>
-    <%= form.text_field :total_ticket_price %>
+    <%= form.text_field :total_ticket_price, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :total_fees %>
-    <%= form.text_field :total_fees %>
+    <%= form.text_field :total_fees, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :total_actual_ticket_price %>
-    <%= form.text_field :total_actual_ticket_price %>
+    <%= form.text_field :total_actual_ticket_price, readonly: true %>
   </div>
 
   <div class="field">
-    <%= form.label :total_organizer_payout %>
-    <%= form.text_field :total_organizer_payout %>
+    <%= form.hidden_field :total_organizer_payout, readonly: true %>
   </div>
 
   <div class="field">
@@ -111,3 +109,31 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+    $('#order_no_of_tickets').change(function () {
+        var no_of_tickets = $('#order_no_of_tickets').val();
+
+        if (no_of_tickets != "") {
+            var ticket_price = $('input[name="order[ticket_price]"]').val();
+            var fees_per_ticket = $('input[name="order[fees_per_ticket]"]').val();
+            var actual_ticket_price = $('input[name="order[actual_ticket_price]"]').val();
+            var organizer_payout_per_ticket = $('input[name="order[organizer_payout_per_ticket]"]').val();
+
+            var total_ticket_price = parseFloat(no_of_tickets) * parseFloat(ticket_price);
+            var total_fees = parseFloat(no_of_tickets) * parseFloat(fees_per_ticket);
+            var total_actual_ticket_price = parseFloat(no_of_tickets) * parseFloat(actual_ticket_price);
+            var total_organizer_payout = parseFloat(no_of_tickets) * parseFloat(organizer_payout_per_ticket);
+
+            $('input[name="order[total_ticket_price]"]').val(total_ticket_price);
+            $('input[name="order[total_fees]"]').val(total_fees);
+            $('input[name="order[total_actual_ticket_price]"]').val(total_actual_ticket_price);
+            $('input[name="order[total_organizer_payout]"]').val(total_organizer_payout);
+        } else if (no_of_tickets == "") {
+            $('input[name="order[total_ticket_price]"]').val("");
+            $('input[name="order[total_fees]"]').val("");
+            $('input[name="order[total_actual_ticket_price]"]').val("");
+            $('input[name="order[total_organizer_payout]"]').val("");
+        }
+    });
+</script>

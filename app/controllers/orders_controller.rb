@@ -27,6 +27,10 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.event_id = @event.id
     @order.ticket_id = @ticket.id
+    @order.ticket_price = @ticket.ticket_price
+    @order.fees_per_ticket = @ticket.fees_per_ticket
+    @order.actual_ticket_price = @ticket.actual_ticket_price
+    @order.organizer_payout_per_ticket = @ticket.organizer_payout_per_ticket
     @order.guest_first_name = current_user.first_name
     @order.guest_last_name = current_user.last_name
     @order.guest_email = current_user.email

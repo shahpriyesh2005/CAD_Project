@@ -90,3 +90,132 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+    $( document ).ready(function() {
+        $('input[name="ticket[fees_per_ticket]"]').attr('readonly', true);
+        $('input[name="ticket[actual_ticket_price]"]').attr('readonly', true);
+        $('input[name="ticket[organizer_payout_per_ticket]"]').attr('readonly', true);
+        $('input[name="ticket[include_fees_in_ticket_price]"]')[0].checked = true;
+    });
+
+    $('input[name="ticket[entry_type]"]').on("click", function() {
+        var entry_type_val = $("input[name='ticket[entry_type]']:checked").val();
+
+        if (entry_type_val == "Free") {
+            $('input[name="ticket[ticket_price]"]').val("0");
+            $('input[name="ticket[fees_per_ticket]"]').val("0");
+            $('input[name="ticket[actual_ticket_price]"]').val("0");
+            $('input[name="ticket[organizer_payout_per_ticket]"]').val("0");
+
+            $('input[name="ticket[ticket_type]"]')[0].checked = true;
+            $('input[name="ticket[category]"]')[0].checked = true;
+
+            $('input[name="ticket[ticket_price]"]').attr('readonly', true);
+        } else if (entry_type_val == "Paid") {
+            $('input[name="ticket[ticket_price]"]').val("");
+            $('input[name="ticket[fees_per_ticket]"]').val("");
+            $('input[name="ticket[actual_ticket_price]"]').val("");
+            $('input[name="ticket[organizer_payout_per_ticket]"]').val("");
+
+            $('input[name="ticket[ticket_type]"]')[0].checked = false;
+            $('input[name="ticket[category]"]')[0].checked = false;
+
+            $('input[name="ticket[ticket_price]"]').attr('readonly', false);
+        }
+    });
+
+    $('input[name="ticket[ticket_type]"]').on("click", function() {
+        var entry_type_val = $("input[name='ticket[entry_type]']:checked").val();
+
+        if (entry_type_val == "Free") {
+            return false;
+        } else if (entry_type_val == "Paid") {
+            return true;
+        }
+    });
+
+    $('input[name="ticket[category]"]').on("click", function() {
+        var entry_type_val = $("input[name='ticket[entry_type]']:checked").val();
+
+        if (entry_type_val == "Free") {
+            return false;
+        } else if (entry_type_val == "Paid") {
+            return true;
+        }
+    });
+
+    $('input[name="ticket[include_fees_in_ticket_price]"]').on("click", function() {
+        var entry_type_val = $("input[name='ticket[entry_type]']:checked").val();
+
+        if (entry_type_val == "Free") {
+            return false;
+        } else if (entry_type_val == "Paid") {
+            var entry_type_val = $("input[name='ticket[entry_type]']:checked").val();
+
+            if (entry_type_val == "Free") {
+                $('input[name="ticket[fees_per_ticket]"]').val("0");
+                $('input[name="ticket[actual_ticket_price]"]').val("0");
+                $('input[name="ticket[organizer_payout_per_ticket]"]').val("0");
+            } else if (entry_type_val == "Paid") {
+                var ticket_price = $('input[name="ticket[ticket_price]"]').val();
+
+                if (ticket_price != "") {
+                    var fees_per_ticket = (10 / 100 * ticket_price);
+
+                    $('input[name="ticket[fees_per_ticket]"]').val(fees_per_ticket);
+
+                    var include_fees_in_ticket_price = $("input[name='ticket[include_fees_in_ticket_price]']:checked").val();
+
+                    if (include_fees_in_ticket_price == "Yes") {
+                        var actual_ticket_price = parseFloat(ticket_price) - parseFloat(fees_per_ticket);
+                        $('input[name="ticket[actual_ticket_price]"]').val(actual_ticket_price);
+
+                        var organizer_payout_per_ticket = parseFloat(ticket_price) - parseFloat(fees_per_ticket);
+                        $('input[name="ticket[organizer_payout_per_ticket]"]').val(organizer_payout_per_ticket);
+                    } else if (include_fees_in_ticket_price == "No") {
+                        var actual_ticket_price = parseFloat(ticket_price) + parseFloat(fees_per_ticket);
+                        $('input[name="ticket[actual_ticket_price]"]').val(actual_ticket_price);
+
+                        var organizer_payout_per_ticket = ticket_price;
+                        $('input[name="ticket[organizer_payout_per_ticket]"]').val(organizer_payout_per_ticket);
+                    }
+                }
+            }
+        }
+    });
+
+    $('input[name="ticket[ticket_price]"]').on("blur", function() {
+        var entry_type_val = $("input[name='ticket[entry_type]']:checked").val();
+
+        if (entry_type_val == "Free") {
+            $('input[name="ticket[fees_per_ticket]"]').val("0");
+            $('input[name="ticket[actual_ticket_price]"]').val("0");
+            $('input[name="ticket[organizer_payout_per_ticket]"]').val("0");
+        } else if (entry_type_val == "Paid") {
+            var ticket_price = $('input[name="ticket[ticket_price]"]').val();
+
+            if (ticket_price != "") {
+                var fees_per_ticket = (10 / 100 * ticket_price);
+
+                $('input[name="ticket[fees_per_ticket]"]').val(fees_per_ticket);
+
+                var include_fees_in_ticket_price = $("input[name='ticket[include_fees_in_ticket_price]']:checked").val();
+
+                if (include_fees_in_ticket_price == "Yes") {
+                    var actual_ticket_price = parseFloat(ticket_price) - parseFloat(fees_per_ticket);
+                    $('input[name="ticket[actual_ticket_price]"]').val(actual_ticket_price);
+
+                    var organizer_payout_per_ticket = parseFloat(ticket_price) - parseFloat(fees_per_ticket);
+                    $('input[name="ticket[organizer_payout_per_ticket]"]').val(organizer_payout_per_ticket);
+                } else if (include_fees_in_ticket_price == "No") {
+                    var actual_ticket_price = parseFloat(ticket_price) + parseFloat(fees_per_ticket);
+                    $('input[name="ticket[actual_ticket_price]"]').val(actual_ticket_price);
+
+                    var organizer_payout_per_ticket = ticket_price;
+                    $('input[name="ticket[organizer_payout_per_ticket]"]').val(organizer_payout_per_ticket);
+                }
+            }
+        }
+    });
+</script>
