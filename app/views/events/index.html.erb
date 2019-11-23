@@ -7,7 +7,10 @@
     <%= link_to 'Upload Events', events_imports_new_path, :class => "btn" %>
   </div>
   <div class="btn btn-outline-primary">
-    <%= link_to 'Download Event List', events_path(format: :xlsx), :class => "btn" %>
+    <%= link_to 'Download Event List - Excel', events_path(format: :xlsx), :class => "btn" %>
+  </div>
+  <div class="btn btn-outline-primary">
+    <%= link_to 'Download Event List - PDF', events_path(format: :pdf), :class => "btn" %>
   </div>
 <% end %>
 

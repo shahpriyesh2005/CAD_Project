@@ -80,3 +80,7 @@ gem 'pagy'
 
 # For sending customized email
 gem 'sendCustomMail'
+
+# For PDF download
+gem 'prawn'
+gem 'prawn-table'

@@ -1,4 +1,5 @@
 require 'log'
+require_relative '../../app/pdfs/events_pdf'
 
 $upcoming_events = Event.new
 $user_orders_events = Order.new
@@ -67,14 +68,28 @@ class EventsController < ApplicationController
             'Content-Disposition'
         ] = "attachment; filename=events.xlsx"
       }
+
       format.html { render :index }
+
+      format.pdf do
+        pdf = EventsPdf.new($upcoming_events)
+        send_data pdf.render,
+                  filename: 'events.pdf',
+                  type: 'application/pdf',
+                  page_size: 'A4',
+                  template: "events/index.html.erb",
+                  layout: "pdf.html",
+                  orientation: "Landscape",
+                  lowquality: true,
+                  zoom: 1,
+                  dpi: 75
+      end
     end
   end
 
   def showOrganizerEvents
     @usernames = params[:user_id].split(' ')
     @userid = User.where("first_name=? AND last_name=?",@usernames[0],@usernames[1]).first
-    
     @events = Event.where("user_id=?",@userid)
   end
 
