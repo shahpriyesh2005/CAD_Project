@@ -1,71 +1,101 @@
-<p>
-  <strong>Entry Type:</strong>
-  <%= @ticket.entry_type %>
-</p>
-
-<p>
-  <strong>Ticket Type:</strong>
-  <%= @ticket.ticket_type %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @ticket.category %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @ticket.description %>
-</p>
-
-<p>
-  <strong>Total Quantity:</strong>
-  <%= @ticket.total_quantity %>
-</p>
-
-<p>
-  <strong>Ticket Price:</strong>
-  <%= @ticket.ticket_price %>
-</p>
-
-<p>
-  <strong>Include Fees in Ticket Price:</strong>
-  <%= @ticket.include_fees_in_ticket_price %>
-</p>
-
-<p>
-  <strong>Fees per Ticket:</strong>
-  <%= @ticket.fees_per_ticket %>
-</p>
-
-<p>
-  <strong>Actual Ticket Price:</strong>
-  <%= @ticket.actual_ticket_price %>
-</p>
-
-<p>
-  <strong>Organizer Payout per Ticket:</strong>
-  <%= @ticket.organizer_payout_per_ticket %>
-</p>
-
-<p>
-  <strong>Sale Start Time:</strong>
-  <%= @ticket.sale_start_time.strftime("%d/%m/%Y %I:%M%p") %>
-</p>
-
-<p>
-  <strong>Sale End Time:</strong>
-  <%= @ticket.sale_end_time.strftime("%d/%m/%Y %I:%M%p") %>
-</p>
-
-<p>
-  <strong>Currency:</strong>
-  <%= @ticket.currency %>
-</p>
-
-<p>
-  <strong>Event:</strong>
-  <%= @ticket.event_id %>
-</p>
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <td>
+      <p>
+        <strong>Entry Type:</strong>
+        <%= @ticket.entry_type %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Ticket Type:</strong>
+        <%= @ticket.ticket_type %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Category:</strong>
+        <%= @ticket.category %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Description:</strong>
+        <%= @ticket.description %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Total Quantity:</strong>
+        <%= @ticket.total_quantity %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Ticket Price:</strong>
+        <%= @ticket.ticket_price %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Include Fees in Ticket Price:</strong>
+        <%= @ticket.include_fees_in_ticket_price %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Fees per Ticket:</strong>
+        <%= @ticket.fees_per_ticket %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Actual Ticket Price:</strong>
+        <%= @ticket.actual_ticket_price %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Organizer Payout per Ticket:</strong>
+        <%= @ticket.organizer_payout_per_ticket %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Sale Start Time:</strong>
+        <%= @ticket.sale_start_time.strftime("%d/%m/%Y %I:%M%p") %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Sale End Time:</strong>
+        <%= @ticket.sale_end_time.strftime("%d/%m/%Y %I:%M%p") %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Currency:</strong>
+        <%= @ticket.currency %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Event:</strong>
+        <%= @ticket.event_id %>
+      </p>
+    </td>
+    <td/>
+  </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Back', event_tickets_path %>

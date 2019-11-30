@@ -10,77 +10,172 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :entry_type %>
-    <%= form.radio_button :entry_type, "Free" %> Free
-    <%= form.radio_button :entry_type, "Paid" %> Paid
-  </div>
-
-  <div class="field">
-    <%= form.label :ticket_type %>
-    <%= form.radio_button :ticket_type, "General" %> General
-    <%= form.radio_button :ticket_type, "Premium" %> Premium
-    <%= form.radio_button :ticket_type, "VIP" %> VIP
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.radio_button :category, "Refundable" %> Refundable
-    <%= form.radio_button :category, "Non-Refundable" %> Non-Refundable
-    <%= form.radio_button :category, "Early Bird" %> Early Bird
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :total_quantity %>
-    <%= form.text_field :total_quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ticket_price %>
-    <%= form.text_field :ticket_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :include_fees_in_ticket_price %>
-    <%= form.radio_button :include_fees_in_ticket_price, "Yes" %> Yes
-    <%= form.radio_button :include_fees_in_ticket_price, "No" %> No
-  </div>
-
-  <div class="field">
-    <%= form.label :fees_per_ticket %>
-    <%= form.text_field :fees_per_ticket %>
-  </div>
-
-  <div class="field">
-    <%= form.label :actual_ticket_price %>
-    <%= form.text_field :actual_ticket_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :organizer_payout_per_ticket %>
-    <%= form.text_field :organizer_payout_per_ticket %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sale_start_time %>
-    <%= form.datetime_select :sale_start_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sale_end_time %>
-    <%= form.datetime_select :sale_end_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :currency %>
-    <%= form.select(:currency, Ticket::TICKET_CURRENCY) %>
-  </div>
+  <table class="table table-bordered">
+    <tbody>
+    <tr>
+      <td>
+        <div class="radio">
+          <%= form.label :entry_type %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= form.radio_button :entry_type, "Free" %> Free
+          <%= form.radio_button :entry_type, "Paid" %> Paid
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="radio">
+          <%= form.label :ticket_type %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= form.radio_button :ticket_type, "General" %> General
+          <%= form.radio_button :ticket_type, "Premium" %> Premium
+          <%= form.radio_button :ticket_type, "VIP" %> VIP
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="radio">
+          <%= form.label :category %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= form.radio_button :category, "Refundable" %> Refundable
+          <%= form.radio_button :category, "Non-Refundable" %> Non-Refundable
+          <%= form.radio_button :category, "Early Bird" %> Early Bird
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :description %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_area :description %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :total_quantity %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :total_quantity %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :ticket_price %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :ticket_price %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="radio">
+          <%= form.label :include_fees_in_ticket_price %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= form.radio_button :include_fees_in_ticket_price, "Yes" %> Yes
+          <%= form.radio_button :include_fees_in_ticket_price, "No" %> No
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :fees_per_ticket %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :fees_per_ticket %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :actual_ticket_price %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :actual_ticket_price %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :organizer_payout_per_ticket %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :organizer_payout_per_ticket %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :sale_start_time %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.datetime_select :sale_start_time %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :sale_end_time %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.datetime_select :sale_end_time %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :currency %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.select(:currency, Ticket::TICKET_CURRENCY) %>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
   <div class="field">
     <%= form.hidden_field :event_id %>

@@ -1,43 +1,104 @@
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Gender</th>
-      <th>Email</th>
-      <th>Contact no</th>
-      <th>Address1</th>
-      <th>Address2</th>
-      <th>City</th>
-      <th>County</th>
-      <th>Country</th>
-      <th>Interest1</th>
-      <th>Interest2</th>
-      <th>Interest3</th>
-      <th>Interest4</th>
-      <th>Interest5</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<table class="table table-striped">
   <tbody>
-      <tr>
-        <td><%= @users.first_name %></td>
-        <td><%= @users.last_name %></td>
-        <td><%= @users.gender %></td>
-        <td><%= @users.email %></td>
-        <td><%= @users.contact_no %></td>
-        <td><%= @users.address1 %></td>
-        <td><%= @users.address2 %></td>
-        <td><%= @users.city %></td>
-        <td><%= @users.county %></td>
-        <td><%= @users.country %></td>
-        <td><%= @users.interest1 %></td>
-        <td><%= @users.interest2 %></td>
-        <td><%= @users.interest3 %></td>
-        <td><%= @users.interest4 %></td>
-        <td><%= @users.interest5 %></td>
-        <td><%= link_to 'Edit', edit_user_path(@users) %></td>
-      </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>First Name:</strong>
+        <%= @users.first_name %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Last Name:</strong>
+        <%= @users.last_name %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Gender:</strong>
+        <%= @users.gender %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Email:</strong>
+        <%= @users.email %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Contact no:</strong>
+        <%= @users.contact_no %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Address1:</strong>
+        <%= @users.address1 %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Address2:</strong>
+        <%= @users.address2 %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>City:</strong>
+        <%= @users.city %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>County:</strong>
+        <%= @users.county %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Country:</strong>
+        <%= @users.country %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Interest1:</strong>
+        <%= @users.interest1 %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Interest2:</strong>
+        <%= @users.interest2 %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Interest3:</strong>
+        <%= @users.interest3 %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Interest4:</strong>
+        <%= @users.interest4 %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>Interest5:</strong>
+        <%= @users.interest5 %>
+      </p>
+    </td>
+  </tr>
   </tbody>
 </table>
+
+<div class="btn btn-outline-primary">
+  <%= link_to 'Edit', edit_user_path(@users), :class => "btn" %>
+</div>

@@ -1,28 +1,22 @@
 <% if @tickets == nil %>
   <h3> No tickets to display. </h3>
 <% else %>
-  <table>
+  <table class="table table-bordered">
     <thead>
-      <tr>
-        <th>User Preference</th>
-        <th>Entry Type</th>
-        <th>Ticket Type</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Total Quantity</th>
-        <th>Ticket Price</th>
-        <th>Include Fees in Ticket Price</th>
-        <th>Fees per Ticket</th>
-        <th>Actual Ticket Price</th>
-        <th>Organizer Payout per Ticket</th>
-        <th>Sale Start Time</th>
-        <th>Sale End Time</th>
-        <th>Currency</th>
-        <th>Event</th>
-        <th colspan="5"></th>
-      </tr>
+    <tr>
+      <th>User Preference</th>
+      <th>Entry Type</th>
+      <th>Ticket Type</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Ticket Price</th>
+      <th>Fees per Ticket</th>
+      <th>Actual Ticket Price</th>
+      <th>Currency</th>
+      <th>Event</th>
+      <th colspan="5"></th>
+    </tr>
     </thead>
-
     <tbody>
       <% i = 0 %>
       <% @tickets.each do |ticket| %>
@@ -35,22 +29,18 @@
           <td><%= ticket.ticket_type %></td>
           <td><%= ticket.category %></td>
           <td><%= ticket.description %></td>
-          <td><%= ticket.total_quantity %></td>
           <td><%= ticket.ticket_price %></td>
-          <td><%= ticket.include_fees_in_ticket_price %></td>
           <td><%= ticket.fees_per_ticket %></td>
           <td><%= ticket.actual_ticket_price %></td>
-          <td><%= ticket.organizer_payout_per_ticket %></td>
-          <td><%= ticket.sale_start_time.strftime("%d/%m/%Y %I:%M%p") %></td>
-          <td><%= ticket.sale_end_time.strftime("%d/%m/%Y %I:%M%p") %></td>
           <td><%= ticket.currency %></td>
           <td><%= ticket.event_id %></td>
           <% if user_signed_in? %>
             <% if ticket.user_id == current_user.id %>
               <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
-              <td> | </td>
               <td><%= link_to 'Delete', event_ticket_path(@event, ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <td> | </td>
+            <% else %>
+              <td/>
+              <td/>
             <% end %>
             <td><%= link_to 'Buy', {:controller => "orders", :action => "new", :event_id => ticket.event_id, :ticket_id => ticket.id } %></td>
           <% end %>

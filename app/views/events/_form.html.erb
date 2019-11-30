@@ -10,100 +10,217 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :picture %>
-    <%= image_tag @event.picture_url, width: '30%' if @event.picture.present? %>
-    <%= form.file_field :picture %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.select(:category, Event::EVENT_CATEGORY) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :organizer_name %>
-    <%= form.text_field :organizer_name, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :organizer_email %>
-    <%= form.text_field :organizer_email, value: current_user.email, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :organizer_contact_no %>
-    <%= form.text_field :organizer_contact_no, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :venue %>
-    <%= form.text_field :venue %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address1 %>
-    <%= form.text_field :address1 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address2 %>
-    <%= form.text_field :address2 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.select(:city, Event::EVENT_CITY) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :county %>
-    <%= form.select(:county, Event::EVENT_COUNTY) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.select(:country, Event::EVENT_COUNTRY) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.datetime_select :start_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_time %>
-    <%= form.datetime_select :end_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :publish_time %>
-    <%= form.datetime_select :publish_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reserved_seating %>
-    <%= form.radio_button :reserved_seating, "Yes" %> Yes
-    <%= form.radio_button :reserved_seating, "No", :checked => true %> No
-  </div>
-
-  <div class="field">
-    <%= form.label :sponsored %>
-    <%= form.radio_button :sponsored, "Yes" %> Yes
-    <%= form.radio_button :sponsored, "No", :checked => true %> No
-  </div>
-
+  <table class="table table-bordered">
+    <tbody>
+    <tr>
+      <td>
+        <div class="field">
+          <%= form.label :picture %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= image_tag @event.picture_url, width: '30%' if @event.picture.present? %>
+          <%= form.file_field :picture %>
+        </div>
+      </td>
+      <td/>
+      <td/>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :title %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :title %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :category %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.select(:category, Event::EVENT_CATEGORY) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :description %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_area :description %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :organizer_name, "Organizer Name" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :organizer_name, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :organizer_email, "Organizer Email" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :organizer_email, value: current_user.email, readonly: true %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :organizer_contact_no, "Organizer Contact No" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :organizer_contact_no, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :venue %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :venue %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :address1 %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :address1 %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :address2 %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :address2 %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :city %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.select(:city, Event::EVENT_CITY) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :county %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.select(:county, Event::EVENT_COUNTY) %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :country %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+        <%= form.select(:country, Event::EVENT_COUNTRY) %>
+      </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :start_time, "Start Time" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-80 p-1">
+          <%= form.datetime_select :start_time %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :end_time, "End Time" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-80 p-1">
+          <%= form.datetime_select :end_time %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :publish_time, "Publish Time" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-80 p-1">
+          <%= form.datetime_select :publish_time %>
+        </div>
+      </td>
+      <td>
+        <div class="radio">
+          <%= form.label :reserved_seating, "Reserved Seating" %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= form.radio_button :reserved_seating, "Yes" %> Yes
+          <%= form.radio_button :reserved_seating, "No", :checked => true %> No
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="radio">
+          <%= form.label :sponsored %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= form.radio_button :sponsored, "Yes" %> Yes
+          <%= form.radio_button :sponsored, "No", :checked => true %> No
+        </div>
+      </td>
+      <td/>
+      <td/>
+    </tr>
+    </tbody>
+  </table>
   <div class="actions">
     <%= form.submit %>
   </div>

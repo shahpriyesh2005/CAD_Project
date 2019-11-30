@@ -10,101 +10,221 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :no_of_tickets %>
-    <%= form.select(:no_of_tickets, Order::NO_OF_TICKETS) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ticket_price %>
-    <%= form.text_field :ticket_price, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fees_per_ticket %>
-    <%= form.text_field :fees_per_ticket, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :actual_ticket_price %>
-    <%= form.text_field :actual_ticket_price, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.hidden_field :organizer_payout_per_ticket, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :total_ticket_price %>
-    <%= form.text_field :total_ticket_price, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :total_fees %>
-    <%= form.text_field :total_fees, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :total_actual_ticket_price %>
-    <%= form.text_field :total_actual_ticket_price, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.hidden_field :total_organizer_payout, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :currency %>
-    <%= form.select(:currency, Order::ORDER_CURRENCY) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :guest_first_name %>
-    <%= form.text_field :guest_first_name, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :guest_last_name %>
-    <%= form.text_field :guest_last_name, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :guest_email %>
-    <%= form.text_field :guest_email, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :guest_contact_no %>
-    <%= form.text_field :guest_contact_no, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :payment_method %>
-    <%= form.radio_button :payment_method, "Debit Card" %> Debit Card
-    <%= form.radio_button :payment_method, "Credit Card" %> Credit Card
-  </div>
-
-  <div class="field">
-    <%= form.label :card_no %>
-    <%= form.text_field :card_no %>
-  </div>
-
-  <div class="field">
-    <%= form.label :expiry_date %>
-    <%= form.date_select :expiry_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :event_id %>
-    <%= form.text_field :event_id, value: @order.event_id if @order %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ticket_id %>
-    <%= form.text_field :ticket_id, value: @order.ticket_id if @order %>
-  </div>
-
+  <table class="table table-bordered">
+    <tbody>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :no_of_tickets %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.select(:no_of_tickets, Order::NO_OF_TICKETS) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :ticket_price %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :ticket_price, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :fees_per_ticket %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :fees_per_ticket, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :actual_ticket_price %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :actual_ticket_price, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.hidden_field :organizer_payout_per_ticket, readonly: true %>
+        </div>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :total_ticket_price %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :total_ticket_price, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :total_fees %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :total_fees, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :total_actual_ticket_price %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :total_actual_ticket_price, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+        <div class="field">
+          <%= form.hidden_field :total_organizer_payout, readonly: true %>
+        </div>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :currency %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.select(:currency, Order::ORDER_CURRENCY) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :guest_first_name %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :guest_first_name, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :guest_last_name %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :guest_last_name, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :guest_email %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :guest_email, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :guest_contact_no %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :guest_contact_no, readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="radio">
+          <%= form.label :payment_method %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= form.radio_button :payment_method, "Debit Card" %> Debit Card
+          <%= form.radio_button :payment_method, "Credit Card" %> Credit Card
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :card_no %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :card_no %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :expiry_date %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.date_select :expiry_date %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :event_id %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :event_id, value: @order.event_id if @order %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :ticket_id %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :ticket_id, value: @order.ticket_id if @order %>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
   <div class="actions">
     <%= form.submit %>
   </div>

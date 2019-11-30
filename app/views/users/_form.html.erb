@@ -10,87 +10,182 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :gender %>
-    <%= form.radio_button :gender, "Male" %> Male
-    <%= form.radio_button :gender, "Female" %> Female
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, readonly: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_no %>
-    <%= form.text_field :contact_no %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address1 %>
-    <%= form.text_field :address1 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address2 %>
-    <%= form.text_field :address2 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.select(:city, User::USER_CITY) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :county %>
-    <%= form.select(:county, User::USER_COUNTY) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.select(:country, User::USER_COUNTRY) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :interest1 %>
-    <%= form.select(:interest1, User::USER_INTEREST) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :interest2 %>
-    <%= form.select(:interest2, User::USER_INTEREST) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :interest3 %>
-    <%= form.select(:interest3, User::USER_INTEREST) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :interest4 %>
-    <%= form.select(:interest4, User::USER_INTEREST) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :interest5 %>
-    <%= form.select(:interest5, User::USER_INTEREST) %>
-  </div>
-
-  <div class="field">
-    <%= form.hidden_field :password, value: "" %>
-  </div>
-
+  <table class="table table-bordered">
+    <tbody>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :first_name, "First Name "%>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :first_name, class: "form-control" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :last_name, "Last Name" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :last_name, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="radio">
+          <%= form.label :gender %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= form.radio_button :gender, "Male" %> Male
+          <%= form.radio_button :gender, "Female" %> Female
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :email %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :email, class: "form-control", readonly: true %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :contact_no, "Contact No" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :contact_no, class: "form-control" %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :address1 %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :address1, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :address2 %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= form.text_field :address2, class: "form-control" %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.label :city %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.select(:city, User::USER_CITY) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="field">
+          <%= form.label :county %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.select(:county, User::USER_COUNTY) %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.label :country %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.select(:country, User::USER_COUNTRY) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="field">
+          <%= form.label :interest1 %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.select(:interest1, User::USER_INTEREST) %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.label :interest2 %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.select(:interest2, User::USER_INTEREST) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="field">
+          <%= form.label :interest3 %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.select(:interest3, User::USER_INTEREST) %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.label :interest4 %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.select(:interest4, User::USER_INTEREST) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="field">
+          <%= form.label :interest5 %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.select(:interest5, User::USER_INTEREST) %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.hidden_field :password, value: "" %>
+        </div>
+      </td>
+      <td/>
+    </tr>
+  </table>
   <div class="actions">
     <%= form.submit %>
   </div>
