@@ -1,3 +1,5 @@
+require 'log'
+
 class EventsImport
   include ActiveModel::Model
   require 'roo'
@@ -37,6 +39,20 @@ class EventsImport
   end
 
   def save
+    imported_events.each_with_index do |event, index|
+      Log.debug("Inside loop")
+      if Event.exists?(event["id"])
+        Log.debug("user_id 1 : " + event["user_id"].to_s)
+        Log.debug("user_id 2 : " + Event.find(event["id"])["user_id"].to_s)
+
+        if event["user_id"] != Event.find(event["id"])["user_id"]
+          Log.debug("Inside if 2")
+          errors.add :base, "Row #{index + 6}: you are not authorized to modify the event"
+          return
+        end
+      end
+    end
+
     if imported_events.map(&:valid?).all?
       imported_events.each(&:save!)
       true

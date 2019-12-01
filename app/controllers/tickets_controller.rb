@@ -6,6 +6,10 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
+    event_details = Event.find(params[:event_id])
+    @event_title = event_details["title"]
+    Log.debug("event_title => " + @event_title)
+
     event_organizer_email = Event.find(params[:event_id])
     Log.debug("event_organizer_email => " + event_organizer_email["organizer_email"])
 

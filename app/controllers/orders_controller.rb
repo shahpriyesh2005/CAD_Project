@@ -24,6 +24,13 @@ class OrdersController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @ticket = Ticket.find(params[:ticket_id])
+
+    @event_title = @event.title
+    Log.debug("event_title => " + @event_title)
+
+    @ticket_type = @ticket.ticket_type
+    Log.debug("ticket_type => " + @ticket_type)
+
     @order = Order.new
     @order.event_id = @event.id
     @order.ticket_id = @ticket.id

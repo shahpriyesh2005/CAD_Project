@@ -15,6 +15,32 @@
     <tr>
       <td>
         <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :event_id %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= @event_title %>
+          <%= form.hidden_field :event_id, value: @order.event_id if @order %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
+          <%= form.label :ticket_id %>
+        </div>
+      </td>
+      <td>
+        <div class="input-group input-group-sm w-75 p-1">
+          <%= @ticket_type %>
+          <%= form.hidden_field :ticket_id, value: @order.ticket_id if @order %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input-group input-group-sm w-35 p-1">
           <%= form.label :no_of_tickets %>
         </div>
       </td>
@@ -196,30 +222,6 @@
       <td>
         <div class="input-group input-group-sm w-75 p-1">
           <%= form.date_select :expiry_date %>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="input-group input-group-sm w-35 p-1">
-          <%= form.label :event_id %>
-        </div>
-      </td>
-      <td>
-        <div class="input-group input-group-sm w-75 p-1">
-          <%= form.text_field :event_id, value: @order.event_id if @order %>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="input-group input-group-sm w-35 p-1">
-          <%= form.label :ticket_id %>
-        </div>
-      </td>
-      <td>
-        <div class="input-group input-group-sm w-75 p-1">
-          <%= form.text_field :ticket_id, value: @order.ticket_id if @order %>
         </div>
       </td>
     </tr>
