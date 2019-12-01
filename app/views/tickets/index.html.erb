@@ -5,6 +5,7 @@
     <thead>
     <tr>
       <th>User Preference</th>
+      <th>Event</th>
       <th>Entry Type</th>
       <th>Ticket Type</th>
       <th>Category</th>
@@ -13,7 +14,6 @@
       <th>Fees per Ticket</th>
       <th>Actual Ticket Price</th>
       <th>Currency</th>
-      <th>Event</th>
       <th colspan="5"></th>
     </tr>
     </thead>
@@ -25,6 +25,7 @@
             <% if @tickets_weight[i] > 0 && i == 0 %> High <% end %>
             <% if @tickets_weight[i] > 0 && i == 1 %> Medium <% end %>
           </td>
+          <td><%= @event_title %></td>
           <td><%= ticket.entry_type %></td>
           <td><%= ticket.ticket_type %></td>
           <td><%= ticket.category %></td>
@@ -33,7 +34,6 @@
           <td><%= ticket.fees_per_ticket %></td>
           <td><%= ticket.actual_ticket_price %></td>
           <td><%= ticket.currency %></td>
-          <td><%= ticket.event_id %></td>
           <% if user_signed_in? %>
             <% if ticket.user_id == current_user.id %>
               <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
