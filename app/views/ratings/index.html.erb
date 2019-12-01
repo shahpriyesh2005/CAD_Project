@@ -11,14 +11,16 @@
 
       <tbody>
         <% @ratings.each do |rating| %>
-          <tr>
-            <td><%= rating.user_rating %></td>
-            <td><%= rating.user_review %></td>
-            <td><%= Event.find(rating.event_id).title %></td>
-            <td><%= link_to 'Show', rating_path(rating) %></td>
-            <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
-            
-          </tr>
+          <% rating.each do |specrating| %>  
+            <tr>
+              <td><%= specrating.user_rating %></td>
+              <td><%= specrating.user_review %></td>
+              <td><%= Event.find(specrating.events_id).title %></td>
+              <td><%= link_to 'Show', rating_path(specrating) %></td>
+              <td><%= link_to 'Edit', edit_rating_path(specrating) %></td>
+              
+            </tr>
+            <% end %>    
         <% end %>
       </tbody>
     </table>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/signedinuserprofile' => 'users#signedinuserprofile'
   post '/showOrganizerEvents' => 'events#showOrganizerEvents'
   get '/showOrganizerEvents' => 'events#showOrganizerEvents'
+  post '/showEventRating' => 'ratings#showEventRating'
+  get '/showEventRating' => 'ratings#showEventRating'
 
   get 'events_imports/new'
   get 'events_imports/create'

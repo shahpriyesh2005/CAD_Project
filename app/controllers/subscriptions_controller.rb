@@ -41,11 +41,11 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    @user = User.find(current_user.id)
-    @subscription = @user.subscriptions.build(subscription_params)
-    @usernames = params[:subscription][:subscribed_user_id].split(' ')
-    @userid = User.where("first_name=? AND last_name=?",@usernames[0],@usernames[1]).first
-    @subscription.subscribed_user_id = @userid[:id]
+    #@user = User.find(current_user.id)
+    @subscription = Subscription.new(subscription_params)
+    #@usernames = params[:subscription][:subscribed_user_id].split(' ')
+    #@userid = User.where("first_name=? AND last_name=?",@usernames[0],@usernames[1]).first
+    #@subscription.subscribed_user_id = @userid[:id]
     respond_to do |format|
       if @subscription.save
         format.html { redirect_to subscription_url( @subscription), notice: 'Subscription was successfully added.' }
@@ -91,6 +91,6 @@ class SubscriptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subscription_params
-      params.require(:subscription).permit(:subscribed_user_id, :subscription_date)
+      params.require(:subscription).permit(:subscribed_user_id, :subscription_date, :user_id)
     end
 end

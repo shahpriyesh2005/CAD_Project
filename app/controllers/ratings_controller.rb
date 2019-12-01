@@ -12,11 +12,16 @@ class RatingsController < ApplicationController
       puts Time.now
       if event.start_time <= Time.now
         puts "inside insertion"
-        @ratings << Rating.where("user_id=? AND event_id=?",@user.id,event.id).first
+        @rating = Rating.where("users_id=? AND events_id=?",@user.id,event.id)
+        @ratings << @rating if !@rating.nil? 
       end #inner if ends
     end
     @ratings.as_json
     puts @ratings  
+  end
+
+  def showEventRating
+    @ratings = Rating.where("events_id = ?",params[:events_id])
   end
 
   # GET /ratings/1
@@ -54,6 +59,7 @@ class RatingsController < ApplicationController
   def update
     @user = User.find(current_user.id)
     @rating = Rating.find(params[:id])
+    #rating_params[:events_id] = Event.where("title=?",rating_params[:events_id]).first.id
     respond_to do |format|
       if @rating.update(rating_params)
         format.html { redirect_to rating_url(@rating), notice: 'Rating was successfully updated.' }
@@ -85,6 +91,6 @@ class RatingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rating_params
-      params.require(:rating).permit(:user_rating, :user_review, :rating_date, :user_id, :event_id, :ticket_id)
+      params.require(:rating).permit(:user_rating, :user_review, :rating_date, :users_id, :events_id, :ticket_id)
     end
 end

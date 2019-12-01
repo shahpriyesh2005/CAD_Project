@@ -22,10 +22,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :event_name %>
-    <%= form.text_field :event_name, :readonly => true, value: Event.find(rating.event_id).title %>
+    <%= form.label :events_name %>
+    <%= form.text_field :events_name, :readonly => true, value: Event.find(rating.events_id).title %>
   </div>
-
+  <div class="field">
+  <%= form.hidden_field :events_id, :readonly => true, value: rating.events_id %>
+  </div>
+  
   <div class="field">
     <%= form.hidden_field :rating_date %>
     <%= form.hidden_field :rating_date, :readonly => true, value: Time.now.strftime("%F") %>

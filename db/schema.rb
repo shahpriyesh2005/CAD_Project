@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_20_210816) do
+ActiveRecord::Schema.define(version: 2019_11_25_222527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -39,13 +39,14 @@ ActiveRecord::Schema.define(version: 2019_11_20_210816) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "picture"
+    t.decimal "overall_rating"
     t.index ["title", "category"], name: "events_unique_index", unique: true
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "users_id", null: false
-    t.bigint "events_id", null: false
+    t.integer "users_id", null: false
+    t.integer "events_id", null: false
     t.string "notify_category"
     t.boolean "seen"
     t.datetime "created_at", precision: 6, null: false
@@ -83,19 +84,17 @@ ActiveRecord::Schema.define(version: 2019_11_20_210816) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "ratings", force: :cascade do |t|
+  create_table "ratings", id: :serial, force: :cascade do |t|
     t.decimal "user_rating"
     t.string "user_review"
     t.date "rating_date"
-    t.bigint "user_id", null: false
-    t.bigint "event_id", null: false
-    t.bigint "ticket_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_ratings_on_event_id"
-    t.index ["ticket_id"], name: "index_ratings_on_ticket_id"
-    t.index ["user_id", "event_id"], name: "ratings_unique_index", unique: true
-    t.index ["user_id"], name: "index_ratings_on_user_id"
+    t.integer "ticket_id"
+    t.date "created_at"
+    t.date "updated_at"
+    t.bigint "users_id"
+    t.bigint "events_id"
+    t.index ["events_id"], name: "index_ratings_on_events_id"
+    t.index ["users_id"], name: "index_ratings_on_users_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|

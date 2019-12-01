@@ -1,0 +1,27 @@
+<% if @ratings == nil %>
+    <h3> This User has no ratings yet. </h3>
+    <% else %>
+      <table class="table table-bordered">
+        <thead>
+            <th scope="col">User rating</th>
+            <th scope="col">User review</th>
+            <th scope="col">Event</th>
+        </thead>
+  
+        <tbody>
+          <% @ratings.each do |rating| %>
+            <tr>
+              <td><%= rating.user_rating %></td>
+              <td><%= rating.user_review %></td>
+              <td><%= Event.find(rating.events_id).title %></td>
+            
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <br>
+  
+  
+  
+  

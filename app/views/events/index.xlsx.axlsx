@@ -12,12 +12,12 @@ wb.styles do |style|
     # Add a blank row
     sheet.add_row []
     # Create the header row
-    sheet.add_row ["ID", "Title", "Category", "Description", "Organizer Name", "Organizer Email", "Organizer Contact No", "Venue", "Address 1", "Address 2", "City", "County", "Country", "Start Time", "End Time", "Publish Time", "Reserved Seating", "Sponsored", "User ID"], style: heading
+    sheet.add_row ["ID", "Title", "Category", "Description", "Organizer Name", "Organizer Email", "Organizer Contact No", "Venue", "Address 1", "Address 2", "City", "County", "Country", "Start Time", "End Time", "Publish Time", "Reserved Seating", "Sponsored", "User ID","Overall Rating"], style: heading
     # Create the database reference row
-    sheet.add_row ["id", "title", "category", "description", "organizer_name", "organizer_email", "organizer_contact_no", "venue", "address1", "address2", "city", "county", "country", "start_time", "end_time", "publish_time", "reserved_seating", "sponsored", "user_id"], style: heading
+    sheet.add_row ["id", "title", "category", "description", "organizer_name", "organizer_email", "organizer_contact_no", "venue", "address1", "address2", "city", "county", "country", "start_time", "end_time", "publish_time", "reserved_seating", "sponsored", "user_id","overall_rating"], style: heading
     # Create entries for each event
     @events.each do |event|
-      sheet.add_row [event.id, event.title, event.category, event.description, event.organizer_name, event.organizer_email, event.organizer_contact_no, event.venue, event.address1, event.address2, event.city, event.county, event.country, event.start_time, event.end_time, event.publish_time, event.reserved_seating, event.sponsored, event.user_id]
+      sheet.add_row [event.id, event.title, event.category, event.description, event.organizer_name, event.organizer_email, event.organizer_contact_no, event.venue, event.address1, event.address2, event.city, event.county, event.country, event.start_time, event.end_time, event.publish_time, event.reserved_seating, event.sponsored, event.user_id, event.overall_rating]
     end
   end
 end
