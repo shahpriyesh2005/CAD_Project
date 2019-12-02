@@ -67,6 +67,8 @@ gem "roo"
 # For GUI
 gem "bootstrap"
 gem "sprockets-rails"
+
+# For jQuery
 gem 'jquery-rails'
 
 # For password complexity validation

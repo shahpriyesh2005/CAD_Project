@@ -26,6 +26,7 @@ class EventsImport
   def load_imported_events
     spreadsheet = open_spreadsheet
     header = spreadsheet.row(5)
+
     (6..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       event = Event.find_by_id(row["id"]) || Event.new
@@ -41,6 +42,7 @@ class EventsImport
   def save
     imported_events.each_with_index do |event, index|
       Log.debug("Inside loop")
+
       if Event.exists?(event["id"])
         Log.debug("user_id 1 : " + event["user_id"].to_s)
         Log.debug("user_id 2 : " + Event.find(event["id"])["user_id"].to_s)
