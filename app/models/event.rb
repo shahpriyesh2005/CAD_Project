@@ -32,10 +32,6 @@ class Event < ApplicationRecord
       errors.add(:end_time, "should be greater than current time")
     end
 
-    if publish_time.strftime("%Y-%m-%d %H:%M:%S") < Time.now.strftime("%Y-%m-%d %H:%M:%S")
-      errors.add(:publish_time, "should be greater than current time")
-    end
-
     if end_time < start_time
       errors.add(:end_time, "cannot be less than start time")
     end
