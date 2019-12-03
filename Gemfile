@@ -56,6 +56,7 @@ gem 'devise'
 
 # For image upload
 gem 'carrierwave'
+gem 'mini_magick'
 gem 'net-ssh'
 
 # For excel download/upload

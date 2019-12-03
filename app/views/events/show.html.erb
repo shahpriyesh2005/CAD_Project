@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <tbody>
     <tr>
-      <%= image_tag @event.picture_url, width: '30%', class: "img-thumbnail" if @event.picture.present? %>
+      <%= image_tag (@event.picture_url.to_s), width: '30%', class: "img-thumbnail" if @event.picture.present? %>
     </tr>
     <tr>
       <td>
