@@ -44,12 +44,6 @@
       </td>
       <td>
       <p>
-        <strong>Overall Rating:</strong>
-        <%= link_to @event.overall_rating, {:controller => "ratings", :action => "showEventRating", :events_id => @event.id }  %>
-      </p>
-      </td>
-      <td>
-      <p>
         <strong>Venue:</strong>
         <%= @event.venue %>
       </p>
@@ -118,7 +112,16 @@
         <%= @event.sponsored %>
       </p>
       </td>
-      <td/>
+      <td>
+        <p>
+          <strong>Overall Rating:</strong>
+          <% unless @event.overall_rating.nil? %>
+            <%= link_to @event.overall_rating, {:controller => "ratings", :action => "showEventRating", :events_id => @event.id }  %>
+          <% else %>
+            --
+          <% end %>
+        </p>
+      </td>
       <td/>
       <td/>
     </tr>
@@ -137,20 +140,21 @@
         <td>
           <%= link_to 'Delete', event_path, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-primary" %>
         </td>
-        <% else %>
+      <% end %>
+      <% if user_signed_in? && @event.user_id != current_user.id %>
         <td>
-        <% @subscription = Hash.new %>
-        <% @subscription["subscribed_user_id"] = @event.user_id %>
-        <% @subscription["subscription_date"] = Time.now %>
-        <% @subscription["user_id"] = current_user.id %>   
+          <% @subscription = Hash.new %>
+          <% @subscription["subscribed_user_id"] = @event.user_id %>
+          <% @subscription["subscription_date"] = Time.now %>
+          <% @subscription["user_id"] = current_user.id %>
 
-        <%= link_to 'Subscribe to Organizer', {:controller => "subscriptions", :action => "create", :subscription => @subscription } , :method => :post, :class => "btn btn-outline-primary" %>
-      </td>
-      <td>
-        <% @wishlist = Hash.new %>
-        <% %>
-        <%= link_to 'Wishlist this Event', {:controller => "wishlists", :action => "create", :wishlist => @wishlist } , :method => :post, :class => "btn btn-outline-primary" %>
-      </td>
+          <%= link_to 'Subscribe to Organizer', {:controller => "subscriptions", :action => "create", :subscription => @subscription } , :method => :post, :class => "btn btn-outline-primary" %>
+        </td>
+        <td>
+          <% @wishlist = Hash.new %>
+          <% %>
+          <%= link_to 'Add Event to Wishlist', {:controller => "wishlists", :action => "create", :wishlist => @wishlist } , :method => :post, :class => "btn btn-outline-primary" %>
+        </td>
       <% end %>
     </tr>
   </tbody>

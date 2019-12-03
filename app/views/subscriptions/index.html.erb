@@ -25,3 +25,45 @@
     </table>
   <% end %>
 <br>
+
+<% if user_signed_in? %>
+  <% if @user_interest_organizers == nil %>
+    <h3> No organizers to display based on your interests. </h3>
+  <% else %>
+    <h3> Based on your interests: </h3>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Organizer Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact No</th>
+        <th/>
+      </tr>
+      </thead>
+      <% @user_interest_organizers.each do |user_interests_organizer| %>
+        <tbody>
+        <tr>
+          <td>
+            <%= user_interests_organizer.first_name + " " + user_interests_organizer.last_name %>
+          </td>
+          <td>
+            <%= user_interests_organizer.email %>
+          </td>
+          <td>
+            <%= user_interests_organizer.contact_no %>
+          </td>
+          <td>
+            <% @subscription = Hash.new %>
+            <% @subscription["subscribed_user_id"] = user_interests_organizer.id %>
+            <% @subscription["subscription_date"] = Time.now %>
+            <% @subscription["user_id"] = current_user.id %>
+
+            <%= link_to 'Subscribe to Organizer', {:controller => "subscriptions", :action => "create", :subscription => @subscription } , :method => :post, :class => "btn btn-outline-primary" %>
+          </td>
+        </tr>
+        </tbody>
+      <% end %>
+    </table>
+  <% end %>
+<% end %>
+<br>

@@ -1,19 +1,52 @@
+require 'log'
+
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
 
   # GET /subscriptions
   # GET /subscriptions.json
   def index
+    if user_signed_in?
+      ##### Based on your interests - START #####
+      user_interests = User.select(:interest1, :interest2, :interest3, :interest4, :interest5).where(id: current_user.id)
+
+      unless user_interests.nil?
+        Log.debug("user_interests => " + user_interests.inspect)
+
+        user_interest_events = Event.select(:user_id).where("category in (?, ?, ?, ?, ?)",
+                                                           user_interests.as_json[0]["interest1"],
+                                                           user_interests.as_json[0]["interest2"],
+                                                           user_interests.as_json[0]["interest3"],
+                                                           user_interests.as_json[0]["interest4"],
+                                                           user_interests.as_json[0]["interest5"])
+                                  .where.not(user_id: current_user.id)
+
+        unless user_interest_events.nil?
+          Log.debug("user_interest_events => " + user_interest_events.inspect)
+
+          @user_interest_organizers = User.where(id: user_interest_events.as_json[0]["user_id"]).where.not(id: current_user.id).first(5)
+
+          unless @user_interest_organizers.nil?
+            Log.debug("user_interest_organizers => " + @user_interest_organizers.inspect)
+          else
+            Log.debug("user_interest_organizers => NULL")
+          end
+        else
+          Log.debug("user_interest_events => NULL")
+        end
+      else
+        Log.debug("user_interests => NULL")
+      end
+      ##### Based on your interests - END #####
+    end
+
     @user = User.find(current_user.id)
-    
     @subscriptions = @user.subscriptions
 
     @subscriptions.each do |subscribe|
       @name = User.find(subscribe[:subscribed_user_id])
       subscribe.subscribed_user_id = (@name.first_name + " " + @name.last_name)
     end
-    
-
   end
 
   # GET /subscriptions/1
