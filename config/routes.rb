@@ -3,18 +3,29 @@ Rails.application.routes.draw do
   resources :notifications
   patch '/markAsRead' => 'notifications#markAsRead'
   get '/markAsRead' => 'notifications#index'
+  
   get '/signedinuserprofile' => 'users#signedinuserprofile'
+  
   post '/showOrganizerEvents' => 'events#showOrganizerEvents'
   get '/showOrganizerEvents' => 'events#showOrganizerEvents'
+  
   post '/showEventRating' => 'ratings#showEventRating'
   get '/showEventRating' => 'ratings#showEventRating'
 
+  delete '/deleteWishlistFromEvent' => 'wishlists#deleteWishlistFromEvent'
+
+  delete '/deleteSubscribeFromEvent' => 'subscriptions#deleteSubscribeFromEvent'
+
   get 'events_imports/new'
   get 'events_imports/create'
+  
   devise_for :users
+  
   root 'home#index'
+  
   get 'search/index' => 'search#index'
   post '/show' => 'search#show'
+  
   get 'search/show' => 'search#show'
   get '/home/index' => 'home#index'
 

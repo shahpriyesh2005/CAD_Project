@@ -114,6 +114,7 @@ class SubscriptionsController < ApplicationController
     @user = User.find(current_user.id)
     @subscription = @user.subscriptions.find(params[:id])
     @subscription.destroy
+    redirect_to subscriptions_path
   end
 
   private

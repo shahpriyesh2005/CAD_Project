@@ -59,7 +59,7 @@ class WishlistsController < ApplicationController
     respond_to do |format|
       if @wishlist.update(wishlist_params)
         format.html { redirect_to wishlist_url(@wishlist), notice: 'wishlist was successfully updated.' }
-        format.json { render :show, status: :ok, location: @director }
+        format.json { render :show, status: :ok, location: @wishlist }
       else
         format.html { render :edit }
         format.json { render json: @wishlist.errors, status: :unprocessable_entity }
@@ -67,12 +67,18 @@ class WishlistsController < ApplicationController
     end
   end
 
+  def deleteWishlistFromEvent
+    @wishlist = Wishlist.where("user_id = '#{params[:wishlist][:user_id]}' and event_id = #{params[:wishlist][:event_id]}").first
+    @wishlist.destroy
+    redirect_to root_path
+  end
   # DELETE /wishlists/1
   # DELETE /wishlists/1.json
   def destroy
     @user = User.find(current_user.id)
     @wishlist = @user.wishlists.find(params[:id])
     @wishlist.destroy
+    redirect_to wishlists_path
   end
 
   private

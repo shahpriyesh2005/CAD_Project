@@ -115,7 +115,26 @@ class EventsController < ApplicationController
         events_count = Hash.new(0)
         events_sorted = Hash.new(0)
         events_sorted_array = Array.new
+                
+        organizer_id = Event.find(params[:id]).user_id
+        subscribe_check_query = ActiveRecord::Base.connection.execute("select * from subscriptions where subscribed_user_id = '#{organizer_id}' and user_id = #{current_user.id} ")
+        wishlist_check_query = ActiveRecord::Base.connection.execute("select * from wishlists where event_id = #{params[:id]} and user_id = #{current_user.id} ")
+        
+        if(subscribe_check_query.as_json != [])
+          @isSubscribed = true
+        else
+          @isSubscribed = false
+        end
 
+        if(wishlist_check_query.as_json != [])
+          @isWishlisted = true
+        else
+          @isWishlisted = false
+        end
+        
+        @isSubscribed
+        @isWishlisted
+        
         upsert_viewed_events
 
         ##### Customers who bought this also bought - START #####
