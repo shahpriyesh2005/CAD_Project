@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   include Pagy::Backend
 
+
   def index
     @events = Event.all
     @pagy, @events = pagy(@events, page: params[:page], items: 10)
