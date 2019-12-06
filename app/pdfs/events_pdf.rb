@@ -6,7 +6,7 @@ class EventsPdf < Prawn::Document
     super(top_margin: 70)
     @events = events
 
-    table (PDFController.new(@events).event_table_data) do
+    table (PdfController.new(@events).event_table_data) do
       row(0).font_style = :bold
       self.row_colors = ["DDDDDD", "FFFFFF"]
       self.header = true

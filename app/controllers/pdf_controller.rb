@@ -1,4 +1,4 @@
-class PDFController < DownloadController
+class PdfController < DownloadController
 
   def initialize(events)
     @events = events
