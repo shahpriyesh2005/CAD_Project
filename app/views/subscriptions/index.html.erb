@@ -4,7 +4,7 @@
 <% if @subscriptions == nil %>
   <h3> This User has no Subscription yet. </h3>
   <% else %>
-    <table>
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>Subscribed user</th>
@@ -44,7 +44,7 @@
         <tbody>
         <tr>
           <td>
-            <%= user_interests_organizer.first_name + " " + user_interests_organizer.last_name %>
+            <%= link_to user_interests_organizer.first_name + " " + user_interests_organizer.last_name,{:controller => "events", :action => "showOrganizerEvents", :user_id => user_interests_organizer.first_name + " " + user_interests_organizer.last_name }  %>
           </td>
           <td>
             <%= user_interests_organizer.email %>

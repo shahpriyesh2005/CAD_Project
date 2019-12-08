@@ -2,7 +2,7 @@ class EventObserver < ActiveRecord::Observer
     def after_create(record)
         @event = Event.last
         @organizer = @event.user_id.to_s
-        
+        @organizer_name = User.find(@organizer.to_i)
         puts "================="
         puts @organizer
         puts "Notify ID: #{@notify_id}"
@@ -16,7 +16,7 @@ class EventObserver < ActiveRecord::Observer
         
             insert_notify_query = "insert into notifications(users_id,events_id,notify_category,seen,created_at,updated_at) values(#{subscriber.user_id},#{@event.id},'Event',false,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)"
             ActiveRecord::Base.connection.execute(insert_notify_query)
-           
+            SendCustomMail.new(User.find(subscriber.user_id).email, "Your Organizer #{@organizer_name.first_name} #{@organizer_name.last_name} has added a new Event #{@event.title}.").process.deliver
             #puts "Notify: #{@notification.user_id}"
             #@notification.save
         
@@ -24,4 +24,4 @@ class EventObserver < ActiveRecord::Observer
 
     end
 
-end
+end 
