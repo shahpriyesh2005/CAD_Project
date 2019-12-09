@@ -98,8 +98,11 @@ class SubscriptionsController < ApplicationController
     #@usernames = params[:subscription][:subscribed_user_id].split(' ')
     #@userid = User.where("first_name=? AND last_name=?",@usernames[0],@usernames[1]).first
     #@subscription.subscribed_user_id = @userid[:id]
+    @current_user = User.find(current_user.id)
+    @organizer_name = User.find(@subscription.subscribed_user_id)
     respond_to do |format|
       if @subscription.save
+        #SendCustomMail.new(@current_user.email, "Subscribed Successfully to #{@organizer_name.first_name} #{@organizer_name.last_name}").process.deliver
         format.html { redirect_to subscription_url( @subscription), notice: 'Subscription was successfully added.' }
         format.json { render :show, status: :created, location: @subscription }
       else

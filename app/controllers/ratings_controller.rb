@@ -59,9 +59,11 @@ class RatingsController < ApplicationController
   def update
     @user = User.find(current_user.id)
     @rating = Rating.find(params[:id])
+    @event = Event.where(params[:events_id]).first
     #rating_params[:events_id] = Event.where("title=?",rating_params[:events_id]).first.id
     respond_to do |format|
       if @rating.update(rating_params)
+        #SendCustomMail.new(@user.email, "Event #{@event.title} Rated Successfully.").process.deliver
         format.html { redirect_to rating_url(@rating), notice: 'Rating was successfully updated.' }
         format.json { render :show, status: :ok, location: @rating }
       else
