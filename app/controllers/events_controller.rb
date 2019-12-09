@@ -74,16 +74,16 @@ class EventsController < ApplicationController
       format.pdf do
         pdf = EventsPdf.new($upcoming_events)
 
-        pdf.encrypt_document(
-            user_password: 'Event@12345',
-            owner_password: 'Event@12345',
-            permissions: {
-                print_document: false,
-                modify_contents: false,
-                copy_contents: false,
-                modify_annotations: false
-            }
-        )
+        #pdf.encrypt_document(
+        #    user_password: 'Event@12345',
+        #    owner_password: 'Event@12345',
+        #    permissions: {
+        #        print_document: false,
+        #        modify_contents: false,
+        #        copy_contents: false,
+        #        modify_annotations: false
+        #    }
+        #)
 
         send_data pdf.render,
                   filename: 'events.pdf',

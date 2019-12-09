@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        SendCustomMail.new(current_user.email, "PROFILE").process.deliver
+        SendCustomMail.new(current_user.email, "Profile updated successfully").process.deliver
 
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }

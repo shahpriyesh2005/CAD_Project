@@ -57,7 +57,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        SendCustomMail.new(current_user.email, "ORDER").process.deliver
+        SendCustomMail.new(current_user.email, "Order placed successfully").process.deliver
 
         format.html { redirect_to @order, notice: 'Order was successfully added.' }
         format.json { render :show, status: :created, location: @order }

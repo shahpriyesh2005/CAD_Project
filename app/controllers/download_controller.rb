@@ -1,7 +1,7 @@
 class DownloadController < ApplicationController
   helper_method :event_table_data
 
-  def event_table_data()
+  def event_table_data
     raise NotImplementedError
   end
 
