@@ -22,17 +22,17 @@
       <% @tickets.each do |ticket| %>
         <tr>
           <td>
-            <% if @tickets_weight[i] > 0 && i == 0 %> High <% end %>
-            <% if @tickets_weight[i] > 0 && i == 1 %> Medium <% end %>
+            <% if @tickets_weight[i].to_i > 0 && i == 0 %> High <% end %>
+            <% if @tickets_weight[i].to_i > 0 && i == 1 %> Medium <% end %>
           </td>
           <td><%= @event_title %></td>
           <td><%= ticket.entry_type %></td>
           <td><%= ticket.ticket_type %></td>
           <td><%= ticket.category %></td>
           <td><%= ticket.description %></td>
-          <td><%= ticket.ticket_price %></td>
-          <td><%= ticket.fees_per_ticket %></td>
-          <td><%= ticket.actual_ticket_price %></td>
+          <td><%=  ticket.ticket_price  %></td>
+          <td><%=  ticket.fees_per_ticket  %></td>
+          <td><%=  ticket.actual_ticket_price  %></td>
           <td><%= ticket.currency %></td>
           <% if user_signed_in? %>
             <% if ticket.user_id == current_user.id %>
