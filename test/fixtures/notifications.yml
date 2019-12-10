@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-#  users_id: one
-#  events_id: one
-#  notify_category: MyString
-#  seen: false
-#
-#two:
-#  users_id: two
-#  events_id: two
-#  notify_category: MyString
-#  seen: false
+one:
+  users_id: one
+  events_id: one
+  notify_category: MyString
+  seen: false
+
+two:
+  users_id: two
+  events_id: two
+  notify_category: MyString
+  seen: false

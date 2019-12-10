@@ -1,37 +1,37 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-#  entry_type:
-#  ticket_type: MyString
-#  category: MyString
-#  description: MyString
-#  total_quantity:
-#  ticket_price:
-#  include_fees_in_ticket_price: MyString
-#  fees_per_ticket:
-#  actual_ticket_price:
-#  organizer_payout_per_ticket:
-#  sale_start_time: 2019-10-16 16:37:32
-#  sale_end_time: 2019-10-16 16:37:32
-#  currency: MyString
-#  user_id: one
-#  event_id: one
-#  available_quantity:
-#
-#two:
-#  entry_type:
-#  ticket_type: MyString
-#  category: MyString
-#  description: MyString
-#  total_quantity:
-#  ticket_price:
-#  include_fees_in_ticket_price: MyString
-#  fees_per_ticket:
-#  actual_ticket_price:
-#  organizer_payout_per_ticket:
-#  sale_start_time: 2019-10-16 16:37:32
-#  sale_end_time: 2019-10-16 16:37:32
-#  currency: MyString
-#  user_id: two
-#  event_id: two
-#  available_quantity:
+one:
+  entry_type:
+  ticket_type: MyString
+  category: MyString
+  description: MyString
+  total_quantity:
+  ticket_price:
+  include_fees_in_ticket_price: MyString
+  fees_per_ticket:
+  actual_ticket_price:
+  organizer_payout_per_ticket:
+  sale_start_time: 2019-10-16 16:37:32
+  sale_end_time: 2019-10-16 16:37:32
+  currency: MyString
+  user_id: one
+  event_id: one
+  available_quantity:
+
+two:
+  entry_type:
+  ticket_type: MyString
+  category: MyString
+  description: MyString
+  total_quantity:
+  ticket_price:
+  include_fees_in_ticket_price: MyString
+  fees_per_ticket:
+  actual_ticket_price:
+  organizer_payout_per_ticket:
+  sale_start_time: 2019-10-16 16:37:32
+  sale_end_time: 2019-10-16 16:37:32
+  currency: MyString
+  user_id: two
+  event_id: two
+  available_quantity:

@@ -297,12 +297,12 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.7)
   jquery-rails
-  luhnAlgorithmCheck (~> 0.0.3)
+  luhnAlgorithmCheck
   mini_magick
   minitest-reporters
   net-ssh
   pagy
-  passwordValidator (~> 0.0.3)
+  passwordValidator
   pg (>= 0.18, < 2.0)
   prawn
   prawn-table
