@@ -10,17 +10,21 @@ class TicketsController < ApplicationController
     @event_title = event_details["title"]
     Log.debug("event_title => " + @event_title)
 
-    event_organizer_email = Event.find(params[:event_id])
-    Log.debug("event_organizer_email => " + event_organizer_email["organizer_email"])
+    if user_signed_in?
+      event_organizer_email = Event.find(params[:event_id])
+      Log.debug("event_organizer_email => " + event_organizer_email["organizer_email"])
 
-    if event_organizer_email["organizer_email"] == current_user.email
-      Log.debug("Setting is_user_organizer to true")
-      @is_user_organizer = true
+      if event_organizer_email["organizer_email"] == current_user.email
+        Log.debug("Setting is_user_organizer to true")
+        @is_user_organizer = true
+      else
+        Log.debug("Setting is_user_organizer to false")
+        @is_user_organizer = false
+      end
     else
       Log.debug("Setting is_user_organizer to false")
       @is_user_organizer = false
     end
-
     Log.debug("is_user_organizer => " + @is_user_organizer.to_s)
 
     ticket_sold_weight = Hash.new(0)
