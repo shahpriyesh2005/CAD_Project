@@ -15,8 +15,9 @@ class Subscription < ApplicationRecord
     def check_subscription_date
       return if subscription_date.blank?
   
-      if subscription_date.strftime("%Y-%m-%d %H:%M:%S") < Time.now.strftime("%Y-%m-%d %H:%M:%S")
-        errors.add(:subscription_date, "should be greater than current time")
+      if subscription_date.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
+        errors.add(:subscription_date, "should be greater than current day")
       end
+    end
   
 end   #end of Model

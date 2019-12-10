@@ -17,8 +17,9 @@ class Wishlist < ApplicationRecord
     def check_wishlist_date
       return if wishlist_date.blank?
   
-      if wishlist_date.strftime("%Y-%m-%d %H:%M:%S") < Time.now.strftime("%Y-%m-%d %H:%M:%S")
+      if wishlist_date.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
         errors.add(:wishlist_date, "should be greater than current time")
       end
+    end
 
 end

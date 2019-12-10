@@ -5,14 +5,16 @@ class Rating < ApplicationRecord
   validates_format_of :user_review, :with => /[a-z]+/i, :presence => true
 
   validates :user_review,:rating_date,:ticket_id, :presence => true
-    validate :check_rating_date
+  validate :check_rating_date
   
     private
   
     def check_rating_date
       return if rating_date.blank?
   
-      if rating_date.strftime("%Y-%m-%d %H:%M:%S") < Time.now.strftime("%Y-%m-%d %H:%M:%S")
+      if rating_date.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
         errors.add(:rating_date, "should be greater than current time")
       end
+    end  
+
 end

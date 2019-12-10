@@ -115,7 +115,7 @@
       <td>
         <p>
           <strong>Overall Rating:</strong>
-          <% unless @event.overall_rating.nil? %>
+          <% unless @event.overall_rating.nil? || @event.overall_rating == 0.0 %>
             <%= link_to @event.overall_rating, {:controller => "ratings", :action => "showEventRating", :events_id => @event.id }  %>
           <% else %>
             --
