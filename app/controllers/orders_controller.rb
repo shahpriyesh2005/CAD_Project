@@ -57,7 +57,6 @@ class OrdersController < ApplicationController
     @event = Event.find(@order.event_id)
     respond_to do |format|
       if @order.save
-        #SendCustomMail.new(User.find(@order.user_id).email, "Thanks for your Order for the Event #{@event.title}").process.deliver
         format.html { redirect_to @order, notice: 'Order was successfully added.' }
         format.json { render :show, status: :created, location: @order }
       else
