@@ -259,16 +259,9 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
-    @event.overall_rating = 0.0r
-    @organizer_name = User.find(current_user.id)
-    @subscribers = Subscription.find_by_sql(["select user_id from subscriptions where subscribed_user_id=?",@event.user_id])
+
     respond_to do |format|
       if @event.save
-        #if !@subscribers.nil?
-         # @subscribers.each do |subscriber|
-            #SendCustomMail.new(User.find(subscriber.user_id).email, "Your Organizer #{@organizer_name.first_name} #{@organizer_name.last_name} has added a new Event #{@event.title}.").process.deliver
-          #end  
-        #end
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
