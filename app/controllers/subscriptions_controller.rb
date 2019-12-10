@@ -130,6 +130,11 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def deleteSubscribeFromEvent
+    @subscribe = Subscription.where("user_id = #{params[:subscription][:user_id]} and subscribed_user_id = '#{params[:subscription][:subscribed_user_id]}'").first
+    @subscribe.destroy
+    redirect_to root_path
+  end
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   def destroy
