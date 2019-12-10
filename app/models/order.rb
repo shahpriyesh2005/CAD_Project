@@ -34,7 +34,7 @@ class Order < ApplicationRecord
 
     return if card_no.blank?
 
-    unless LuhnAlgorithm.new(card_no).valid?
+    unless LuhnAlgorithm.new(card_no).luhn_valid?
       errors.add :card_no, " is not a valid."
     end
   end
