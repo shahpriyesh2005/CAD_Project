@@ -1,19 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
+<h1>Search Events</h1>
 <% if @events == nil %>
   <h3> This User has no events yet. </h3>
   <% else %>
     <%= form_with(model: @events, url: "/show") do |f|%>
-      Search Your Event here:
-      <%= f.text_field :search %> <br>
-      Start Date:
-      <%= f.date_select(:startdate, include_blank: true)  %> <br>
-      End Date:
-      <%= f.date_select(:enddate, include_blank: true) %> <br>
-      Enter your Preferred Organizer for their Events:
-      <%= f.text_field :organizer %> <br>
-      <%= f.submit "Search" %> <br>
+      <table class="table table-bordered">
+      <tr>
+      <td> Search Your Event here: </td>
+      <td> <%= f.text_field :search %> </td> 
+      </tr>
+      <tr>
+      <td> Start Date: </td>
+      <td> <%= f.date_select(:startdate, include_blank: true)  %> </td>
+      </tr>
+      <tr>
+      <td> End Date: </td>
+      <td> <%= f.date_select(:enddate, include_blank: true) %> </td>
+      </tr>
+      <tr>
+      <td> Enter your Preferred Organizer for their Events: </td>
+      <td> <%= f.text_field :organizer %> </td>
+      </tr>
+      <tr>
+      <td> Your Preferred Rating Expectation: </td>
+      <td> <%= f.select(:rating,options_for_select([' ','1','2','3','4','5'])) %> 
+       </td>
+      </tr>
+      <tr> 
+      <td colspan = 2>
+      <div class="text-center">
+      <%= f.submit "Search", :class => "btn btn-outline-primary " %> 
+      </div>
+      </td>
+      </tr>
+      </table>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -24,6 +45,7 @@
             <th>Organizer name</th>
             <th>Organizer email</th>
             <th>Organizer contact no</th>
+            <th>Overall Rating </th>
             <th>Venue</th>
             <th>Address1</th>
             <th>Address2</th>
@@ -43,12 +65,17 @@
           <% @events.each do |event| %>
             <tr>
               <td><%= image_tag event.picture_url, width: '125%' if event.picture.present? %></td>
-              <td><%= event.title %></td>
+              <td><%= link_to event.title,event_path( Event.where("title=?",event.title).first.id ) %></td>
               <td><%= event.category %></td>
               <td><%= event.description %></td>
               <td><%= event.organizer_name %></td>
               <td><%= event.organizer_email %></td>
               <td><%= event.organizer_contact_no %></td>
+              <%if(event.overall_rating== 0.0 || event.overall_rating == nil ) %>
+                <td> N/A </td>
+              <% else %>
+                <td><%= event.overall_rating  %></td>
+              <% end %>
               <td><%= event.venue %></td>
               <td><%= event.address1 %></td>
               <td><%= event.address2 %></td>

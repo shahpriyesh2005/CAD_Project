@@ -16,8 +16,8 @@
               <td><%= specrating.user_rating %></td>
               <td><%= specrating.user_review %></td>
               <td><%= Event.find(specrating.events_id).title %></td>
-              <td><%= link_to 'Show', rating_path(specrating) %></td>
-              <td><%= link_to 'Edit', edit_rating_path(specrating) %></td>
+              <td><%= link_to 'Show', rating_path(specrating), :class => "btn btn-outline-primary" %></td>
+              <td><%= link_to 'Edit', edit_rating_path(specrating), :class => "btn btn-outline-primary" %></td>
               
             </tr>
             <% end %>    

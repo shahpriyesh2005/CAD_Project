@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
+<h1>Search Results</h1>
 <% if @events == nil %>
   <h3> There are no events as per the Search Category. </h3>
   <% else %>
+  
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -14,6 +15,7 @@
           <th>Organizer name</th>
           <th>Organizer email</th>
           <th>Organizer contact no</th>
+          <th> Overall Rating </th>
           <th>Venue</th>
           <th>Address1</th>
           <th>Address2</th>
@@ -39,6 +41,11 @@
             <td><%= event["organizer_name"] %></td>
             <td><%= event["organizer_email"] %></td>
             <td><%= event["organizer_contact_no"] %></td>
+            <%if(event["overall_rating"] == "0.0" || event["overall_rating"] == "" ) %>
+              <td> N/A </td>
+            <% else %>
+              <td><%= event["overall_rating"]  %></td>
+            <% end %>
             <td><%= event["venue"] %></td>
             <td><%= event["address1"] %></td>
             <td><%= event["address2"] %></td>

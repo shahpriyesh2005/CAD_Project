@@ -15,7 +15,7 @@
       <% else %>
       <td> You were subscribed recently by a user.</td>
       <% end %>
-        <td><%= link_to 'Mark as Read', {:controller => "notifications", :action => "markAsRead", :notify_id => notification.id}, method: :patch %></td>
+        <td><%= link_to 'Mark as Read', {:controller => "notifications", :action => "markAsRead", :notify_id => notification.id}, method: :patch, :class => "btn btn-outline-primary" %></td>
       </tr>
     <% end %>
   </tbody>

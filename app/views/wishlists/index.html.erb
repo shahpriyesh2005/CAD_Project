@@ -16,7 +16,7 @@
           <tr>
             <td><%= link_to wishlist.event_name, event_path(wishlist.event_id) %></td>
             <td><%= wishlist.wishlist_date %></td>
-            <td><%= link_to 'Destroy', wishlist_path(wishlist) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Destroy', wishlist_path(wishlist) , method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-primary" %></td>
           </tr>
         <% end %>
       </tbody>

@@ -7,7 +7,7 @@ class EventObserver < ActiveRecord::Observer
         puts @organizer
         puts "Notify ID: #{@notify_id}"
         puts "Event id: #{@event.id}"
-
+        ActiveRecord::Base.connection.execute("update events set overall_rating = 0.0 where id = #{@event.id}")
         @subscribers = Subscription.find_by_sql(["select user_id from subscriptions where subscribed_user_id=?",@organizer])
         @subscribers.each do |subscriber|
             

@@ -17,9 +17,12 @@ class SearchController < ApplicationController
       unless params[:event][:"enddate(1i)"] == "" || params[:event][:"enddate(2i)"] == "" || params[:event][:"enddate(3i)"] == ""
         @enddate = Date.civil(params[:event][:"enddate(1i)"].to_i,params[:event][:"enddate(2i)"].to_i,params[:event][:"enddate(3i)"].to_i).strftime("%F")
       end
+      unless params[:event][:rating] == " "
+        @rating = params[:event][:rating].to_i
+      end
     end
 
-    if @eventname.nil? && @startdate.nil? && @enddate.nil? && @organizername.nil? 
+    if @eventname.nil? 
       puts "Empty"
       @events = params["events"]
     else
@@ -33,6 +36,10 @@ class SearchController < ApplicationController
       if !@enddate.nil?
         @events = @events.where(" ? >= end_time ","#{@enddate}")
       end
+      if !@rating.nil?
+        @events = @events.where("overall_rating >= #{@rating}")
+      end
+      @events = @events.first(8)
       @events = @events.as_json
       redirect_to search_show_path(:events => @events)
 
