@@ -198,7 +198,7 @@ class EventsController < ApplicationController
             puts "user_ids =>" + user_ids
 
             select_query_1 = "select distinct event_id from viewed_events where user_id in (" + user_ids + ") "
-            select_query_1 += "and event_id not in (select distinct event_id from viewed_events where user_id = #{current_user.id})"
+            select_query_1 += "and event_id not in (select distinct event_id from viewed_events where user_id = #{current_user.id} and event_id = #{params[:id]})"
             other_events = ActiveRecord::Base.connection.execute(select_query_1)
 
             unless other_events.nil?
