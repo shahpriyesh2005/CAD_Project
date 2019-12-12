@@ -22,8 +22,10 @@
       <% @tickets.each do |ticket| %>
         <tr>
           <td>
-            <% if @tickets_weight[i].to_i > 0 && i == 0 %> High <% end %>
-            <% if @tickets_weight[i].to_i > 0 && i == 1 %> Medium <% end %>
+            <% puts "i ==> " + i.to_s %>
+            <% puts "@tickets_weight[i].to_f ==> " + @tickets_weight[i].to_f.to_s %>
+            <% if @tickets_weight[i].to_f > 0 && i == 0 %> High <% end %>
+            <% if @tickets_weight[i].to_f > 0 && i == 1 %> Medium <% end %>
           </td>
           <td><%= @event_title %></td>
           <td><%= ticket.entry_type %></td>
