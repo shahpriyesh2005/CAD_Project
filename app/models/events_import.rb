@@ -42,13 +42,17 @@ class EventsImport
   def save
     imported_events.each_with_index do |event, index|
       Log.debug("Inside loop")
+      puts "Inside loop"
 
       if Event.exists?(event["id"])
         Log.debug("user_id 1 : " + event["user_id"].to_s)
+        puts "user_id 1 : " + event["user_id"].to_s
         Log.debug("user_id 2 : " + Event.find(event["id"])["user_id"].to_s)
+        puts "user_id 2 : " + Event.find(event["id"])["user_id"].to_s
 
         if event["user_id"] != Event.find(event["id"])["user_id"]
           Log.debug("Inside if 2")
+          puts "Inside if 2"
           errors.add :base, "Row #{index + 6}: you are not authorized to modify the event"
           return
         end
