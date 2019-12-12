@@ -9,23 +9,29 @@ class TicketsController < ApplicationController
     event_details = Event.find(params[:event_id])
     @event_title = event_details["title"]
     Log.debug("event_title => " + @event_title)
+    puts "event_title => " + @event_title
 
     if user_signed_in?
       event_organizer_email = Event.find(params[:event_id])
       Log.debug("event_organizer_email => " + event_organizer_email["organizer_email"])
+      puts "event_organizer_email => " + event_organizer_email["organizer_email"]
 
       if event_organizer_email["organizer_email"] == current_user.email
         Log.debug("Setting is_user_organizer to true")
+        puts "Setting is_user_organizer to true"
         @is_user_organizer = true
       else
         Log.debug("Setting is_user_organizer to false")
+        puts "Setting is_user_organizer to false"
         @is_user_organizer = false
       end
     else
       Log.debug("Setting is_user_organizer to false")
+      puts "Setting is_user_organizer to false"
       @is_user_organizer = false
     end
     Log.debug("is_user_organizer => " + @is_user_organizer.to_s)
+    puts "is_user_organizer => " + @is_user_organizer.to_s
 
     ticket_sold_weight = Hash.new(0)
     tickets_sorted = Hash.new(0)
@@ -35,27 +41,31 @@ class TicketsController < ApplicationController
 
     @event = Event.find(params[:event_id])
     tickets_unsorted = @event.tickets.where("sale_end_time > ?", Time.now.strftime("%Y-%m-%d %H:%M:%S")).order("ticket_type ASC")
-
     event_orders = Order.select(:no_of_tickets).where(event_id: params[:event_id])
 
     if event_orders.length > 0
       Log.debug("event_orders => " + event_orders.as_json.to_s)
+      puts "event_orders => " + event_orders.as_json.to_s
 
       total_tickets_sold = event_orders.sum(:no_of_tickets)
       Log.debug("total_tickets_sold => " + total_tickets_sold.as_json.to_s)
+      puts "total_tickets_sold => " + total_tickets_sold.as_json.to_s
 
       if total_tickets_sold > 0
         unless tickets_unsorted.nil?
           Log.debug("tickets_unsorted => " + tickets_unsorted.as_json.to_s)
+          puts "tickets_unsorted => " + tickets_unsorted.as_json.to_s
 
           ticket_sold = 0
           weight = 0
 
           tickets_unsorted.each do |ticket|
             Log.debug("ticket.id => " + ticket.id.to_s)
+            puts "ticket.id => " + ticket.id.to_s
             temp_no_of_tickets = Order.select(:no_of_tickets).where(event_id: params[:event_id], ticket_id: ticket.id)
             ticket_sold = temp_no_of_tickets.sum(:no_of_tickets)
             Log.debug("ticket_sold => " + ticket_sold.as_json.to_s)
+            puts "ticket_sold => " + ticket_sold.as_json.to_s
 
             if ticket_sold > 0
               weight = ticket_sold.to_f / total_tickets_sold
@@ -63,13 +73,16 @@ class TicketsController < ApplicationController
               weight = 0
             end
             Log.debug("weight => " + weight.to_s)
+            puts "weight => " + weight.to_s
 
             ticket_sold_weight[ticket] += weight
             Log.debug("ticket_sold_weight => " + ticket_sold_weight.as_json.to_s)
+            puts "ticket_sold_weight => " + ticket_sold_weight.as_json.to_s
           end
 
           tickets_sorted = ticket_sold_weight.sort_by { |key, value| value }.reverse
           Log.debug("tickets_sorted => " + tickets_sorted.as_json.to_s)
+          puts "tickets_sorted => " + tickets_sorted.as_json.to_s
 
           tickets_sorted.each do |ticket|
             tickets_sorted_array << ticket[0]
@@ -80,6 +93,7 @@ class TicketsController < ApplicationController
           @tickets_weight = tickets_sorted_weight
         else
           Log.debug("tickets_unsorted => NULL")
+          puts "tickets_unsorted => NULL"
           @tickets = tickets_unsorted
 
           tickets_unsorted.each do |ticket|
@@ -99,6 +113,7 @@ class TicketsController < ApplicationController
       end
     else
       Log.debug("event_orders => NULL")
+      puts "event_orders => NULL"
 
       @tickets = tickets_unsorted
 
@@ -110,6 +125,7 @@ class TicketsController < ApplicationController
     end
 
     Log.debug("@tickets => " + @tickets.as_json.to_s)
+    puts "@tickets => " + @tickets.as_json.to_s
   end
 
   # GET /tickets/1
