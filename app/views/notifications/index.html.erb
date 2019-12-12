@@ -8,10 +8,10 @@
     <% @notifications.each do |notification| %>
       <tr>
       <% if notification.notify_category == "Rating" %>
-        <td> Your Event <%=link_to Event.find(notification.events_id).title, event_path(notification.events_id) %> has been given a review.</td>
+        <td> Your Event <%=link_to Event.find(notification.events_id).title, event_path(notification.events_id) %> has been given a rating of <%=link_to Rating.where("events_id =?",notification.events_id).last.user_rating, showEventRating_path(notification.events_id) %>.</td>
       <% elsif notification.notify_category == "Event" %>
         <% @name = User.find(Event.find(notification.events_id).user_id).first_name + " " + User.find(Event.find(notification.events_id).user_id).last_name %>
-        <td> Your Organizer <%= link_to @name, {:controller => "events", :action => "showOrganizerEvents", :user_id => @name } %> added a new Event <%=link_to Event.find(notification.events_id).title, event_path(notification.events_id) %>.</td>
+        <td> Your Subscribed User <%= link_to @name, {:controller => "events", :action => "showOrganizerEvents", :user_id => @name } %> added a new Event <%=link_to Event.find(notification.events_id).title, event_path(notification.events_id) %>.</td>
       <% else %>
       <td> You were subscribed recently by a user.</td>
       <% end %>

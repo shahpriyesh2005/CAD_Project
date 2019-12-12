@@ -21,7 +21,14 @@ class RatingsController < ApplicationController
   end
 
   def showEventRating
-    @ratings = Rating.where("events_id = ?",params[:events_id])
+    unless params[:events_id].nil?
+      @ratings = Rating.where("events_id = ?",params[:events_id])
+    end
+
+    unless params["format"].nil?
+      @ratings = Rating.where("events_id = ?",params["format"])
+    end
+    
   end
 
   # GET /ratings/1
