@@ -126,6 +126,9 @@ class TicketsController < ApplicationController
 
     Log.debug("@tickets => " + @tickets.as_json.to_s)
     puts "@tickets => " + @tickets.as_json.to_s
+
+    Log.debug("@tickets_weight => " + @tickets_weight.as_json.to_s)
+    puts "@tickets_weight => " + @tickets_weight.as_json.to_s
   end
 
   # GET /tickets/1
