@@ -246,7 +246,7 @@ class EventsController < ApplicationController
                     events_sorted_array << event[0]
                   end
 
-                  @other_users_previously_viewed_events = events_sorted_array
+                  @other_users_previously_viewed_events = events_sorted_array.first(5)
                   Log.debug("other_users_previously_viewed_events =>" + @other_users_previously_viewed_events.inspect)
                   puts "other_users_previously_viewed_events =>" + @other_users_previously_viewed_events.inspect
                 else
