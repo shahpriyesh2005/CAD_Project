@@ -19,6 +19,7 @@ class EventsController < ApplicationController
 
         unless user_interests.nil?
           Log.debug("user_interests => " + user_interests.inspect)
+          puts "user_interests => " + user_interests.inspect
 
           unless $user_orders_events.nil?
             @user_interests_events = Event.where(id: $upcoming_events).where("category in (?, ?, ?, ?, ?)",
@@ -40,11 +41,14 @@ class EventsController < ApplicationController
 
           unless @user_interests_events.nil?
             Log.debug("user_interests_events => " + @user_interests_events.inspect)
+            puts "user_interests_events => " + @user_interests_events.inspect
           else
             Log.debug("user_interests_events => NULL")
+            puts "user_interests_events => NULL"
           end
         else
           Log.debug("user_interests => NULL")
+          puts "user_interests => NULL"
         end
         ##### Based on your interests - END #####
 
@@ -53,8 +57,10 @@ class EventsController < ApplicationController
 
         unless @previously_viewed_user_events.nil?
           Log.debug("previously_viewed_user_events => " + @previously_viewed_user_events.inspect)
+          puts "previously_viewed_user_events => " + @previously_viewed_user_events.inspect
         else
           Log.debug("previously_viewed_user_events => NULL")
+          puts "previously_viewed_user_events => NULL"
         end
         ##### Previously viewed - END #####
       end
@@ -143,25 +149,31 @@ class EventsController < ApplicationController
 
         unless other_users_common_orders.nil?
           Log.debug("other_users_common_orders => " + other_users_common_orders.inspect)
+          puts "other_users_common_orders => " + other_users_common_orders.inspect
 
           other_users_uncommon_orders_events = Order.distinct.select(:event_id).where(event_id: $upcoming_events, user_id: other_users_common_orders)
                                                    .where.not(event_id: $user_orders_events, event_id: params[:id])
 
           unless other_users_uncommon_orders_events.nil?
             Log.debug("other_users_uncommon_orders_events => " + other_users_uncommon_orders_events.inspect)
+            puts "other_users_uncommon_orders_events => " + other_users_uncommon_orders_events.inspect
 
             @other_users_events = Event.where(id: other_users_uncommon_orders_events).order("start_time ASC").first(5)
 
             unless @other_users_events.nil?
               Log.debug("other_users_events => " + @other_users_events.inspect)
+              puts "other_users_events => " + @other_users_events.inspect
             else
               Log.debug("other_users_events => NULL")
+              puts "other_users_events => NULL"
             end
           else
             Log.debug("other_users_uncommon_orders_events => NULL")
+            puts "other_users_uncommon_orders_events => NULL"
           end
         else
           Log.debug("other_users_common_orders => NULL")
+          puts "other_users_common_orders => NULL"
         end
         ##### Customers who bought this also bought - END #####
 
@@ -171,6 +183,7 @@ class EventsController < ApplicationController
 
         unless other_users.nil?
           Log.debug("other_users => " + other_users.as_json.to_s)
+          puts "other_users => " + other_users.as_json.to_s
 
           other_users.each do |user|
             if user_ids != ""
@@ -182,6 +195,7 @@ class EventsController < ApplicationController
 
           if user_ids != ""
             Log.debug("user_ids =>" + user_ids)
+            puts "user_ids =>" + user_ids
 
             select_query_1 = "select distinct event_id from viewed_events where user_id in (" + user_ids + ") "
             select_query_1 += "and event_id not in (select distinct event_id from viewed_events where user_id = #{current_user.id})"
@@ -189,6 +203,7 @@ class EventsController < ApplicationController
 
             unless other_events.nil?
               Log.debug("other_events => " + other_events.as_json.to_s)
+              puts "other_events => " + other_events.as_json.to_s
 
               other_events.each do |event|
                 if event_ids != ""
@@ -200,26 +215,32 @@ class EventsController < ApplicationController
 
               if event_ids != ""
                 Log.debug("event_ids => " + event_ids)
+                puts "event_ids => " + event_ids
 
                 upcoming_events_1 = Event.where(id: $upcoming_events).where("id in (" + event_ids + ")").order("start_time ASC")
 
                 unless upcoming_events_1.nil?
                   Log.debug("upcoming_events_1 => " + upcoming_events_1.inspect)
+                  puts "upcoming_events_1 => " + upcoming_events_1.inspect
 
                   upcoming_events_1.each do |event|
                     count = 0
                     Log.debug("event.id => " + event.id.to_s)
+                    puts "event.id => " + event.id.to_s
 
                     count_query = "select count(event_id) from viewed_events where event_id = #{event.id} and user_id != #{current_user.id}"
                     count = ActiveRecord::Base.connection.execute(count_query)
                     Log.debug("count => " + count.as_json.to_s)
+                    puts "count => " + count.as_json.to_s
 
                     events_count[event] += count[0]["count"]
                     Log.debug("events_count => " + events_count.to_s)
+                    puts "events_count => " + events_count.to_s
                   end
 
                   events_sorted = events_count.sort_by { |key, value| value }.reverse
                   Log.debug("events_sorted => " + events_sorted.to_s)
+                  puts "events_sorted => " + events_sorted.to_s
 
                   events_sorted.each do |event|
                     events_sorted_array << event[0]
@@ -227,15 +248,19 @@ class EventsController < ApplicationController
 
                   @other_users_previously_viewed_events = events_sorted_array
                   Log.debug("other_users_previously_viewed_events =>" + @other_users_previously_viewed_events.inspect)
+                  puts "other_users_previously_viewed_events =>" + @other_users_previously_viewed_events.inspect
                 else
                   Log.debug("upcoming_events_1 => NULL")
+                  puts "upcoming_events_1 => NULL"
                 end
               else
                 Log.debug("event_ids => NULL")
+                puts "event_ids => NULL"
               end
             end
           else
             Log.debug("user_ids => NULL")
+            puts "user_ids => NULL"
           end
         end
         ##### Customers who viewed this also viewed - END #####
@@ -326,18 +351,22 @@ class EventsController < ApplicationController
 
     unless $upcoming_events.nil?
       Log.debug("upcoming_events =>" + $upcoming_events.inspect)
+      puts "upcoming_events =>" + $upcoming_events.inspect
 
       if user_signed_in?
         $user_orders_events = Order.distinct.select(:event_id).where(event_id: $upcoming_events, user_id: current_user.id)
 
         unless $user_orders_events.nil?
           Log.debug("user_orders_events => " + $user_orders_events.inspect)
+          puts "user_orders_events => " + $user_orders_events.inspect
         else
           Log.debug("user_orders_events => NULL")
+          puts "user_orders_events => NULL"
         end
       end
     else
       Log.debug("upcoming_events => NULL")
+      puts "upcoming_events => NULL"
     end
   end
 end
