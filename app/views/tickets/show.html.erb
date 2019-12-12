@@ -90,7 +90,7 @@
     <td>
       <p>
         <strong>Event:</strong>
-        <%= @ticket.event_id %>
+        <%= Event.find(@ticket.event_id).title %>
       </p>
     </td>
     <td/>

@@ -21,7 +21,7 @@ class SubscriptionsController < ApplicationController
       unless user_interests.nil?
         Log.debug("user_interests => " + user_interests.inspect)
         if @organizers == []
-          user_interest_events = Event.select(:user_id).where("category in (?, ?, ?, ?, ?)",
+          user_interest_events = Event.distinct.select(:user_id).where("category in (?, ?, ?, ?, ?)",
                                                             user_interests.as_json[0]["interest1"],
                                                             user_interests.as_json[0]["interest2"],
                                                             user_interests.as_json[0]["interest3"],
@@ -30,7 +30,7 @@ class SubscriptionsController < ApplicationController
                                                             .where.not(user_id: current_user.id)
             
         else
-          user_interest_events = Event.select(:user_id).where("category in (?, ?, ?, ?, ?)",
+          user_interest_events = Event.distinct.select(:user_id).where("category in (?, ?, ?, ?, ?)",
                                                             user_interests.as_json[0]["interest1"],
                                                             user_interests.as_json[0]["interest2"],
                                                             user_interests.as_json[0]["interest3"],

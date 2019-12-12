@@ -4,13 +4,13 @@
       <td>
       <p>
         <strong>Event:</strong>
-        <%= @order.event_id %>
+        <%= Event.find(@order.event_id).title %>
       </p>
       </td>
       <td>
       <p>
         <strong>Ticket:</strong>
-        <%= @order.ticket_id %>
+        <%= Ticket.find(@order.ticket_id).ticket_type %>
       </p>
       </td>
       <td>
