@@ -22,7 +22,7 @@ class RatingsController < ApplicationController
 
   def showEventRating
     unless params[:events_id].nil?
-      @ratings = Rating.where("events_id = ?",params[:events_id])
+      @ratings = Rating.where("events_id = ? and user_rating>0.0",params[:events_id])
     end
 
     unless params["format"].nil?

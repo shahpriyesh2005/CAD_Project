@@ -13,7 +13,11 @@
         <% @ratings.each do |rating| %>
           <% rating.each do |specrating| %>  
             <tr>
-              <td><%= specrating.user_rating %></td>
+              <% if specrating.user_rating > 0.0 %>
+                <td><%= specrating.user_rating %></td>
+              <% else %>
+                <td> -- </td>
+              <% end %>
               <td><%= specrating.user_review %></td>
               <td><%= Event.find(specrating.events_id).title %></td>
               <td><%= link_to 'Show', rating_path(specrating), :class => "btn btn-outline-primary" %></td>
