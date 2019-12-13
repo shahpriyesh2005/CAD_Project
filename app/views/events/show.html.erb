@@ -39,7 +39,7 @@
       <td>
       <p>
         <strong>Organizer contact no:</strong>
-        <%= @event.organizer_contact_no %>
+        <%= @event.organizer_contact_no.to_i %>
       </p>
       </td>
       <td>
@@ -147,8 +147,7 @@
             <% @subscription = Hash.new %>
             <% @subscription["subscribed_user_id"] = @event.user_id %>
             <% @subscription["subscription_date"] = Time.now %>
-            <% @subscription["user_id"] = current_user.id %>   
-
+            <% @subscription["user_id"] = current_user.id %>
             <%= link_to 'Subscribe to Organizer', {:controller => "subscriptions", :action => "create", :subscription => @subscription } , :method => :post, :class => "btn btn-outline-primary" %>
             </td>
           <% else %>
@@ -165,7 +164,7 @@
             <% @wishlist["user_id"] = current_user.id %>
             <% @wishlist["event_id"] = @event.id %>
             <% @wishlist["event_name"] = @event.title %>
-            <%= link_to 'Wishlist this Event', {:controller => "wishlists", :action => "create", :wishlist => @wishlist } , :method => :post, :class => "btn btn-outline-primary" %>
+            <%= link_to 'Add to Wishlist', {:controller => "wishlists", :action => "create", :wishlist => @wishlist } , :method => :post, :class => "btn btn-outline-primary" %>
             </td>
           <% else %>
           <% @wishlist = Hash.new %>
@@ -173,7 +172,7 @@
             <% @wishlist["user_id"] = current_user.id %>
             <% @wishlist["event_id"] = @event.id %>
             <% @wishlist["event_name"] = @event.title %>
-            <td><%= link_to 'Remove from wishlist',{:controller => "wishlists", :action => "deleteWishlistFromEvent", :wishlist => @wishlist }, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-primary"  %></td>
+            <td><%= link_to 'Remove from Wishlist',{:controller => "wishlists", :action => "deleteWishlistFromEvent", :wishlist => @wishlist }, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-primary"  %></td>
           <% end %>
         <% end %>
       <% end %>
