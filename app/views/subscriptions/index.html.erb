@@ -50,7 +50,7 @@
             <%= user_interests_organizer.email %>
           </td>
           <td>
-            <%= user_interests_organizer.contact_no %>
+            <%= user_interests_organizer.contact_no.to_i %>
           </td>
           <td>
             <% @subscription = Hash.new %>

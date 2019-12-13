@@ -70,7 +70,7 @@
               <td><%= event.description %></td>
               <td><%= event.organizer_name %></td>
               <td><%= event.organizer_email %></td>
-              <td><%= event.organizer_contact_no %></td>
+              <td><%= event.organizer_contact_no.to_i %></td>
               <%if(event.overall_rating== 0.0 || event.overall_rating == nil ) %>
                 <td> N/A </td>
               <% else %>
